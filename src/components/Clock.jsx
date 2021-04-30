@@ -1,27 +1,54 @@
 import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+  },
   time: {
     fontSize: '8rem',
+    height: '70%',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '5rem',
+    },
   },
   ampm: {
     marginLeft: '0.5rem',
     fontSize: '0.5em',
     fontWeight: '300',
   },
-});
+  date: {
+    fontSize: '2rem',
+    fontWeight: 500,
+    fontWeight: '300',
+    [theme.breakpoints.down('sm')]: {
+      fontSize: '1.5rem',
+    },
+  },
+}));
 
 export default function Clock() {
   const [hours, setHours] = useState(null);
   const [minutes, setMinutes] = useState(null);
   const [seconds, setSeconds] = useState(null);
+  const [date, setDate] = useState(null);
   const classes = useStyles();
   const today = new Date();
   const ampm = hours <= 12 ? 'AM' : 'PM';
+
   // const twelveTimeFormat = hours % 12 || 12;
 
   useEffect(() => {
+    setDate(
+      today.toLocaleDateString('en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        weekday: 'long',
+      })
+    );
+
     setTimeout(() => {
       setHours(today.getHours());
       setMinutes(today.getMinutes());
@@ -31,19 +58,29 @@ export default function Clock() {
     // eslint-disable-next-line
   }, [hours, minutes, seconds]);
 
+  const displayTime = (hour, minute, second) => {
+    return `${appendZero(hour)}:${appendZero(minute)}:${appendZero(second)}`;
+  };
+
   const appendZero = (n) => {
     return (parseInt(n, 10) < 10 ? '0' : '') + n;
   };
 
-  if (hours === null || minutes === null || seconds === null) {
+  if (hours === null || minutes === null || seconds === null || date === null) {
     return 'Loading...';
   }
 
   return (
-    <div>
-      <time className={classes.time}>
-        {`${appendZero(hours)}:${appendZero(minutes)}:${appendZero(seconds)}`}
+    <div className={classes.container}>
+      <time
+        datetime={displayTime(hours, minutes, seconds)}
+        className={classes.time}
+      >
+        {displayTime(hours, minutes, seconds)}
         <span className={classes.ampm}>{ampm}</span>
+      </time>
+      <time datetime={date} className={classes.date}>
+        {date}
       </time>
     </div>
   );

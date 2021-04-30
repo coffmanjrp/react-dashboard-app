@@ -11,6 +11,7 @@ const theme = createMuiTheme({
         body: {
           fontFamily: '"Roboto", sans-serif',
           color: 'white',
+          overflow: 'hidden',
         },
       },
     },
