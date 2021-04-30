@@ -1,12 +1,9 @@
-import './App.css';
-import Wallpaper from './components/Wallpaper';
+import { Clock, Wallpaper } from './components';
 
 function App() {
   return (
     <Wallpaper>
-      <div className="App">
-        <div>Hello, world!</div>
-      </div>
+      <Clock />
     </Wallpaper>
   );
 }
