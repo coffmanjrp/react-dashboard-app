@@ -1,23 +1,37 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
+import { createApi } from 'unsplash-js';
 import './App.css';
 
 function App() {
+  const unsplash = createApi({
+    accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
+  });
+  const [photos, setPhotos] = useState(null);
+
+  useEffect(() => {
+    unsplashPhoto();
+
+    // eslint-disable-next-line
+  }, []);
+
+  async function unsplashPhoto() {
+    const { response } = await unsplash.photos.getRandom({
+      query: 'cat',
+    });
+
+    setPhotos(response);
+  }
+
+  console.log(photos);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div>Hello, world!</div>
+      <div>
+        {photos && (
+          <img src={photos.urls.regular} alt={photos.alt_description} />
+        )}
+      </div>
     </div>
   );
 }
