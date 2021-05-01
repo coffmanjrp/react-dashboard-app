@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { createApi } from 'unsplash-js';
+import React, { useContext, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Context } from '../context';
 import photo from '../photo.jpg';
 
 const useStyles = makeStyles({
@@ -31,10 +31,12 @@ const useStyles = makeStyles({
 });
 
 export default function Wallpaper({ children }) {
+  const { photos, setPhotos } = useContext(Context);
+
   // const unsplash = createApi({
   //   accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
   // });
-  const [photos, setPhotos] = useState(null);
+
   const classes = useStyles({ photos });
 
   useEffect(() => {

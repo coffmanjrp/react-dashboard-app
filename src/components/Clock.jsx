@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { Context } from '../context';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -28,10 +29,18 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Clock() {
-  const [hours, setHours] = useState(null);
-  const [minutes, setMinutes] = useState(null);
-  const [seconds, setSeconds] = useState(null);
-  const [date, setDate] = useState(null);
+  const {
+    hours,
+    minutes,
+    seconds,
+    date,
+    loading,
+    setHours,
+    setMinutes,
+    setSeconds,
+    setDate,
+  } = useContext(Context);
+
   const classes = useStyles();
   const today = new Date();
   const ampm = hours <= 12 ? 'AM' : 'PM';
@@ -65,7 +74,7 @@ export default function Clock() {
     return (parseInt(n, 10) < 10 ? '0' : '') + n;
   };
 
-  if (hours === null || minutes === null || seconds === null || date === null) {
+  if (loading) {
     return 'Loading...';
   }
 

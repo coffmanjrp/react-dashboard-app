@@ -1,10 +1,13 @@
 import { Clock, Wallpaper } from './components';
+import { States } from './context';
 
 function App() {
   return (
-    <Wallpaper>
-      <Clock />
-    </Wallpaper>
+    <States>
+      <Wallpaper>
+        <Clock />
+      </Wallpaper>
+    </States>
   );
 }
 
