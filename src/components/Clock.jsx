@@ -16,12 +16,11 @@ const useStyles = makeStyles((theme) => ({
   ampm: {
     marginLeft: '0.5rem',
     fontSize: '0.5em',
-    fontWeight: '300',
+    fontWeight: 300,
   },
   date: {
     fontSize: '2rem',
-    fontWeight: 500,
-    fontWeight: '300',
+    fontWeight: 300,
     [theme.breakpoints.down('sm')]: {
       fontSize: '1.5rem',
     },
@@ -56,7 +55,7 @@ export default function Clock() {
     }, 1000);
 
     // eslint-disable-next-line
-  }, [hours, minutes, seconds]);
+  }, [seconds]);
 
   const displayTime = (hour, minute, second) => {
     return `${appendZero(hour)}:${appendZero(minute)}:${appendZero(second)}`;
@@ -72,16 +71,11 @@ export default function Clock() {
 
   return (
     <div className={classes.container}>
-      <time
-        datetime={displayTime(hours, minutes, seconds)}
-        className={classes.time}
-      >
+      <time className={classes.time}>
         {displayTime(hours, minutes, seconds)}
         <span className={classes.ampm}>{ampm}</span>
       </time>
-      <time datetime={date} className={classes.date}>
-        {date}
-      </time>
+      <time className={classes.date}>{date}</time>
     </div>
   );
 }

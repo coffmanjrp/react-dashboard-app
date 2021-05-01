@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { createApi } from 'unsplash-js';
 import { makeStyles } from '@material-ui/core/styles';
 import photo from '../photo.jpg';
@@ -44,14 +43,13 @@ export default function Wallpaper({ children }) {
     // eslint-disable-next-line
   }, []);
 
-  async function unsplashPhoto() {
+  const unsplashPhoto = async () => {
     // const { response } = await unsplash.photos.getRandom({
     //   query: 'cat',
     // });
 
     setPhotos(photo);
-  }
+  };
 
-  console.log(photos);
   return <div className={classes.container}>{children}</div>;
 }
