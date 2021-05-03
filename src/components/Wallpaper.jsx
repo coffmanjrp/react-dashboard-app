@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Context } from '../context';
+import { ClockContext } from '../context/clock';
 import photo from '../photo.jpg';
 
 const useStyles = makeStyles({
@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 });
 
 export default function Wallpaper({ children }) {
-  const { photos, setPhotos } = useContext(Context);
+  const { photos, setPhotos } = useContext(ClockContext);
 
   // const unsplash = createApi({
   //   accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,

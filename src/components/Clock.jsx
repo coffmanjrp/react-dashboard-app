@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Context } from '../context';
+import { ClockContext } from '../context/clock';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -39,7 +39,7 @@ export default function Clock() {
     setMinutes,
     setSeconds,
     setDate,
-  } = useContext(Context);
+  } = useContext(ClockContext);
 
   const classes = useStyles();
   const today = new Date();
