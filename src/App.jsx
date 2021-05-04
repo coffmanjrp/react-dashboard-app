@@ -1,16 +1,16 @@
 import { Clock, Wallpaper } from './components';
 import { ClockState } from './context/clock/';
-import { UnsplashProvider } from './context/useUnsplash';
+import { ContextProvider } from './context/context';
 
 function App() {
   return (
-    <UnsplashProvider>
+    <ContextProvider>
       <ClockState>
         <Wallpaper>
           <Clock />
         </Wallpaper>
       </ClockState>
-    </UnsplashProvider>
+    </ContextProvider>
   );
 }
 

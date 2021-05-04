@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     alignItems: 'center',
     width: '100vw',
     height: '100vh',
-    background: `url(${props.photos}) no-repeat center center/cover`,
+    background: `url(${props.photoUrl}) no-repeat center center/cover`,
     textAlign: 'center',
     zIndex: -2,
     '&::after': {
@@ -32,8 +32,8 @@ const useStyles = makeStyles({
 });
 
 export default function Wallpaper({ children }) {
-  const { photos, getRandomPhoto } = useUnsplash();
-  const classes = useStyles({ photos });
+  const { photoUrl, getRandomPhoto } = useUnsplash();
+  const classes = useStyles({ photoUrl });
 
   useEffect(() => {
     getRandomPhoto('dog');
