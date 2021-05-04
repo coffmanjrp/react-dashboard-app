@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { ClockContext } from '../context/clock';
+import { motion } from 'framer-motion';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -27,6 +28,18 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
+
+const clockVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+    },
+  },
+};
 
 export default function Clock() {
   const {
@@ -79,12 +92,17 @@ export default function Clock() {
   }
 
   return (
-    <div className={classes.container}>
+    <motion.div
+      className={classes.container}
+      variants={clockVariants}
+      initial="initial"
+      animate="animate"
+    >
       <time className={classes.time}>
         {displayTime(hours, minutes, seconds)}
         <span className={classes.ampm}>{ampm}</span>
       </time>
       <time className={classes.date}>{date}</time>
-    </div>
+    </motion.div>
   );
 }
