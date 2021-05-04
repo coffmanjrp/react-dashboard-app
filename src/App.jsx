@@ -1,6 +1,6 @@
-import { Clock, Wallpaper } from './components';
-import { ClockState } from './context/clock/';
-import { ContextProvider } from './context/context';
+import { Clock, Wallpaper } from 'components';
+import { ClockState } from 'context/clock/';
+import { ContextProvider } from 'context/context';
 
 function App() {
   return (

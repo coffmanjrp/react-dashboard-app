@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { ClockContext } from '../context/clock';
+import { ClockContext } from 'context/clock';
 import { motion } from 'framer-motion';
 
 const useStyles = makeStyles((theme) => ({

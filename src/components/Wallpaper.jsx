@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
-import { useUnsplash } from '../context/useUnsplash';
-import photo from '../photo.jpg';
+import { useUnsplash } from 'context/useUnsplash';
+import photo from 'photo.jpg';
 
 const useStyles = makeStyles({
   container: (props) => ({
