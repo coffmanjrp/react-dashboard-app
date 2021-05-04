@@ -43,6 +43,34 @@ const clockVariants = {
   },
 };
 
+const ampmVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 0.8,
+      delay: 0.5,
+    },
+  },
+};
+
+const dateVariants = {
+  initial: {
+    opacity: 0,
+    y: '10px',
+  },
+  animate: {
+    opacity: 1,
+    y: '0',
+    transition: {
+      duration: 0.8,
+      delay: 0.5,
+    },
+  },
+};
+
 export default function Clock() {
   const {
     hours,
@@ -92,18 +120,27 @@ export default function Clock() {
   return (
     <>
       {!loading && (
-        <motion.div
-          className={classes.container}
-          variants={clockVariants}
-          initial="initial"
-          animate="animate"
-        >
-          <time className={classes.time}>
+        <div className={classes.container}>
+          <motion.time
+            className={classes.time}
+            variants={clockVariants}
+            initial="initial"
+            animate="animate"
+          >
             {displayTime(hours, minutes, seconds)}
-            <span className={classes.ampm}>{ampm}</span>
-          </time>
-          <time className={classes.date}>{date}</time>
-        </motion.div>
+            <motion.span className={classes.ampm} variants={ampmVariants}>
+              {ampm}
+            </motion.span>
+          </motion.time>
+          <motion.time
+            className={classes.date}
+            variants={dateVariants}
+            initial="initial"
+            animate="animate"
+          >
+            {date}
+          </motion.time>
+        </div>
       )}
     </>
   );

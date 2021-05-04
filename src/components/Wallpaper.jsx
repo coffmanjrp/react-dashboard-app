@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { ClockContext } from '../context/clock';
+import { motion } from 'framer-motion';
+import { useUnsplash } from '../context/useUnsplash';
 import photo from '../photo.jpg';
 
 const useStyles = makeStyles({
@@ -31,27 +32,22 @@ const useStyles = makeStyles({
 });
 
 export default function Wallpaper({ children }) {
-  const { photos, setPhotos } = useContext(ClockContext);
-
-  // const unsplash = createApi({
-  //   accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
-  // });
-
+  const { photos, getRandomPhoto } = useUnsplash();
   const classes = useStyles({ photos });
 
   useEffect(() => {
-    unsplashPhoto();
+    getRandomPhoto('dog');
 
     // eslint-disable-next-line
   }, []);
 
-  const unsplashPhoto = async () => {
-    // const { response } = await unsplash.photos.getRandom({
-    //   query: 'cat',
-    // });
-
-    setPhotos(photo);
-  };
-
-  return <div className={classes.container}>{children}</div>;
+  return (
+    <motion.div
+      className={classes.container}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+    >
+      {children}
+    </motion.div>
+  );
 }
