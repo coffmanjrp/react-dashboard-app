@@ -32,11 +32,13 @@ const useStyles = makeStyles((theme) => ({
 const clockVariants = {
   initial: {
     opacity: 0,
+    y: '-10px',
   },
   animate: {
     opacity: 1,
+    y: '0',
     transition: {
-      duration: 0.5,
+      duration: 0.8,
     },
   },
 };
@@ -87,22 +89,22 @@ export default function Clock() {
     return (parseInt(n, 10) < 10 ? '0' : '') + n;
   };
 
-  if (loading) {
-    return 'Loading...';
-  }
-
   return (
-    <motion.div
-      className={classes.container}
-      variants={clockVariants}
-      initial="initial"
-      animate="animate"
-    >
-      <time className={classes.time}>
-        {displayTime(hours, minutes, seconds)}
-        <span className={classes.ampm}>{ampm}</span>
-      </time>
-      <time className={classes.date}>{date}</time>
-    </motion.div>
+    <>
+      {!loading && (
+        <motion.div
+          className={classes.container}
+          variants={clockVariants}
+          initial="initial"
+          animate="animate"
+        >
+          <time className={classes.time}>
+            {displayTime(hours, minutes, seconds)}
+            <span className={classes.ampm}>{ampm}</span>
+          </time>
+          <time className={classes.date}>{date}</time>
+        </motion.div>
+      )}
+    </>
   );
 }
