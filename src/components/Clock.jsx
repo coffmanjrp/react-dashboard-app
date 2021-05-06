@@ -1,7 +1,7 @@
 import React, { useContext, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { ClockContext } from 'context/clock';
 import { motion } from 'framer-motion';
+import { useClock } from 'context/useClock';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -72,75 +72,35 @@ const dateVariants = {
 };
 
 export default function Clock() {
-  const {
-    hours,
-    minutes,
-    seconds,
-    date,
-    loading,
-    setHours,
-    setMinutes,
-    setSeconds,
-    setDate,
-  } = useContext(ClockContext);
-
+  const { hours, minutes, seconds, date, ampm, displayTime } = useClock();
   const classes = useStyles();
-  const today = new Date();
-  const ampm = hours <= 12 ? 'AM' : 'PM';
-
-  // const twelveTimeFormat = hours % 12 || 12;
 
   useEffect(() => {
-    setDate(
-      today.toLocaleDateString('en-US', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-        weekday: 'long',
-      })
-    );
-
-    setTimeout(() => {
-      setHours(today.getHours());
-      setMinutes(today.getMinutes());
-      setSeconds(today.getSeconds());
-    }, 1000);
+    displayTime();
 
     // eslint-disable-next-line
-  }, [seconds]);
-
-  const displayTime = (hour, minute, second) => {
-    return `${appendZero(hour)}:${appendZero(minute)}:${appendZero(second)}`;
-  };
-
-  const appendZero = (n) => {
-    return (parseInt(n, 10) < 10 ? '0' : '') + n;
-  };
+  }, [seconds, date, ampm]);
 
   return (
     <>
-      {!loading && (
-        <div className={classes.container}>
-          <motion.time
-            className={classes.time}
-            variants={clockVariants}
-            initial="initial"
-            animate="animate"
-          >
+      {seconds !== null ? (
+        <motion.div
+          className={classes.container}
+          initial="initial"
+          animate="animate"
+        >
+          <motion.time className={classes.time} variants={clockVariants}>
             {displayTime(hours, minutes, seconds)}
             <motion.span className={classes.ampm} variants={ampmVariants}>
               {ampm}
             </motion.span>
           </motion.time>
-          <motion.time
-            className={classes.date}
-            variants={dateVariants}
-            initial="initial"
-            animate="animate"
-          >
+          <motion.time className={classes.date} variants={dateVariants}>
             {date}
           </motion.time>
-        </div>
+        </motion.div>
+      ) : (
+        ''
       )}
     </>
   );

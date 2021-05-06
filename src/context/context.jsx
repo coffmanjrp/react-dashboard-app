@@ -1,9 +1,14 @@
-import React, { createContext } from 'react';
-import { useProvideUnsplash } from './useUnsplash';
+import { useProvideUnsplash, unsplashContext } from './useUnsplash';
 
-export const context = createContext();
+import { clockContext, useProvideClock } from './useClock';
 
 export const ContextProvider = ({ children }) => {
   const unsplash = useProvideUnsplash();
-  return <context.Provider value={unsplash}>{children}</context.Provider>;
+  const clock = useProvideClock();
+
+  return (
+    <unsplashContext.Provider value={unsplash}>
+      <clockContext.Provider value={clock}>{children}</clockContext.Provider>
+    </unsplashContext.Provider>
+  );
 };

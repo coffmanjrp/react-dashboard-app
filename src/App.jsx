@@ -1,15 +1,12 @@
 import { Clock, Wallpaper } from 'components';
-import { ClockState } from 'context/clock/';
-import { ContextProvider } from 'context/context';
+import { ContextProvider } from 'context/Context';
 
 function App() {
   return (
     <ContextProvider>
-      <ClockState>
-        <Wallpaper>
-          <Clock />
-        </Wallpaper>
-      </ClockState>
+      <Wallpaper>
+        <Clock />
+      </Wallpaper>
     </ContextProvider>
   );
 }

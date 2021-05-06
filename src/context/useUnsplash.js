@@ -1,9 +1,10 @@
-import { useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { createApi } from 'unsplash-js';
-import { context } from './context';
+
+export const unsplashContext = createContext();
 
 export const useUnsplash = () => {
-  return useContext(context);
+  return useContext(unsplashContext);
 };
 
 export const useProvideUnsplash = () => {
