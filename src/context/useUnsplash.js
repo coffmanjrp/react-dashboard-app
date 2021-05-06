@@ -1,5 +1,6 @@
 import { createContext, useContext, useState } from 'react';
 import { createApi } from 'unsplash-js';
+import photo from 'photo.jpg';
 
 export const unsplashContext = createContext();
 
@@ -14,12 +15,17 @@ export const useProvideUnsplash = () => {
     accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
   });
 
-  const getRandomPhoto = async (value) => {
-    const { response } = await unsplash.photos.getRandom({
-      query: value,
-    });
+  const getRandomPhoto = async (query) => {
+    try {
+      const { response } = await unsplash.photos.getRandom({
+        query,
+      });
 
-    setPhotoUrl(response.urls.regular);
+      setPhotoUrl(response.urls.regular);
+    } catch (error) {
+      console.error(error);
+      setPhotoUrl(photo);
+    }
   };
 
   return {

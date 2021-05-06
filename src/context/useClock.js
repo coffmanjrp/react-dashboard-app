@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 export const clockContext = createContext();
 
@@ -15,10 +15,6 @@ export const useProvideClock = () => {
 
   // const twelveTimeFormat = hours % 12 || 12;
 
-  const appendZero = (n) => {
-    return (parseInt(n, 10) < 10 ? '0' : '') + n;
-  };
-
   const displayTime = () => {
     const today = new Date();
 
@@ -28,6 +24,7 @@ export const useProvideClock = () => {
       setSeconds(today.getSeconds());
     }, 1000);
 
+    setAmpm(hours <= 12 ? 'AM' : 'PM');
     setDate(
       today.toLocaleDateString('en-US', {
         day: 'numeric',
@@ -36,10 +33,10 @@ export const useProvideClock = () => {
         weekday: 'long',
       })
     );
+  };
 
-    setAmpm(hours <= 12 ? 'AM' : 'PM');
-
-    return `${appendZero(hours)}:${appendZero(minutes)}:${appendZero(seconds)}`;
+  const appendZero = (n) => {
+    return (parseInt(n, 10) < 10 ? '0' : '') + n;
   };
 
   return {
@@ -49,5 +46,6 @@ export const useProvideClock = () => {
     date,
     ampm,
     displayTime,
+    appendZero,
   };
 };

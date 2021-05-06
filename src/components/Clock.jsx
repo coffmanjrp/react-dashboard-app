@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
 import { useClock } from 'context/useClock';
@@ -72,7 +72,15 @@ const dateVariants = {
 };
 
 export default function Clock() {
-  const { hours, minutes, seconds, date, ampm, displayTime } = useClock();
+  const {
+    hours,
+    minutes,
+    seconds,
+    date,
+    ampm,
+    displayTime,
+    appendZero,
+  } = useClock();
   const classes = useStyles();
 
   useEffect(() => {
@@ -83,14 +91,16 @@ export default function Clock() {
 
   return (
     <>
-      {seconds !== null ? (
+      {seconds !== null && (
         <motion.div
           className={classes.container}
           initial="initial"
           animate="animate"
         >
           <motion.time className={classes.time} variants={clockVariants}>
-            {displayTime(hours, minutes, seconds)}
+            {`${appendZero(hours)}:${appendZero(minutes)}:${appendZero(
+              seconds
+            )}`}
             <motion.span className={classes.ampm} variants={ampmVariants}>
               {ampm}
             </motion.span>
@@ -99,8 +109,6 @@ export default function Clock() {
             {date}
           </motion.time>
         </motion.div>
-      ) : (
-        ''
       )}
     </>
   );
