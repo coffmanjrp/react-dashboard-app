@@ -2,21 +2,18 @@ import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
 import { useUnsplash } from 'context/useUnsplash';
-import photo from 'photo.jpg';
 
 const useStyles = makeStyles({
   container: (props) => ({
     position: 'relative',
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
+    display: 'grid',
+    gridTemplateRows: '5vh 90vh 5vh',
     alignItems: 'center',
     width: '100vw',
     height: '100vh',
     background: `url(${props.photoUrl}) no-repeat center center/cover`,
     textAlign: 'center',
-    zIndex: -2,
-    '&::after': {
+    '&::before': {
       content: '""',
       position: 'absolute',
       top: 0,
@@ -25,8 +22,7 @@ const useStyles = makeStyles({
       bottom: 0,
       width: '100%',
       height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.4)',
-      zIndex: -1,
+      backgroundColor: 'rgba(0, 0, 0, 0.2)',
     },
   }),
 });
@@ -36,7 +32,7 @@ export default function Wallpaper({ children }) {
   const classes = useStyles({ photoUrl });
 
   useEffect(() => {
-    getRandomPhoto('dog');
+    getRandomPhoto('icecream');
 
     // eslint-disable-next-line
   }, []);
