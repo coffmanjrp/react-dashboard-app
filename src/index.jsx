@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import grey from '@material-ui/core/colors/grey';
 import App from 'App';
 
 const theme = createMuiTheme({
@@ -10,7 +11,7 @@ const theme = createMuiTheme({
       '@global': {
         body: {
           fontFamily: '"Roboto", sans-serif',
-          color: 'white',
+          color: grey[200],
           overflow: 'hidden',
         },
       },

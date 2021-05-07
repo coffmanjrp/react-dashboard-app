@@ -10,6 +10,13 @@ export const useUnsplash = () => {
 
 export const useProvideUnsplash = () => {
   const [photoUrl, setPhotoUrl] = useState(null);
+  const [authorInfo, setAuthorInfo] = useState({
+    name: 'Sarah Kilian',
+    location: 'leeds',
+    userPage: 'https://unsplash.com/@rojekilian',
+    image:
+      'https://images.unsplash.com/profile-1553374303036-d6e5e50117cc?auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff',
+  });
 
   const unsplash = createApi({
     accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
@@ -21,6 +28,14 @@ export const useProvideUnsplash = () => {
         query,
       });
 
+      // console.log(response);
+
+      setAuthorInfo({
+        name: response.user.name,
+        location: response.user.location,
+        link: response.user.links.html,
+        image: response.user.profile_image.medium,
+      });
       setPhotoUrl(response.urls.regular);
     } catch (error) {
       console.error(error);
@@ -30,6 +45,7 @@ export const useProvideUnsplash = () => {
 
   return {
     photoUrl,
+    authorInfo,
     getRandomPhoto,
   };
 };
