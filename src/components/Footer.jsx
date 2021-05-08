@@ -1,7 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
-import { Menu, AuthorInfo } from './';
+import { AuthorInfo, DownloadButton, Menu, UnsplashLink } from './';
+import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -21,9 +22,11 @@ const useStyles = makeStyles((theme) => ({
 const footerVariants = {
   initial: {
     opacity: 0,
+    y: '10px',
   },
   animate: {
     opacity: 1,
+    y: '0',
     transition: {
       duration: 0.8,
     },
@@ -41,7 +44,11 @@ export default function Footer() {
       animate="animate"
     >
       <AuthorInfo />
-      <Menu />
+      <Box display="flex">
+        <UnsplashLink />
+        <DownloadButton />
+        <Menu />
+      </Box>
     </motion.footer>
   );
 }
