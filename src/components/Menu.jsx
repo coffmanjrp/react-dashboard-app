@@ -11,6 +11,10 @@ import { MdInbox, MdMail, MdSettings } from 'react-icons/md';
 import { motion } from 'framer-motion';
 
 const useStyles = makeStyles({
+  container: {
+    width: '2.8rem',
+    height: '2.8rem',
+  },
   list: {
     width: 250,
   },
@@ -18,8 +22,10 @@ const useStyles = makeStyles({
     width: '100%',
   },
   button: {
+    width: '100%',
+    height: '100%',
     fontSize: '1.3rem',
-    color: 'white',
+    color: 'inherit',
   },
 });
 
@@ -77,7 +83,11 @@ export default function Menu() {
 
   return (
     <>
-      <motion.div variants={buttonVariants} whileHover="hover">
+      <motion.div
+        className={classes.container}
+        variants={buttonVariants}
+        whileHover="hover"
+      >
         <IconButton
           className={classes.button}
           aria-label="Settings"

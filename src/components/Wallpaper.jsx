@@ -28,11 +28,14 @@ const useStyles = makeStyles({
 });
 
 export default function Wallpaper({ children }) {
-  const { photoUrl, getRandomPhoto } = useUnsplash();
+  const {
+    data: { photoUrl },
+    getRandomPhoto,
+  } = useUnsplash();
   const classes = useStyles({ photoUrl });
 
   useEffect(() => {
-    getRandomPhoto('icecream');
+    getRandomPhoto('dog, cat');
 
     // eslint-disable-next-line
   }, []);

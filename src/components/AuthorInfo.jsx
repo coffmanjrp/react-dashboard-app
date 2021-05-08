@@ -39,20 +39,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function AuthorInfo() {
-  const { authorInfo } = useUnsplash();
-  const { name, location, link, image } = authorInfo;
+  const {
+    data: { name, location, avatar, profileLink },
+  } = useUnsplash();
   const classes = useStyles();
 
   return (
     <Box className={classes.root}>
       <Link
-        href={link}
+        href={profileLink}
         className={classes.link}
         color="inherit"
         target="_blank"
         rel="noreferrer"
       >
-        <Avatar src={image} alt={name} className={classes.avatar} />
+        <Avatar src={avatar} alt={name} className={classes.avatar} />
         <Box>
           <Typography variant="h3" className={classes.username}>
             {name}

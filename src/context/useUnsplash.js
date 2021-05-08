@@ -9,14 +9,16 @@ export const useUnsplash = () => {
 };
 
 export const useProvideUnsplash = () => {
-  const [photoUrl, setPhotoUrl] = useState(null);
-  const [authorInfo, setAuthorInfo] = useState({
-    name: 'Sarah Kilian',
-    location: 'leeds',
-    userPage: 'https://unsplash.com/@rojekilian',
-    image:
-      'https://images.unsplash.com/profile-1553374303036-d6e5e50117cc?auto=format&fit=crop&w=150&h=150&q=60&crop=faces&bg=fff',
-  });
+  const initialState = {
+    name: '',
+    location: '',
+    avatar: '',
+    photoUrl: null,
+    unsplashLink: '',
+    profileLink: '',
+    downloadLink: '',
+  };
+  const [data, setData] = useState(initialState);
 
   const unsplash = createApi({
     accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
@@ -30,22 +32,37 @@ export const useProvideUnsplash = () => {
 
       // console.log(response);
 
-      setAuthorInfo({
+      setData({
+        ...data,
         name: response.user.name,
         location: response.user.location,
-        link: response.user.links.html,
-        image: response.user.profile_image.medium,
+        avatar: response.user.profile_image.medium,
+        photoUrl: response.urls.regular,
+        unsplashLink: response.links.html,
+        profileLink: response.user.links.html,
+        downloadLink: response.links.download,
       });
-      setPhotoUrl(response.urls.regular);
     } catch (error) {
-      console.error(error);
-      setPhotoUrl(photo);
+      console.error('error occurred: ', error);
+      setData({
+        photoUrl: photo,
+      });
     }
   };
 
+  const downloadPhoto = async () => {
+    const { response } = await unsplash.photos.trackDownload({
+      downloadLocation: data.downloadLink,
+    });
+
+    console.log(response);
+
+    return response.url;
+  };
+
   return {
-    photoUrl,
-    authorInfo,
+    data,
     getRandomPhoto,
+    downloadPhoto,
   };
 };
