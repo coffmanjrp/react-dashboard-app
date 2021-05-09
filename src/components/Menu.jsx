@@ -9,6 +9,7 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import { MdInbox, MdMail, MdSettings } from 'react-icons/md';
 import { motion } from 'framer-motion';
+import { Annotation, SettingTabs } from './';
 
 const useStyles = makeStyles({
   container: {
@@ -83,21 +84,23 @@ export default function Menu() {
 
   return (
     <>
-      <motion.div
-        className={classes.container}
-        variants={buttonVariants}
-        whileHover="hover"
-      >
-        <IconButton
-          className={classes.button}
-          aria-label="Settings"
-          onClick={toggleDrawer(true)}
+      <Annotation content="Settings" placement="top">
+        <motion.div
+          className={classes.container}
+          variants={buttonVariants}
+          whileHover="hover"
         >
-          <MdSettings />
-        </IconButton>
-      </motion.div>
+          <IconButton
+            className={classes.button}
+            aria-label="Settings"
+            onClick={toggleDrawer(true)}
+          >
+            <MdSettings />
+          </IconButton>
+        </motion.div>
+      </Annotation>
       <Drawer anchor={'bottom'} open={drawer} onClose={toggleDrawer(false)}>
-        {list()}
+        <SettingTabs />
       </Drawer>
     </>
   );

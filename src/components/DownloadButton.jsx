@@ -4,6 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { FiDownload } from 'react-icons/fi';
 import { motion } from 'framer-motion';
 import { useUnsplash } from 'context/useUnsplash';
+import { Annotation } from './';
 
 const useStyles = makeStyles({
   container: {
@@ -31,15 +32,17 @@ export default function DownloadButton() {
   const { downloadPhoto } = useUnsplash();
 
   return (
-    <motion.div variants={buttonVariants} whileHover="hover">
-      <IconButton
-        className={classes.button}
-        aria-label="Download Image"
-        color="inherit"
-        onClick={() => downloadPhoto()}
-      >
-        <FiDownload />
-      </IconButton>
-    </motion.div>
+    <Annotation content="Download Photo" placement="top">
+      <motion.div variants={buttonVariants} whileHover="hover">
+        <IconButton
+          className={classes.button}
+          aria-label="Download Photo"
+          color="inherit"
+          onClick={() => downloadPhoto()}
+        >
+          <FiDownload />
+        </IconButton>
+      </motion.div>
+    </Annotation>
   );
 }

@@ -14,6 +14,7 @@ export const useProvideUnsplash = () => {
     location: '',
     avatar: '',
     photoUrl: null,
+    thumbnail: null,
     unsplashLink: '',
     profileLink: '',
     downloadLink: '',
@@ -30,7 +31,7 @@ export const useProvideUnsplash = () => {
         query,
       });
 
-      // console.log(response);
+      console.log(response);
 
       setData({
         ...data,
@@ -38,6 +39,7 @@ export const useProvideUnsplash = () => {
         location: response.user.location,
         avatar: response.user.profile_image.medium,
         photoUrl: response.urls.regular,
+        thumbnail: response.urls.thumb,
         unsplashLink: response.links.html,
         profileLink: response.user.links.html,
         downloadLink: response.links.download,
@@ -55,7 +57,7 @@ export const useProvideUnsplash = () => {
       downloadLocation: data.downloadLink,
     });
 
-    console.log(response);
+    // console.log(response);
 
     return response.url;
   };

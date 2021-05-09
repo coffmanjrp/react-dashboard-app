@@ -5,6 +5,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { SiUnsplash } from 'react-icons/si';
 import { motion } from 'framer-motion';
 import { useUnsplash } from 'context/useUnsplash';
+import { Annotation } from './';
 
 const useStyles = makeStyles({
   container: {
@@ -31,25 +32,38 @@ const buttonVariants = {
 export default function UnsplashLink() {
   const classes = useStyles();
   const {
-    data: { unsplashLink },
+    data: { thumbnail, unsplashLink },
   } = useUnsplash();
 
   return (
-    <motion.div
-      className={classes.container}
-      variants={buttonVariants}
-      whileHover="hover"
+    <Annotation
+      content={
+        <>
+          <h4>View photo on Unsplash</h4>
+          <img src={thumbnail} alt="thumbnail" />
+        </>
+      }
+      placement="top-end"
     >
-      <IconButton className={classes.button} aria-label="View on Unsplash">
-        <Link
-          href={unsplashLink}
-          target="_blank"
-          rel="noopener"
-          color="inherit"
+      <motion.div
+        className={classes.container}
+        variants={buttonVariants}
+        whileHover="hover"
+      >
+        <IconButton
+          className={classes.button}
+          aria-label="View photo on Unsplash"
         >
-          <SiUnsplash />
-        </Link>
-      </IconButton>
-    </motion.div>
+          <Link
+            href={unsplashLink}
+            target="_blank"
+            rel="noopener"
+            color="inherit"
+          >
+            <SiUnsplash />
+          </Link>
+        </IconButton>
+      </motion.div>
+    </Annotation>
   );
 }
