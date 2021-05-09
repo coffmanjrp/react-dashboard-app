@@ -18,10 +18,10 @@ const LightTooltip = withStyles({
 export default function Annotation({ children, content, placement }) {
   return (
     <LightTooltip
-      arrow
       title={content}
       placement={placement}
       TransitionComponent={Zoom}
+      arrow
     >
       {children}
     </LightTooltip>

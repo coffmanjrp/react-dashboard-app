@@ -1,5 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { motion } from 'framer-motion';
+import { UnsplashLink } from './';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -16,12 +18,31 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const headerVariants = {
+  initial: {
+    opacity: 0,
+    y: '-10px',
+  },
+  animate: {
+    opacity: 1,
+    y: '0',
+    transition: {
+      duration: 0.8,
+    },
+  },
+};
+
 export default function Header() {
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
-      <h3>Header</h3>
-    </div>
+    <motion.div
+      className={classes.container}
+      variants={headerVariants}
+      initial="initial"
+      animate="animate"
+    >
+      <UnsplashLink />
+    </motion.div>
   );
 }

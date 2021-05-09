@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
-import { AuthorInfo, DownloadButton, Menu, UnsplashLink } from './';
+import { AuthorInfo, DownloadButton, Menu, ShareButton } from './';
 import { Box } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,7 +45,7 @@ export default function Footer() {
     >
       <AuthorInfo />
       <Box display="flex">
-        <UnsplashLink />
+        <ShareButton />
         <DownloadButton />
         <Menu />
       </Box>

@@ -38,12 +38,12 @@ export default function UnsplashLink() {
   return (
     <Annotation
       content={
-        <>
-          <h4>View photo on Unsplash</h4>
+        <div>
+          <h4>View photo on Unsplash website</h4>
           <img src={thumbnail} alt="thumbnail" />
-        </>
+        </div>
       }
-      placement="top-end"
+      placement="bottom-end"
     >
       <motion.div
         className={classes.container}
@@ -52,7 +52,7 @@ export default function UnsplashLink() {
       >
         <IconButton
           className={classes.button}
-          aria-label="View photo on Unsplash"
+          aria-label="View photo on Unsplash website"
         >
           <Link
             href={unsplashLink}
