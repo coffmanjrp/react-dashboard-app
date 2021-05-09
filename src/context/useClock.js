@@ -40,21 +40,25 @@ export const useProvideClock = () => {
   };
 
   const showGreetings = () => {
-    const greetingByTime =
-      hours >= 5 && hours < 12
-        ? 'Good Morning!'
-        : hours >= 12 && hours < 18
-        ? 'Good Afternoon'
-        : 'Good Evening!';
+    let greetingByTime;
+
+    if (hours >= 5 && hours < 12) {
+      greetingByTime = 'Good Morning!';
+    } else if (hours >= 12 && hours < 18) {
+      greetingByTime = 'Good Afternoon!';
+    } else {
+      greetingByTime = 'Good Evening!';
+    }
+
     const greetings = [
       greetingByTime,
-      'Hi!',
-      'Hello!',
-      'How do you do today?',
-      'How’s it going?',
-      'How are you doing?',
-      'What’s up?',
-      'Howdy!',
+      // 'Hi!',
+      // 'Hello!',
+      // 'How do you do today?',
+      // 'How’s it going?',
+      // 'How are you doing?',
+      // 'What’s up?',
+      // 'Howdy!',
     ];
 
     return greetings[Math.floor(Math.random() * greetings.length)];
