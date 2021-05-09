@@ -1,15 +1,18 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import { MdInbox, MdMail, MdSettings } from 'react-icons/md';
+import {
+  Drawer,
+  Divider,
+  IconButton,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from '@material-ui/core';
 import { motion } from 'framer-motion';
-import { Annotation, SettingTabs } from './';
+import { MdInbox, MdMail } from 'react-icons/md';
+import { IoSettingsOutline } from 'react-icons/io5';
+import { Annotation, SettingTabs } from '.';
 
 const useStyles = makeStyles({
   container: {
@@ -39,7 +42,7 @@ const buttonVariants = {
   },
 };
 
-export default function Menu() {
+export default function ToggleMenuButton() {
   const classes = useStyles();
   const [drawer, setDrawer] = useState(false);
 
@@ -95,7 +98,7 @@ export default function Menu() {
             aria-label="Settings"
             onClick={toggleDrawer(true)}
           >
-            <MdSettings />
+            <IoSettingsOutline />
           </IconButton>
         </motion.div>
       </Annotation>

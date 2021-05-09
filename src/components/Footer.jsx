@@ -1,8 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { motion } from 'framer-motion';
-import { AuthorInfo, DownloadButton, Menu, ShareButton } from './';
 import { Box } from '@material-ui/core';
+import { motion } from 'framer-motion';
+import { AuthorInfo, DownloadButton, ToggleMenuButton, ShareButton } from '.';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -47,7 +47,7 @@ export default function Footer() {
       <Box display="flex">
         <ShareButton />
         <DownloadButton />
-        <Menu />
+        <ToggleMenuButton />
       </Box>
     </motion.footer>
   );

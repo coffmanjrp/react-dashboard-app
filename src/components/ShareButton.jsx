@@ -1,10 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from '@material-ui/core/IconButton';
-import { RiShareForwardBoxLine } from 'react-icons/ri';
 import { motion } from 'framer-motion';
+import { RiShareForwardBoxLine } from 'react-icons/ri';
+import { Annotation } from '.';
 import { useUnsplash } from 'context/useUnsplash';
-import { Annotation } from './';
 
 const useStyles = makeStyles({
   container: {

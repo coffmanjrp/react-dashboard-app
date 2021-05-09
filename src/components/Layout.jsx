@@ -27,7 +27,7 @@ const useStyles = makeStyles({
   }),
 });
 
-export default function Wallpaper({ children }) {
+export default function Layout({ children }) {
   const {
     data: { photoUrl },
     getRandomPhoto,

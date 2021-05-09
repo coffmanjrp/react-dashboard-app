@@ -1,7 +1,6 @@
 import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
-import Tooltip from '@material-ui/core/Tooltip';
-import Zoom from '@material-ui/core/Zoom';
+import { Tooltip, Fade } from '@material-ui/core';
 
 const LightTooltip = withStyles({
   arrow: {
@@ -20,7 +19,8 @@ export default function Annotation({ children, content, placement }) {
     <LightTooltip
       title={content}
       placement={placement}
-      TransitionComponent={Zoom}
+      TransitionComponent={Fade}
+      TransitionProps={{ timeout: 600 }}
       arrow
     >
       {children}

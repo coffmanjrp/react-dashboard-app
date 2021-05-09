@@ -1,14 +1,14 @@
-import { Clock, Footer, Header, Wallpaper } from 'components';
+import { Clock, Footer, Header, Layout } from 'components';
 import { ContextProvider } from 'context/Context';
 
 function App() {
   return (
     <ContextProvider>
-      <Wallpaper>
+      <Layout>
         <Header />
         <Clock />
         <Footer />
-      </Wallpaper>
+      </Layout>
     </ContextProvider>
   );
 }

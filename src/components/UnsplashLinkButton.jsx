@@ -1,11 +1,10 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Link from '@material-ui/core/Link';
-import IconButton from '@material-ui/core/IconButton';
-import { SiUnsplash } from 'react-icons/si';
+import { IconButton, Link } from '@material-ui/core';
 import { motion } from 'framer-motion';
+import { SiUnsplash } from 'react-icons/si';
+import { Annotation } from '.';
 import { useUnsplash } from 'context/useUnsplash';
-import { Annotation } from './';
 
 const useStyles = makeStyles({
   container: {
@@ -29,7 +28,7 @@ const buttonVariants = {
   },
 };
 
-export default function UnsplashLink() {
+export default function UnsplashLinkButton() {
   const classes = useStyles();
   const {
     data: { thumbnail, unsplashLink },
