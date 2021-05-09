@@ -103,6 +103,7 @@ export default function Clock() {
     ampm,
     displayTime,
     appendZero,
+    showGreetings,
   } = useClock();
   const classes = useStyles();
 
@@ -134,7 +135,7 @@ export default function Clock() {
         </>
       ) : (
         <motion.h1 className={classes.greeting} variants={greetingVariants}>
-          Good Morning!
+          {showGreetings()}
         </motion.h1>
       )}
     </motion.div>
