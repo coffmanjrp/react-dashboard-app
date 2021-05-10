@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
+import { Greeting } from '.';
 import { useClock } from 'context/useClock';
 
 const useStyles = makeStyles((theme) => ({
@@ -8,13 +9,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     zIndex: 1,
-  },
-  greeting: {
-    fontSize: '8rem',
-    lineHeight: 1,
-    [theme.breakpoints.down('sm')]: {
-      fontSize: '5rem',
-    },
   },
   time: {
     fontSize: '8rem',
@@ -37,20 +31,6 @@ const useStyles = makeStyles((theme) => ({
     },
   },
 }));
-
-const greetingVariants = {
-  initial: {
-    opacity: 1,
-    x: '-10px',
-  },
-  animate: {
-    opacity: 0,
-    x: '0',
-    transition: {
-      duration: 1.5,
-    },
-  },
-};
 
 const clockVariants = {
   initial: {
@@ -103,7 +83,6 @@ export default function Clock() {
     ampm,
     displayTime,
     appendZero,
-    showGreetings,
   } = useClock();
   const classes = useStyles();
 
@@ -134,9 +113,7 @@ export default function Clock() {
           </motion.time>
         </>
       ) : (
-        <motion.h1 className={classes.greeting} variants={greetingVariants}>
-          {showGreetings()}
-        </motion.h1>
+        <Greeting hours={hours} />
       )}
     </motion.div>
   );
