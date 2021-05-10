@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Tabs, Tab } from '@material-ui/core';
+import grey from '@material-ui/core/colors/grey';
+import { About } from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -8,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     flexDirection: 'row',
     height: '50vh',
-    backgroundColor: theme.palette.background.paper,
+    backgroundColor: grey[200],
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
@@ -62,12 +64,16 @@ export default function SettingTabs() {
       >
         <Tab label="Settings" />
         <Tab label="History" />
+        <Tab label="About" />
       </Tabs>
       <TabPanel value={value} index={0}>
         Item One
       </TabPanel>
       <TabPanel value={value} index={1}>
         Item Two
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        <About />
       </TabPanel>
     </div>
   );

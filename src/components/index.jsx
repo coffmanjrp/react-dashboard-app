@@ -1,3 +1,4 @@
+export { default as About } from './About';
 export { default as Annotation } from './Annotation';
 export { default as AuthorInfo } from './AuthorInfo';
 export { default as Clock } from './Clock';
