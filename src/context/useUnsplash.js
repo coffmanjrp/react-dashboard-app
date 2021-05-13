@@ -10,6 +10,7 @@ export const useUnsplash = () => {
 
 export const useProvideUnsplash = () => {
   const initialState = {
+    id: '',
     name: '',
     location: '',
     avatar: '',
@@ -35,6 +36,7 @@ export const useProvideUnsplash = () => {
 
       setData({
         ...data,
+        id: response.id,
         name: response.user.name,
         location: response.user.location,
         avatar: response.user.profile_image.medium,

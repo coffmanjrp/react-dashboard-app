@@ -35,7 +35,7 @@ export default function Layout({ children }) {
   const classes = useStyles({ photoUrl });
 
   useEffect(() => {
-    getRandomPhoto('dog, cat');
+    getRandomPhoto(localStorage.getItem('queries'));
 
     // eslint-disable-next-line
   }, []);
