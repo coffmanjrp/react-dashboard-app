@@ -1,18 +1,9 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Drawer,
-  Divider,
-  IconButton,
-  List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-} from '@material-ui/core';
+import { Drawer, IconButton } from '@material-ui/core';
 import { motion } from 'framer-motion';
-import { MdInbox, MdMail } from 'react-icons/md';
 import { IoSettingsOutline } from 'react-icons/io5';
-import { Annotation, SettingTabs } from '.';
+import { Annotation, MenuTabs } from '.';
 
 const useStyles = makeStyles({
   container: {
@@ -54,37 +45,6 @@ export default function ToggleMenuButton() {
     setDrawer(open);
   };
 
-  const list = () => (
-    <div
-      className={classes.fullList}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
-      <List>
-        {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <MdInbox /> : <MdMail />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem button key={text}>
-            <ListItemIcon>
-              {index % 2 === 0 ? <MdInbox /> : <MdMail />}
-            </ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItem>
-        ))}
-      </List>
-    </div>
-  );
-
   return (
     <>
       <Annotation content="Settings" placement="top">
@@ -103,7 +63,7 @@ export default function ToggleMenuButton() {
         </motion.div>
       </Annotation>
       <Drawer anchor={'bottom'} open={drawer} onClose={toggleDrawer(false)}>
-        <SettingTabs />
+        <MenuTabs setDrawer={setDrawer} />
       </Drawer>
     </>
   );

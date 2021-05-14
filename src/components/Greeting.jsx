@@ -48,8 +48,8 @@ const Greeting = memo(() => {
       'How do you do today?',
       'How’s it going?',
       'How are you doing?',
-      'What’s up?',
       'Howdy!',
+      // 'What’s up?',
     ];
 
     return greetings[Math.floor(Math.random() * greetings.length)];

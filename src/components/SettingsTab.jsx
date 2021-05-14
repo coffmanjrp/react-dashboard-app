@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Button, Chip, TextField, Typography } from '@material-ui/core';
+import {
+  Box,
+  IconButton,
+  Chip,
+  TextField,
+  Typography,
+} from '@material-ui/core';
+import { IoSearch } from 'react-icons/io5';
 import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles((theme) => ({
@@ -10,9 +17,19 @@ const useStyles = makeStyles((theme) => ({
       width: '12rem',
     },
   },
+  chipList: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    margin: 0,
+    padding: theme.spacing(0.5),
+    listStyle: 'none',
+  },
+  chip: {
+    margin: theme.spacing(0.5),
+  },
 }));
 
-export default function SettingTab({ setDrawer }) {
+export default function SettingsTab({ setDrawer }) {
   const [query, setQuery] = useState('');
   const { getRandomPhoto } = useUnsplash();
   const classes = useStyles();
@@ -53,9 +70,10 @@ export default function SettingTab({ setDrawer }) {
           value={query}
           onChange={handleChange}
         />
-        <Button type="submit" variant="contained" color="primary">
-          Search
-        </Button>
+
+        <IconButton type="submit" aria-label="Search" color="primary">
+          <IoSearch />
+        </IconButton>
       </form>
       <Chip
         size="small"

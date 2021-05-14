@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Tabs, Tab } from '@material-ui/core';
 import grey from '@material-ui/core/colors/grey';
-import { About } from '.';
+import { AboutTab, HistoryTab, SettingsTab } from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -21,11 +21,16 @@ const useStyles = makeStyles((theme) => ({
       borderBottom: `1px solid ${theme.palette.divider}`,
     },
   },
+  tabPanel: {
+    width: '100%',
+  },
 }));
 
 function TabPanel({ children, value, index, ...rest }) {
+  const classes = useStyles();
   return (
     <Box
+      className={classes.tabPanel}
       role="tabpanel"
       hidden={value !== index}
       aria-labelledby={`tab-${index}`}
@@ -36,7 +41,7 @@ function TabPanel({ children, value, index, ...rest }) {
   );
 }
 
-export default function SettingTabs() {
+export default function MenuTabs({ setDrawer }) {
   const [value, setValue] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 600;
@@ -67,13 +72,13 @@ export default function SettingTabs() {
         <Tab label="About" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        Item One
+        <SettingsTab setDrawer={setDrawer} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        Item Two
+        <HistoryTab />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <About />
+        <AboutTab />
       </TabPanel>
     </div>
   );
