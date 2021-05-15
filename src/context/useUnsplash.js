@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 import { createApi } from 'unsplash-js';
 import photo from 'photo.jpg';
 
@@ -21,6 +21,13 @@ export const useProvideUnsplash = () => {
     downloadLink: '',
   };
   const [data, setData] = useState(initialState);
+  const [keywords, setKeywords] = useState([]);
+
+  useEffect(() => {
+    setKeywords(JSON.parse(localStorage.getItem('keywords')));
+
+    // eslint-disable-next-line
+  }, []);
 
   const unsplash = createApi({
     accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
@@ -66,6 +73,8 @@ export const useProvideUnsplash = () => {
 
   return {
     data,
+    keywords,
+    setKeywords,
     getRandomPhoto,
     downloadPhoto,
   };

@@ -29,28 +29,35 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function SettingsTab({ setDrawer }) {
-  const [query, setQuery] = useState('');
-  const { getRandomPhoto } = useUnsplash();
+export default function SettingsTab() {
+  const [value, setValue] = useState('');
+  const { keywords, setKeywords, getRandomPhoto } = useUnsplash();
   const classes = useStyles();
 
   const handleChange = (e) => {
-    setQuery(e.target.value);
+    setValue(e.target.value);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const store = localStorage.setItem('queries', JSON.stringify(query));
+    if (value === '') {
+      console.log('Keyword is not input');
+      return false;
+    }
 
-    getRandomPhoto(localStorage.getItem('queries'));
-    setQuery('');
-    setDrawer(false);
-    return store;
+    setKeywords([...keywords]);
+    keywords.push(value);
+    setKeywords(keywords);
+    localStorage.setItem('keywords', JSON.stringify(keywords));
+    getRandomPhoto(keywords);
+    setValue('');
   };
 
   const handleDelete = (e) => {
-    console.info('You clicked the delete icon.');
+    console.log('You clicked the delete icon.');
+    // keywords.filter((keyword, index) => index !== indexToDelete);
+    // setKeywords(keywords);
   };
 
   return (
@@ -61,25 +68,29 @@ export default function SettingsTab({ setDrawer }) {
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <Typography component="label" htmlFor="setQuery">
-          Set Query
+        <Typography component="label" htmlFor="setKeyword">
+          Set Keyword
         </Typography>
         <TextField
-          id="setQuery"
+          id="setKeyword"
           variant="outlined"
-          value={query}
+          size="small"
+          value={value}
           onChange={handleChange}
         />
-
         <IconButton type="submit" aria-label="Search" color="primary">
           <IoSearch />
         </IconButton>
       </form>
-      <Chip
-        size="small"
-        label={JSON.parse(localStorage.getItem('queries'))}
-        onDelete={handleDelete}
-      />
+      {keywords.length > 0 &&
+        keywords.map((keyword, index) => (
+          <Chip
+            key={index}
+            size="small"
+            label={keyword}
+            onDelete={handleDelete}
+          />
+        ))}
     </Box>
   );
 }
