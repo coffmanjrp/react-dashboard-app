@@ -28,11 +28,7 @@ export const useProvideUnsplash = () => {
 
     if (storage.length > 0) {
       setKeywords(storage);
-    } else {
-      setKeywords(['']);
     }
-
-    console.log(keywords);
 
     // eslint-disable-next-line
   }, []);
