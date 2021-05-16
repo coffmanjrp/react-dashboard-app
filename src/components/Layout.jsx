@@ -35,7 +35,9 @@ export default function Layout({ children }) {
   const classes = useStyles({ photoUrl });
 
   useEffect(() => {
-    getRandomPhoto(localStorage.getItem('keywords'));
+    const storage = JSON.parse(localStorage.getItem('keywords'));
+
+    getRandomPhoto(storage);
 
     // eslint-disable-next-line
   }, []);

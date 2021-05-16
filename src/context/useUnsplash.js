@@ -26,9 +26,7 @@ export const useProvideUnsplash = () => {
   useEffect(() => {
     const storage = JSON.parse(localStorage.getItem('keywords'));
 
-    if (storage.length > 0) {
-      setKeywords(storage);
-    }
+    setKeywords(storage);
 
     // eslint-disable-next-line
   }, []);
