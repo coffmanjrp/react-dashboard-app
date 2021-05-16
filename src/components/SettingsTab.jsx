@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Box,
@@ -17,13 +17,6 @@ const useStyles = makeStyles((theme) => ({
       width: '12rem',
     },
   },
-  chipList: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    margin: 0,
-    padding: theme.spacing(0.5),
-    listStyle: 'none',
-  },
   chip: {
     margin: theme.spacing(0.5),
   },
@@ -31,8 +24,15 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SettingsTab() {
   const [value, setValue] = useState('');
+  const [error, setError] = useState(false);
   const { keywords, setKeywords, getRandomPhoto } = useUnsplash();
   const classes = useStyles();
+
+  useEffect(() => {
+    localStorage.setItem('keywords', JSON.stringify(keywords));
+
+    // eslint-disable-next-line
+  }, [keywords]);
 
   const handleChange = (e) => {
     setValue(e.target.value);
@@ -42,7 +42,7 @@ export default function SettingsTab() {
     e.preventDefault();
 
     if (value === '') {
-      console.log('Keyword is not input');
+      setError(true);
       return false;
     }
 
@@ -54,10 +54,11 @@ export default function SettingsTab() {
     setValue('');
   };
 
-  const handleDelete = (e) => {
-    console.log('You clicked the delete icon.');
-    // keywords.filter((keyword, index) => index !== indexToDelete);
-    // setKeywords(keywords);
+  const handleDelete = (index) => {
+    setKeywords((keywords) =>
+      keywords.filter((keyword) => keywords.indexOf(keyword) !== index)
+    );
+    getRandomPhoto(keywords);
   };
 
   return (
@@ -75,6 +76,8 @@ export default function SettingsTab() {
           id="setKeyword"
           variant="outlined"
           size="small"
+          error={error}
+          helperText={error ? 'Input a keyword please.' : ''}
           value={value}
           onChange={handleChange}
         />
@@ -83,12 +86,13 @@ export default function SettingsTab() {
         </IconButton>
       </form>
       {keywords.length > 0 &&
-        keywords.map((keyword, index) => (
+        keywords?.map((keyword, index) => (
           <Chip
             key={index}
+            className={classes.chip}
             size="small"
             label={keyword}
-            onDelete={handleDelete}
+            onDelete={() => handleDelete(index)}
           />
         ))}
     </Box>

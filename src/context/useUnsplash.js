@@ -24,7 +24,15 @@ export const useProvideUnsplash = () => {
   const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
-    setKeywords(JSON.parse(localStorage.getItem('keywords')));
+    const storage = JSON.parse(localStorage.getItem('keywords'));
+
+    if (storage.length > 0) {
+      setKeywords(storage);
+    } else {
+      setKeywords(['']);
+    }
+
+    console.log(keywords);
 
     // eslint-disable-next-line
   }, []);
@@ -39,7 +47,7 @@ export const useProvideUnsplash = () => {
         query,
       });
 
-      console.log(response);
+      // console.log(response);
 
       setData({
         ...data,
