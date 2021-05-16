@@ -1,15 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { IconButton, Chip, TextField, Typography } from '@material-ui/core';
+import { IconButton, Chip, TextField, Box } from '@material-ui/core';
 import { IoSearch } from 'react-icons/io5';
 import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& > *': {
-      margin: theme.spacing(1),
-      width: '12rem',
-    },
+    width: '25rem',
+    padding: '2px 4px',
+    display: 'flex',
+    alignItems: 'center',
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    flex: 1,
+  },
+  iconButton: {
+    padding: 10,
+  },
+  divider: {
+    height: 28,
+    margin: 4,
+  },
+  btn: {
+    marginTop: '-1.5rem',
   },
   chip: {
     margin: theme.spacing(0.5),
@@ -19,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 export default function KeywordsTextField() {
   const [value, setValue] = useState('');
   const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
   const { keywords, setKeywords, getRandomPhoto } = useUnsplash();
   const classes = useStyles();
 
@@ -37,6 +52,7 @@ export default function KeywordsTextField() {
 
     if (value === '') {
       setError(true);
+      setErrorMessage('Input a keyword please.');
       return false;
     }
 
@@ -57,28 +73,33 @@ export default function KeywordsTextField() {
 
   return (
     <>
-      <form
+      <Box
+        component="form"
         className={classes.root}
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
       >
-        <Typography component="label" htmlFor="setKeyword">
-          Set Keyword
-        </Typography>
         <TextField
           id="setKeyword"
+          className={classes.input}
+          inputProps={{ 'aria-label': 'set keyword' }}
           variant="outlined"
           size="small"
           error={error}
-          helperText={error ? 'Input a keyword please.' : ''}
+          helperText={error ? errorMessage : 'Set Keyword'}
           value={value}
           onChange={handleChange}
         />
-        <IconButton type="submit" aria-label="Search" color="primary">
+        <IconButton
+          type="submit"
+          aria-label="Search"
+          color="primary"
+          className={classes.btn}
+        >
           <IoSearch />
         </IconButton>
-      </form>
+      </Box>
       {keywords.length > 0 &&
         keywords?.map((keyword, index) => (
           <Chip
