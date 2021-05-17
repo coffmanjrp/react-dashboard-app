@@ -14,3 +14,4 @@ export { default as MenuTabs } from './MenuTabs';
 export { default as SettingsTab } from './SettingsTab';
 export { default as ShareButton } from './ShareButton';
 export { default as UnsplashLinkButton } from './UnsplashLinkButton';
+export { default as WeatherInfo } from './WeatherInfo';

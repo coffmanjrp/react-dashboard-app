@@ -39,10 +39,7 @@ export const useProvideUnsplash = () => {
         query,
       });
 
-      console.log(response);
-
       setData({
-        ...data,
         id: response.id,
         name: response.user.name,
         location: response.user.location,

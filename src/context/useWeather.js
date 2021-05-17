@@ -17,14 +17,22 @@ export const useProvideWeather = () => {
     fahrenheit: 0,
   };
   const [weather, setWeather] = useState(initialData);
+  const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const kelvin = 273.16;
 
   useEffect(() => {
     navigator.geolocation?.getCurrentPosition(async (position) => {
-      const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
-      const lon = position.coords.longitude;
       const lat = position.coords.latitude;
+      const lon = position.coords.longitude;
 
+      fetchWeatherData(lat, lon);
+    });
+
+    // eslint-disable-next-line
+  }, []);
+
+  const fetchWeatherData = async (lat, lon) => {
+    try {
       const res = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&APPID=${API_KEY}`
       );
@@ -39,8 +47,10 @@ export const useProvideWeather = () => {
         celsius: Math.round(data.main.temp - kelvin),
         fahrenheit: Math.round(((data.main.temp - kelvin) * 9) / 5 + 32),
       });
-    });
-  }, []);
+    } catch (error) {
+      console.error('error occurred: ', error);
+    }
+  };
 
   return [weather, setWeather];
 };

@@ -6,7 +6,7 @@ import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '25rem',
+    width: '25%',
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
@@ -83,7 +83,6 @@ export default function KeywordsTextField() {
         <TextField
           id="setKeyword"
           className={classes.input}
-          inputProps={{ 'aria-label': 'set keyword' }}
           variant="outlined"
           size="small"
           error={error}
