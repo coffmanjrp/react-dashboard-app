@@ -6,21 +6,21 @@ import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: '25%',
+    display: 'flex',
+    flexDirection: 'column',
+  },
+  input: {
+    width: '100%',
     padding: '2px 4px',
     display: 'flex',
     alignItems: 'center',
   },
-  input: {
+  textField: {
     marginLeft: theme.spacing(1),
     flex: 1,
   },
   iconButton: {
     padding: 10,
-  },
-  divider: {
-    height: 28,
-    margin: 4,
   },
   btn: {
     marginTop: '-1.5rem',
@@ -52,7 +52,7 @@ export default function KeywordsTextField() {
 
     if (value === '') {
       setError(true);
-      setErrorMessage('Input a keyword please.');
+      setErrorMessage('Keyword is not entered. Please enter a keyword.');
       return false;
     }
 
@@ -68,25 +68,24 @@ export default function KeywordsTextField() {
     setKeywords((keywords) =>
       keywords.filter((keyword) => keywords.indexOf(keyword) !== index)
     );
-    getRandomPhoto(keywords);
   };
 
   return (
-    <>
+    <Box className={classes.root}>
       <Box
         component="form"
-        className={classes.root}
+        className={classes.input}
         noValidate
         autoComplete="off"
         onSubmit={handleSubmit}
       >
         <TextField
           id="setKeyword"
-          className={classes.input}
+          className={classes.textField}
           variant="outlined"
           size="small"
           error={error}
-          helperText={error ? errorMessage : 'Set Keyword'}
+          helperText={error ? errorMessage : 'Please enter a keyword.'}
           value={value}
           onChange={handleChange}
         />
@@ -99,16 +98,18 @@ export default function KeywordsTextField() {
           <IoSearch />
         </IconButton>
       </Box>
-      {keywords.length > 0 &&
-        keywords?.map((keyword, index) => (
-          <Chip
-            key={index}
-            className={classes.chip}
-            size="small"
-            label={keyword}
-            onDelete={() => handleDelete(index)}
-          />
-        ))}
-    </>
+      <Box>
+        {keywords.length > 0 &&
+          keywords?.map((keyword, index) => (
+            <Chip
+              key={index}
+              className={classes.chip}
+              size="small"
+              label={keyword}
+              onDelete={() => handleDelete(index)}
+            />
+          ))}
+      </Box>
+    </Box>
   );
 }
