@@ -13,6 +13,7 @@ export { default as KeywordsTextField } from './KeywordsTextField';
 export { default as Layout } from './Layout';
 export { default as ToggleMenuButton } from './ToggleMenuButton';
 export { default as MenuTabs } from './MenuTabs';
+export { default as SecondsSwitch } from './SecondsSwitch';
 export { default as SettingsTab } from './SettingsTab';
 export { default as ShareButton } from './ShareButton';
 export { default as UnsplashLinkButton } from './UnsplashLinkButton';

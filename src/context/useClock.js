@@ -12,6 +12,7 @@ export const useProvideClock = () => {
   const [seconds, setSeconds] = useState(null);
   const [date, setDate] = useState(null);
   const [ampm, setAmpm] = useState(null);
+  const [showSeconds, setShowSeconds] = useState(true);
   const [showDate, setShowDate] = useState(true);
   const [showAmpm, setShowAmpm] = useState(true);
 
@@ -47,8 +48,10 @@ export const useProvideClock = () => {
     seconds,
     date,
     ampm,
+    showSeconds,
     showDate,
     showAmpm,
+    setShowSeconds,
     setShowDate,
     setShowAmpm,
     displayTime,
