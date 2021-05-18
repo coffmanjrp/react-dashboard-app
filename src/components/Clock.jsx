@@ -81,6 +81,7 @@ export default function Clock() {
     seconds,
     date,
     ampm,
+    showDate,
     showAmpm,
     displayTime,
     appendZero,
@@ -109,9 +110,11 @@ export default function Clock() {
               {showAmpm && ampm}
             </motion.span>
           </motion.time>
-          <motion.time className={classes.date} variants={dateVariants}>
-            {date}
-          </motion.time>
+          {showDate && (
+            <motion.time className={classes.date} variants={dateVariants}>
+              {date}
+            </motion.time>
+          )}
         </>
       ) : (
         <Greeting hours={hours} />
