@@ -1,11 +1,42 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
-import { KeywordsTextField } from '.';
+import { makeStyles } from '@material-ui/core/styles';
+import { Box, Divider, List, ListItem } from '@material-ui/core';
+import { AmPmSwitch, KeywordsTextField } from '.';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    padding: theme.spacing(3),
+    width: '100%',
+  },
+  list: {
+    width: '50%',
+  },
+  listItem: {},
+}));
 
 export default function SettingsTab() {
+  const classes = useStyles();
+
   return (
-    <Box p={3}>
-      <KeywordsTextField />
+    <Box className={classes.root}>
+      <List className={classes.list}>
+        <ListItem className={classes.listItem}>
+          <KeywordsTextField />
+        </ListItem>
+        <ListItem>
+          <AmPmSwitch />
+        </ListItem>
+      </List>
+      <Divider orientation="vertical" flexItem />
+      <List>
+        {/* <ListItem>
+          <KeywordsTextField />
+        </ListItem>
+        <ListItem>
+          <AmPmSwitch />
+        </ListItem> */}
+      </List>
     </Box>
   );
 }

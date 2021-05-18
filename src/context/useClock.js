@@ -12,6 +12,7 @@ export const useProvideClock = () => {
   const [seconds, setSeconds] = useState(null);
   const [date, setDate] = useState(null);
   const [ampm, setAmpm] = useState(null);
+  const [showAmpm, setShowAmpm] = useState(true);
 
   // const twelveTimeFormat = hours % 12 || 12;
 
@@ -45,6 +46,8 @@ export const useProvideClock = () => {
     seconds,
     date,
     ampm,
+    showAmpm,
+    setShowAmpm,
     displayTime,
     appendZero,
   };
