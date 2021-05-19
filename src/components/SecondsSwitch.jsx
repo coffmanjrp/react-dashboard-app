@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   FormControl,
   FormControlLabel,
@@ -8,10 +8,20 @@ import {
 import { useClock } from 'context/useClock';
 
 export default function AmPmSwitch() {
-  const { showSeconds, setShowSeconds } = useClock();
+  const { displaySeconds, setDisplaySeconds } = useClock();
 
-  const handleChange = (e) => {
-    setShowSeconds((showSeconds) => !showSeconds);
+  useEffect(() => {
+    if (!localStorage.getItem('displaySeconds')) {
+      setDisplaySeconds(true);
+    }
+
+    localStorage.setItem('displaySeconds', JSON.stringify(displaySeconds));
+
+    // eslint-disable-next-line
+  }, [displaySeconds]);
+
+  const handleChange = () => {
+    setDisplaySeconds((displaySeconds) => !displaySeconds);
   };
 
   return (
@@ -20,9 +30,9 @@ export default function AmPmSwitch() {
         <FormControlLabel
           value="start"
           control={<Switch color="primary" />}
-          label="Show Seconds"
+          label="Display Seconds"
           labelPlacement="start"
-          checked={showSeconds}
+          checked={displaySeconds}
           onChange={handleChange}
         />
       </FormGroup>

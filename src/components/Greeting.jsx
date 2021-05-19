@@ -29,7 +29,7 @@ const greetingVariants = {
 const Greeting = memo(() => {
   const classes = useStyles();
 
-  const showGreeting = () => {
+  const displayGreetings = () => {
     const hour = new Date().getHours();
     let greetingByTime;
 
@@ -58,7 +58,7 @@ const Greeting = memo(() => {
   return (
     <>
       <motion.h1 className={classes.greeting} variants={greetingVariants}>
-        {showGreeting()}
+        {displayGreetings()}
       </motion.h1>
     </>
   );

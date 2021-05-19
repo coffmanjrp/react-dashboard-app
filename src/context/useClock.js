@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useEffect, useState } from 'react';
 
 export const clockContext = createContext();
 
@@ -12,11 +12,33 @@ export const useProvideClock = () => {
   const [seconds, setSeconds] = useState(null);
   const [date, setDate] = useState(null);
   const [ampm, setAmpm] = useState(null);
-  const [showSeconds, setShowSeconds] = useState(true);
-  const [showDate, setShowDate] = useState(true);
-  const [showAmpm, setShowAmpm] = useState(true);
+  const [displaySeconds, setDisplaySeconds] = useState(
+    JSON.parse(localStorage.getItem('displaySeconds'))
+  );
+  const [displayDate, setDisplayDate] = useState(
+    JSON.parse(localStorage.getItem('displayDate'))
+  );
+  const [displayAmpm, setDisplayAmpm] = useState(
+    JSON.parse(localStorage.getItem('displayAmpm'))
+  );
 
   // const twelveTimeFormat = hours % 12 || 12;
+
+  useEffect(() => {
+    if (!localStorage.getItem('displaySeconds')) {
+      setDisplaySeconds(true);
+    }
+
+    if (!localStorage.getItem('displayDate')) {
+      setDisplayDate(true);
+    }
+
+    if (!localStorage.getItem('displayAmpm')) {
+      setDisplayAmpm(true);
+    }
+
+    // eslint-disable-next-line
+  }, []);
 
   const displayTime = () => {
     const today = new Date();
@@ -48,12 +70,12 @@ export const useProvideClock = () => {
     seconds,
     date,
     ampm,
-    showSeconds,
-    showDate,
-    showAmpm,
-    setShowSeconds,
-    setShowDate,
-    setShowAmpm,
+    displaySeconds,
+    displayDate,
+    displayAmpm,
+    setDisplaySeconds,
+    setDisplayDate,
+    setDisplayAmpm,
     displayTime,
     appendZero,
   };

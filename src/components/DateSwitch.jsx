@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   FormControl,
   FormControlLabel,
@@ -8,10 +8,20 @@ import {
 import { useClock } from 'context/useClock';
 
 export default function AmPmSwitch() {
-  const { showDate, setShowDate } = useClock();
+  const { displayDate, setDisplayDate } = useClock();
 
-  const handleChange = (e) => {
-    setShowDate((showDate) => !showDate);
+  useEffect(() => {
+    if (!localStorage.getItem('displayDate')) {
+      setDisplayDate(true);
+    }
+
+    localStorage.setItem('displayDate', JSON.stringify(displayDate));
+
+    // eslint-disable-next-line
+  }, [displayDate]);
+
+  const handleChange = () => {
+    setDisplayDate((displayDate) => !displayDate);
   };
 
   return (
@@ -20,9 +30,9 @@ export default function AmPmSwitch() {
         <FormControlLabel
           value="start"
           control={<Switch color="primary" />}
-          label="Show Date"
+          label="Display Date"
           labelPlacement="start"
-          checked={showDate}
+          checked={displayDate}
           onChange={handleChange}
         />
       </FormGroup>
