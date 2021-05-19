@@ -14,15 +14,23 @@ export const useProvideWeather = () => {
     country: '',
     description: '',
     icon: '',
+    skycon: '',
     celsius: 0,
     fahrenheit: 0,
   };
   const [weather, setWeather] = useState(initialData);
+  const [isFahrenheit, setIsFahrenheit] = useState(
+    JSON.parse(localStorage.getItem('isFahrenheit'))
+  );
   const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const kelvin = 273.16;
   let skycon;
 
   useEffect(() => {
+    if (!localStorage.getItem('isFahrenheit')) {
+      setIsFahrenheit(true);
+    }
+
     navigator.geolocation?.getCurrentPosition(async (position) => {
       const lat = position.coords.latitude;
       const lon = position.coords.longitude;
@@ -117,5 +125,5 @@ export const useProvideWeather = () => {
     }
   };
 
-  return { weather };
+  return { weather, isFahrenheit, setIsFahrenheit };
 };

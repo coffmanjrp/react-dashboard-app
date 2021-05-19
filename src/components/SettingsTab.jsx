@@ -1,7 +1,13 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Divider, List, ListItem } from '@material-ui/core';
-import { AmPmSwitch, DateSwitch, KeywordsTextField, SecondsSwitch } from '.';
+import {
+  AmPmSwitch,
+  DateSwitch,
+  KeywordsTextField,
+  SecondsSwitch,
+  TempUnitSwitch,
+} from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +38,9 @@ export default function SettingsTab() {
         </ListItem>
         <ListItem>
           <AmPmSwitch />
+        </ListItem>
+        <ListItem>
+          <TempUnitSwitch />
         </ListItem>
       </List>
       <Divider orientation="vertical" flexItem />
