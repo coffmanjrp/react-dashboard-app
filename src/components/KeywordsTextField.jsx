@@ -38,7 +38,11 @@ export default function KeywordsTextField() {
   const classes = useStyles();
 
   useEffect(() => {
-    localStorage.setItem('keywords', JSON.stringify(keywords));
+    if (!localStorage.getItem('keywords')) {
+      localStorage.setItem('keywords', JSON.stringify([]));
+    } else {
+      localStorage.setItem('keywords', JSON.stringify(keywords));
+    }
 
     // eslint-disable-next-line
   }, [keywords]);
@@ -56,9 +60,7 @@ export default function KeywordsTextField() {
       return false;
     }
 
-    setKeywords([...keywords]);
-    keywords.push(value);
-    setKeywords(keywords);
+    setKeywords([...keywords, value.replace(/ /g, '_').toLowerCase()]);
     localStorage.setItem('keywords', JSON.stringify(keywords));
     getRandomPhoto(keywords);
     setValue('');
@@ -99,8 +101,8 @@ export default function KeywordsTextField() {
         </IconButton>
       </Box>
       <Box>
-        {keywords.length > 0 &&
-          keywords?.map((keyword, index) => (
+        {keywords?.length > 0 &&
+          keywords.map((keyword, index) => (
             <Chip
               key={index}
               className={classes.chip}
