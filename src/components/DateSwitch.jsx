@@ -6,16 +6,13 @@ import {
   Switch,
 } from '@material-ui/core';
 import { useClock } from 'context/useClock';
+import { setObjectToLocalStorage } from 'utils/localStorage';
 
 export default function AmPmSwitch() {
   const { displayDate, setDisplayDate } = useClock();
 
   useEffect(() => {
-    if (!localStorage.getItem('displayDate')) {
-      setDisplayDate(true);
-    }
-
-    localStorage.setItem('displayDate', JSON.stringify(displayDate));
+    setObjectToLocalStorage('settings', 'displayDate', displayDate);
 
     // eslint-disable-next-line
   }, [displayDate]);

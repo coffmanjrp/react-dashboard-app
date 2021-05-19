@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
 import { useUnsplash } from 'context/useUnsplash';
+import { getKeyword } from 'utils/localStorage';
 
 const useStyles = makeStyles({
   container: (props) => ({
@@ -35,7 +36,7 @@ export default function Layout({ children }) {
   const classes = useStyles({ photoUrl });
 
   useEffect(() => {
-    getRandomPhoto(JSON.parse(localStorage.getItem('keywords')));
+    getRandomPhoto(getKeyword);
 
     // eslint-disable-next-line
   }, []);

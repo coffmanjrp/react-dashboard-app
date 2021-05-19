@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { SkyconsType } from 'react-skycons';
+import { getSettings } from 'utils/localStorage';
 
 export const weatherContext = createContext();
 
@@ -19,15 +20,13 @@ export const useProvideWeather = () => {
     fahrenheit: 0,
   };
   const [weather, setWeather] = useState(initialData);
-  const [isFahrenheit, setIsFahrenheit] = useState(
-    JSON.parse(localStorage.getItem('isFahrenheit'))
-  );
+  const [isFahrenheit, setIsFahrenheit] = useState(getSettings?.isFahrenheit);
   const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const kelvin = 273.16;
   let skycon;
 
   useEffect(() => {
-    if (!localStorage.getItem('isFahrenheit')) {
+    if (!getSettings) {
       setIsFahrenheit(true);
     }
 

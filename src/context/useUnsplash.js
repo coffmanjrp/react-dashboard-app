@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { createApi } from 'unsplash-js';
+import { getKeyword } from 'utils/localStorage';
 import photo from 'photo.jpg';
 
 export const unsplashContext = createContext();
@@ -24,8 +25,8 @@ export const useProvideUnsplash = () => {
   const [keywords, setKeywords] = useState([]);
 
   useEffect(() => {
-    if (localStorage.getItem('keywords')) {
-      setKeywords(JSON.parse(localStorage.getItem('keywords')));
+    if (getKeyword) {
+      setKeywords(getKeyword);
     }
 
     // eslint-disable-next-line

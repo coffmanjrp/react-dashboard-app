@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { getSettings } from 'utils/localStorage';
 
 export const clockContext = createContext();
 
@@ -13,27 +14,17 @@ export const useProvideClock = () => {
   const [date, setDate] = useState(null);
   const [ampm, setAmpm] = useState(null);
   const [displaySeconds, setDisplaySeconds] = useState(
-    JSON.parse(localStorage.getItem('displaySeconds'))
+    getSettings?.displaySeconds
   );
-  const [displayDate, setDisplayDate] = useState(
-    JSON.parse(localStorage.getItem('displayDate'))
-  );
-  const [displayAmpm, setDisplayAmpm] = useState(
-    JSON.parse(localStorage.getItem('displayAmpm'))
-  );
+  const [displayDate, setDisplayDate] = useState(getSettings?.displayDate);
+  const [displayAmpm, setDisplayAmpm] = useState(getSettings?.displayAmpm);
 
   // const twelveTimeFormat = hours % 12 || 12;
 
   useEffect(() => {
-    if (!localStorage.getItem('displaySeconds')) {
+    if (!getSettings) {
       setDisplaySeconds(true);
-    }
-
-    if (!localStorage.getItem('displayDate')) {
       setDisplayDate(true);
-    }
-
-    if (!localStorage.getItem('displayAmpm')) {
       setDisplayAmpm(true);
     }
 

@@ -6,16 +6,13 @@ import {
   Switch,
 } from '@material-ui/core';
 import { useClock } from 'context/useClock';
+import { setObjectToLocalStorage } from 'utils/localStorage';
 
 export default function AmPmSwitch() {
   const { displaySeconds, setDisplaySeconds } = useClock();
 
   useEffect(() => {
-    if (!localStorage.getItem('displaySeconds')) {
-      setDisplaySeconds(true);
-    }
-
-    localStorage.setItem('displaySeconds', JSON.stringify(displaySeconds));
+    setObjectToLocalStorage('settings', 'displaySeconds', displaySeconds);
 
     // eslint-disable-next-line
   }, [displaySeconds]);

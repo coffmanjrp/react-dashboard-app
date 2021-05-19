@@ -7,16 +7,13 @@ import {
   Typography,
 } from '@material-ui/core';
 import { useWeather } from 'context/useWeather';
+import { setObjectToLocalStorage } from 'utils/localStorage';
 
 export default function TempUnitSwitch() {
   const { isFahrenheit, setIsFahrenheit } = useWeather();
 
   useEffect(() => {
-    if (!localStorage.getItem('isFahrenheit')) {
-      setIsFahrenheit(true);
-    }
-
-    localStorage.setItem('isFahrenheit', JSON.stringify(isFahrenheit));
+    setObjectToLocalStorage('settings', 'isFahrenheit', isFahrenheit);
 
     // eslint-disable-next-line
   }, [isFahrenheit]);

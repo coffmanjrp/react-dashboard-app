@@ -6,21 +6,18 @@ import {
   Switch,
 } from '@material-ui/core';
 import { useClock } from 'context/useClock';
+import { setObjectToLocalStorage } from 'utils/localStorage';
 
 export default function AmPmSwitch() {
   const { displayAmpm, setDisplayAmpm } = useClock();
 
   useEffect(() => {
-    if (!localStorage.getItem('displayAmpm')) {
-      setDisplayAmpm(true);
-    }
-
-    localStorage.setItem('displayAmpm', JSON.stringify(displayAmpm));
+    setObjectToLocalStorage('settings', 'displayAmpm', displayAmpm);
 
     // eslint-disable-next-line
   }, [displayAmpm]);
 
-  const handleChange = (e) => {
+  const handleChange = () => {
     setDisplayAmpm((displayAmpm) => !displayAmpm);
   };
 
