@@ -34,14 +34,50 @@ const useStyles = makeStyles((theme) => ({
 
 const clockVariants = {
   initial: {
-    opacity: 0,
     y: '-10px',
   },
   animate: {
-    opacity: 1,
     y: '0',
     transition: {
-      duration: 0.8,
+      duration: 1.6,
+    },
+  },
+};
+
+const hoursVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 1.0,
+    },
+  },
+};
+
+const minutesVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 1.0,
+      delay: 0.2,
+    },
+  },
+};
+
+const secondsVariants = {
+  initial: {
+    opacity: 0,
+  },
+  animate: {
+    opacity: 1,
+    transition: {
+      duration: 1.0,
+      delay: 0.4,
     },
   },
 };
@@ -53,8 +89,8 @@ const ampmVariants = {
   animate: {
     opacity: 1,
     transition: {
-      duration: 0.8,
-      delay: 0.5,
+      duration: 1.0,
+      delay: 1.0,
     },
   },
 };
@@ -104,9 +140,17 @@ export default function Clock() {
       {seconds !== null ? (
         <>
           <motion.time className={classes.time} variants={clockVariants}>
-            <span>{appendZero(hours)}:</span>
-            <span>{appendZero(minutes)}</span>
-            {displaySeconds && <span>:{appendZero(seconds)}</span>}
+            <motion.span variants={hoursVariants}>
+              {appendZero(hours)}:
+            </motion.span>
+            <motion.span variants={minutesVariants}>
+              {appendZero(minutes)}
+            </motion.span>
+            {displaySeconds && (
+              <motion.span variants={secondsVariants}>
+                :{appendZero(seconds)}
+              </motion.span>
+            )}
             <motion.span className={classes.ampm} variants={ampmVariants}>
               {displayAmpm && ampm}
             </motion.span>
