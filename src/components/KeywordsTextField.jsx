@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { IconButton, Chip, TextField, Box } from '@material-ui/core';
 import { IoSearch } from 'react-icons/io5';
 import { useUnsplash } from 'context/useUnsplash';
-import { getKeyword } from 'utils/localStorage';
+import { getKeywords } from 'utils/localStorage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -39,7 +39,7 @@ export default function KeywordsTextField() {
   const classes = useStyles();
 
   useEffect(() => {
-    if (!getKeyword) {
+    if (!getKeywords) {
       localStorage.setItem('keywords', JSON.stringify([]));
     } else {
       localStorage.setItem('keywords', JSON.stringify(keywords));

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography } from '@material-ui/core';
+import { Box, CircularProgress, Typography } from '@material-ui/core';
 import Skycons from 'react-skycons';
 import { useWeather } from 'context/useWeather';
 
@@ -30,12 +30,10 @@ export default function WeatherInfo() {
   const { weather, isFahrenheit } = useWeather();
   const classes = useStyles();
 
-  if (!weather) {
+  if (!weather.id) {
     return (
-      <Box className={classes.container}>
-        <Typography variant="h5" className={classes.temp}>
-          Loading...
-        </Typography>
+      <Box className={classes.root}>
+        <CircularProgress color="inherit" />
       </Box>
     );
   }
