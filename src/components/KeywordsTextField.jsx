@@ -63,7 +63,7 @@ export default function KeywordsTextField() {
 
     setKeywords([...keywords, value.replace(/ /g, '_').toLowerCase()]);
     localStorage.setItem('keywords', JSON.stringify(keywords));
-    getRandomPhoto(keywords);
+    // getRandomPhoto(keywords);
     setValue('');
   };
 

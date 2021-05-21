@@ -16,8 +16,17 @@ export const useProvideWeather = () => {
     description: '',
     icon: '',
     skycon: '',
-    celsius: 0,
-    fahrenheit: 0,
+    celsius_temp: '',
+    fahrenheit_temp: '',
+    celsius_temp_max: '',
+    fahrenheit_temp_max: '',
+    celsius_temp_min: '',
+    fahrenheit_temp_min: '',
+    celsius_feels_like: '',
+    fahrenheit_feels_like: '',
+    humidity: '',
+    sunrise: '',
+    sunset: '',
   };
   const [weather, setWeather] = useState(initialData);
   const [isFahrenheit, setIsFahrenheit] = useState(getSettings?.isFahrenheit);
@@ -55,8 +64,27 @@ export const useProvideWeather = () => {
         description: data.weather[0].description,
         icon: data.weather[0].icon,
         skycon,
-        celsius: Math.round(data.main.temp - kelvin),
-        fahrenheit: Math.round(((data.main.temp - kelvin) * 9) / 5 + 32),
+        celsius_temp: Math.round(data.main.temp - kelvin),
+        fahrenheit_temp: Math.round(((data.main.temp - kelvin) * 9) / 5 + 32),
+        celsius_temp_max: Math.round(data.main.temp_max - kelvin),
+        fahrenheit_temp_max: Math.round(
+          ((data.main.temp_max - kelvin) * 9) / 5 + 32
+        ),
+        celsius_temp_min: Math.round(data.main.temp_min - kelvin),
+        fahrenheit_temp_min: Math.round(
+          ((data.main.temp_min - kelvin) * 9) / 5 + 32
+        ),
+        celsius_feels_like: Math.round(data.main.feels_like - kelvin),
+        fahrenheit_feels_like: Math.round(
+          ((data.main.feels_like - kelvin) * 9) / 5 + 32
+        ),
+        humidity: data.main.humidity,
+        sunrise: `${new Date(+data.sys.sunrise * 1000).getHours()}:${new Date(
+          +data.sys.sunrise * 1000
+        ).getMinutes()}`,
+        sunset: `${new Date(+data.sys.sunset * 1000).getHours()}:${new Date(
+          +data.sys.sunset * 1000
+        ).getMinutes()}`,
       });
     } catch (error) {
       console.error('error occurred: ', error);
