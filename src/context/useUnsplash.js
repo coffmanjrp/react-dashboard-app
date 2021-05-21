@@ -61,21 +61,21 @@ export const useProvideUnsplash = () => {
     }
   };
 
-  const downloadPhoto = async () => {
-    const { response } = await unsplash.photos.trackDownload({
-      downloadLocation: data.downloadLink,
-    });
+  // const downloadPhoto = async () => {
+  //   const { response } = await unsplash.photos.trackDownload({
+  //     downloadLocation: data.downloadLink,
+  //   });
 
-    // console.log(response);
+  //   console.log(response);
 
-    return response.url;
-  };
+  //   return response.url;
+  // };
 
   return {
     data,
     keywords,
     setKeywords,
     getRandomPhoto,
-    downloadPhoto,
+    // downloadPhoto,
   };
 };

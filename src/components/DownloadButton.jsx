@@ -29,16 +29,21 @@ const buttonVariants = {
 
 export default function DownloadButton() {
   const classes = useStyles();
-  const { downloadPhoto } = useUnsplash();
+  const {
+    data: { downloadLink },
+  } = useUnsplash();
 
   return (
     <Annotation content="Download Photo" placement="top">
       <motion.div variants={buttonVariants} whileHover="hover">
         <IconButton
           className={classes.button}
+          rel="nofollow"
+          href={`${downloadLink}?force=true`}
+          target="_blank"
+          download
           aria-label="Download Photo"
           color="inherit"
-          onClick={() => downloadPhoto()}
         >
           <FiDownload />
         </IconButton>

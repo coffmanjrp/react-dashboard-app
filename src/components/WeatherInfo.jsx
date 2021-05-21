@@ -3,13 +3,13 @@ import { makeStyles } from '@material-ui/core/styles';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const useStyles = makeStyles({
-  desc: {
+  info: {
     margin: 0,
     fontSize: '0.8rem',
   },
 });
 
-const descVariants = {
+const infoVariants = {
   initial: { opacity: 0 },
   animate: { opacity: 1, transition: { duration: 1 } },
   exit: { opacity: 0, transition: { duration: 1 } },
@@ -20,12 +20,12 @@ export default function WeatherInfo({ weather, isFahrenheit }) {
   const classes = useStyles();
 
   useEffect(() => {
-    setTimeout(() => setInfo(info + 1), 30000);
+    setTimeout(() => setInfo((info) => info + 1), 20000);
 
     // eslint-disable-next-line
   }, [info]);
 
-  const descriptions = [
+  const information = [
     `${weather.description}`,
     `${weather.city}, ${weather.country}`,
     isFahrenheit
@@ -39,21 +39,20 @@ export default function WeatherInfo({ weather, isFahrenheit }) {
     `Sunset at ${weather.sunset} PM`,
   ];
 
-  const infoIndex = Math.abs(info) % descriptions.length;
+  const infoIndex = Math.abs(info) % information.length;
 
   return (
     <>
       {weather && (
         <AnimatePresence initial={false}>
           <motion.p
-            variants={descVariants}
+            variants={infoVariants}
             initial="initial"
             animate="animate"
             exit="exit"
-            transition="transition"
-            className={classes.desc}
+            className={classes.info}
           >
-            {descriptions[infoIndex]}
+            {information[infoIndex]}
           </motion.p>
         </AnimatePresence>
       )}
