@@ -1,33 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, CircularProgress, Typography } from '@material-ui/core';
 import { motion, AnimatePresence } from 'framer-motion';
-import Skycons from 'react-skycons';
-import { useWeather } from 'context/useWeather';
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    display: 'flex',
-    gap: 5,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'flex-end',
-    margin: theme.spacing(1),
-  },
-  container: {
-    display: 'flex',
-    gap: 5,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  temp: {
-    fontSize: '1rem',
-  },
+const useStyles = makeStyles({
   desc: {
     margin: 0,
-    fontSize: '0.7rem',
+    fontSize: '0.8rem',
   },
-}));
+});
 
 const descVariants = {
   initial: { opacity: 0 },
@@ -35,24 +15,15 @@ const descVariants = {
   exit: { opacity: 0, transition: { duration: 1 } },
 };
 
-export default function WeatherInfo() {
+export default function WeatherInfo({ weather, isFahrenheit }) {
   const [info, setInfo] = useState(0);
-  const { weather, isFahrenheit } = useWeather();
   const classes = useStyles();
 
   useEffect(() => {
-    setTimeout(() => setInfo(info + 1), 20000);
+    setTimeout(() => setInfo(info + 1), 30000);
 
     // eslint-disable-next-line
   }, [info]);
-
-  if (!weather.id) {
-    return (
-      <Box className={classes.root}>
-        <CircularProgress color="inherit" />
-      </Box>
-    );
-  }
 
   const descriptions = [
     `${weather.description}`,
@@ -73,33 +44,18 @@ export default function WeatherInfo() {
   return (
     <>
       {weather && (
-        <Box className={classes.root}>
-          <Box className={classes.container}>
-            <Skycons
-              color="white"
-              type={weather.skycon}
-              animate={true}
-              size={25}
-              resizeClear={true}
-            />
-            <Typography variant="h5" className={classes.temp}>
-              {isFahrenheit ? weather.fahrenheit_temp : weather.celsius_temp}
-              <span>{isFahrenheit ? '°F' : '°C'}</span>
-            </Typography>
-          </Box>
-          <AnimatePresence initial={false}>
-            <motion.p
-              variants={descVariants}
-              initial="initial"
-              animate="animate"
-              exit="exit"
-              transition="transition"
-              className={classes.desc}
-            >
-              {descriptions[infoIndex]}
-            </motion.p>
-          </AnimatePresence>
-        </Box>
+        <AnimatePresence initial={false}>
+          <motion.p
+            variants={descVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            transition="transition"
+            className={classes.desc}
+          >
+            {descriptions[infoIndex]}
+          </motion.p>
+        </AnimatePresence>
       )}
     </>
   );
