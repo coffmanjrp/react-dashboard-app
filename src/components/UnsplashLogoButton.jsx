@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { IconButton, Link } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { SiUnsplash } from 'react-icons/si';
 import { Annotation } from '.';
@@ -28,7 +28,7 @@ const buttonVariants = {
   },
 };
 
-export default function UnsplashLinkButton() {
+export default function UnsplashLogoButton() {
   const classes = useStyles();
   const {
     data: { thumbnail, unsplashLink },
@@ -51,16 +51,13 @@ export default function UnsplashLinkButton() {
       >
         <IconButton
           className={classes.button}
+          href={unsplashLink}
+          rel="nofollow"
           aria-label="View photo on Unsplash website"
+          target="_blank"
+          color="inherit"
         >
-          <Link
-            href={unsplashLink}
-            target="_blank"
-            rel="noopener"
-            color="inherit"
-          >
-            <SiUnsplash />
-          </Link>
+          <SiUnsplash />
         </IconButton>
       </motion.div>
     </Annotation>

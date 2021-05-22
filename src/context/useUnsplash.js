@@ -40,7 +40,10 @@ export const useProvideUnsplash = () => {
     try {
       const { response } = await unsplash.photos.getRandom({
         query,
+        featured: true,
       });
+
+      // console.log(response);
 
       setData({
         id: response.id,

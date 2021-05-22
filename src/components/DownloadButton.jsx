@@ -40,7 +40,6 @@ export default function DownloadButton() {
           className={classes.button}
           rel="nofollow"
           href={`${downloadLink}?force=true`}
-          target="_blank"
           download
           aria-label="Download Photo"
           color="inherit"

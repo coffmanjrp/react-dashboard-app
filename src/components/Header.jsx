@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
-import { UnsplashLinkButton } from '.';
+import { UnsplashLogoButton } from '.';
 import { Weather } from '.';
 
 const useStyles = makeStyles((theme) => ({
@@ -44,7 +44,7 @@ export default function Header() {
       initial="initial"
       animate="animate"
     >
-      <UnsplashLinkButton />
+      <UnsplashLogoButton />
       <Weather />
     </motion.div>
   );
