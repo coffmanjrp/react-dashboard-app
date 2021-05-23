@@ -8,17 +8,17 @@ import {
 import { useClock } from 'context/useClock';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
-export default function SecondsSwitch() {
-  const { displaySeconds, setDisplaySeconds } = useClock();
+export default function ClockSwitch() {
+  const { displayClock, setDisplayClock } = useClock();
 
   useEffect(() => {
-    setObjectToLocalStorage('settings', 'displaySeconds', displaySeconds);
+    setObjectToLocalStorage('settings', 'displayClock', displayClock);
 
     // eslint-disable-next-line
-  }, [displaySeconds]);
+  }, [displayClock]);
 
   const handleChange = () => {
-    setDisplaySeconds((displaySeconds) => !displaySeconds);
+    setDisplayClock((displayClock) => !displayClock);
   };
 
   return (
@@ -27,9 +27,9 @@ export default function SecondsSwitch() {
         <FormControlLabel
           value="start"
           control={<Switch color="primary" />}
-          label="Display Seconds"
+          label="Display Clock"
           labelPlacement="start"
-          checked={displaySeconds}
+          checked={displayClock}
           onChange={handleChange}
         />
       </FormGroup>

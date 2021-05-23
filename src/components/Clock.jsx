@@ -117,6 +117,7 @@ export default function Clock() {
     seconds,
     date,
     ampm,
+    displayClock,
     displaySeconds,
     displayDate,
     displayAmpm,
@@ -130,6 +131,10 @@ export default function Clock() {
 
     // eslint-disable-next-line
   }, [seconds, date, ampm]);
+
+  if (!displayClock) {
+    return <div />;
+  }
 
   return (
     <motion.div

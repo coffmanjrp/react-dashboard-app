@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Divider, List, ListItem } from '@material-ui/core';
 import {
   AmPmSwitch,
+  ClockSwitch,
   DateSwitch,
   KeywordsTextField,
   SecondsSwitch,
@@ -29,6 +30,9 @@ export default function SettingsTab() {
       <List className={classes.list}>
         <ListItem className={classes.listItem}>
           <KeywordsTextField />
+        </ListItem>
+        <ListItem>
+          <ClockSwitch />
         </ListItem>
         <ListItem>
           <SecondsSwitch />
