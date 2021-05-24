@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion, AnimatePresence } from 'framer-motion';
+import weatherInfoData from 'utils/weatherInfoData';
 
 const useStyles = makeStyles({
   info: {
@@ -17,6 +18,8 @@ const infoVariants = {
 
 export default function WeatherInfo({ weather, isFahrenheit }) {
   const [info, setInfo] = useState(0);
+  const information = weatherInfoData(weather, isFahrenheit);
+  const infoIndex = Math.abs(info) % information.length;
   const classes = useStyles();
 
   useEffect(() => {
@@ -24,22 +27,6 @@ export default function WeatherInfo({ weather, isFahrenheit }) {
 
     // eslint-disable-next-line
   }, [info]);
-
-  const information = [
-    `${weather.description}`,
-    `${weather.city}, ${weather.country}`,
-    isFahrenheit
-      ? `Max ${weather.fahrenheit_temp_max}°F / Min ${weather.fahrenheit_temp_min}°F`
-      : `Max ${weather.celsius_temp_max}°C / Min ${weather.celsius_temp_min}°C`,
-    `Humidity ${weather.humidity}%`,
-    isFahrenheit
-      ? `Feels like ${weather.fahrenheit_feels_like}°F`
-      : `Feels like ${weather.celsius_feels_like}°C`,
-    `Sunrise at ${weather.sunrise} AM`,
-    `Sunset at ${weather.sunset} PM`,
-  ];
-
-  const infoIndex = Math.abs(info) % information.length;
 
   return (
     <>

@@ -83,12 +83,8 @@ export const useProvideWeather = () => {
           ((data.main.feels_like - kelvin) * 9) / 5 + 32
         ),
         humidity: data.main.humidity,
-        sunrise: `${new Date(+data.sys.sunrise * 1000).getHours()}:${new Date(
-          +data.sys.sunrise * 1000
-        ).getMinutes()}`,
-        sunset: `${new Date(+data.sys.sunset * 1000).getHours()}:${new Date(
-          +data.sys.sunset * 1000
-        ).getMinutes()}`,
+        sunrise: data.sys.sunrise,
+        sunset: data.sys.sunset,
       });
     } catch (error) {
       console.error('error occurred: ', error);
