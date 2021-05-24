@@ -26,8 +26,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Weather() {
-  const { weather, isFahrenheit } = useWeather();
+  const { weather, isFahrenheit, displayWeather } = useWeather();
   const classes = useStyles();
+
+  if (!displayWeather) {
+    return false;
+  }
 
   if (!weather.id) {
     return (

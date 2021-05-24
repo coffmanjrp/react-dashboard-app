@@ -8,6 +8,7 @@ import {
   KeywordsTextField,
   SecondsSwitch,
   TempUnitSwitch,
+  WeatherSwitch,
 } from '.';
 
 const useStyles = makeStyles((theme) => ({
@@ -42,6 +43,9 @@ export default function SettingsTab() {
         </ListItem>
         <ListItem>
           <AmPmSwitch />
+        </ListItem>
+        <ListItem>
+          <WeatherSwitch />
         </ListItem>
         <ListItem>
           <TempUnitSwitch />

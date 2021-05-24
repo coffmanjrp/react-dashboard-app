@@ -30,6 +30,9 @@ export const useProvideWeather = () => {
   };
   const [weather, setWeather] = useState(initialData);
   const [isFahrenheit, setIsFahrenheit] = useState(getSettings?.isFahrenheit);
+  const [displayWeather, setDisplayWeather] = useState(
+    getSettings?.displayWeather
+  );
   const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const kelvin = 273.16;
   let skycon;
@@ -37,6 +40,7 @@ export const useProvideWeather = () => {
   useEffect(() => {
     if (!getSettings) {
       setIsFahrenheit(true);
+      setDisplayWeather(true);
     }
 
     navigator.geolocation?.getCurrentPosition(async (position) => {
@@ -152,5 +156,11 @@ export const useProvideWeather = () => {
     }
   };
 
-  return { weather, isFahrenheit, setIsFahrenheit };
+  return {
+    weather,
+    isFahrenheit,
+    displayWeather,
+    setIsFahrenheit,
+    setDisplayWeather,
+  };
 };
