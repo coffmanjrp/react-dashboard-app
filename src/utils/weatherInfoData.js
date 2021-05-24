@@ -7,9 +7,11 @@ export default function weatherInfoData(weather, isFahrenheit) {
     : `Feels like ${weather.celsius_feels_like}°C`;
 
   const sunAppearTime = (time) => {
-    return `${new Date(+time * 1000).getHours()}:${new Date(
-      +time * 1000
-    ).getMinutes()}`;
+    const hours = new Date(+time * 1000).getHours();
+    const minutes = new Date(+time * 1000).getMinutes();
+    const ampm = hours <= 12 ? 'AM' : 'PM';
+
+    return `${hours}:${minutes} ${ampm}`;
   };
 
   const sunriseTime = sunAppearTime(weather.sunrise);
@@ -21,8 +23,8 @@ export default function weatherInfoData(weather, isFahrenheit) {
     minMaxTemp,
     `Humidity ${weather.humidity}%`,
     tempFeelsLike,
-    `Sunrise at ${sunriseTime} AM`,
-    `Sunset at ${sunsetTime} PM`,
+    `Sunrise at ${sunriseTime}`,
+    `Sunset at ${sunsetTime}`,
   ];
 
   return information;
