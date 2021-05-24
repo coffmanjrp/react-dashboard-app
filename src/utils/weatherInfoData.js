@@ -1,4 +1,6 @@
 export default function weatherInfoData(weather, isFahrenheit) {
+  const desc =
+    weather.description.charAt(0).toUpperCase() + weather.description.slice(1);
   const minMaxTemp = isFahrenheit
     ? `Max ${weather.fahrenheit_temp_max}°F / Min ${weather.fahrenheit_temp_min}°F`
     : `Max ${weather.celsius_temp_max}°C / Min ${weather.celsius_temp_min}°C`;
@@ -18,7 +20,7 @@ export default function weatherInfoData(weather, isFahrenheit) {
   const sunsetTime = sunAppearTime(weather.sunset);
 
   const information = [
-    `${weather.description}`,
+    `${desc}`,
     `${weather.city}, ${weather.country}`,
     minMaxTemp,
     `Humidity ${weather.humidity}%`,
