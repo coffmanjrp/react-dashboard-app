@@ -27,6 +27,7 @@ export const useProvideWeather = () => {
     humidity: '',
     sunrise: '',
     sunset: '',
+    wind_speed: '',
   };
   const [weather, setWeather] = useState(initialData);
   const [cityName, setCityName] = useState(getSettings?.location);
@@ -74,10 +75,13 @@ export const useProvideWeather = () => {
 
       const data = await res.json();
 
+      // console.log(data);
+
       switchSkycons(data.weather[0].icon);
       setWeather({
         id: data.id,
         city: data.name,
+        timestamp: data.dt,
         country: data.sys.country,
         description: data.weather[0].description,
         icon: data.weather[0].icon,
@@ -99,6 +103,7 @@ export const useProvideWeather = () => {
         humidity: data.main.humidity,
         sunrise: data.sys.sunrise,
         sunset: data.sys.sunset,
+        wind_speed: data.wind.speed,
       });
     } catch (error) {
       console.error('error occurred: ', error);

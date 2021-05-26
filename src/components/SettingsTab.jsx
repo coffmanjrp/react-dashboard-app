@@ -46,9 +46,6 @@ export default function SettingsTab() {
         <ListItem>
           <AmPmSwitch />
         </ListItem>
-        <ListItem>
-          <WeatherSwitch />
-        </ListItem>
       </List>
       <Divider orientation="vertical" flexItem />
       <List className={classes.list}>
@@ -57,6 +54,9 @@ export default function SettingsTab() {
         </ListItem>
         <ListItem>
           <TempUnitSwitch />
+        </ListItem>
+        <ListItem>
+          <WeatherSwitch />
         </ListItem>
         <Divider variant="middle" />
         <ListItem>
