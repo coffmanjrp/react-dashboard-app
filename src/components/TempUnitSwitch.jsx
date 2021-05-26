@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   FormControl,
   FormGroup,
@@ -9,8 +10,15 @@ import {
 import { useWeather } from 'context/useWeather';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: theme.spacing(0, 2),
+  },
+}));
+
 export default function TempUnitSwitch() {
   const { isFahrenheit, setIsFahrenheit } = useWeather();
+  const classes = useStyles();
 
   useEffect(() => {
     setObjectToLocalStorage('settings', 'isFahrenheit', isFahrenheit);
@@ -23,7 +31,7 @@ export default function TempUnitSwitch() {
   };
 
   return (
-    <FormControl component="fieldset">
+    <FormControl component="fieldset" className={classes.root}>
       <FormGroup row>
         <Typography component="div">
           <Grid component="label" container alignItems="center" spacing={1}>

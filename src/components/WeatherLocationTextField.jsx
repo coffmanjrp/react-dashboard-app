@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { IconButton, Chip, TextField, Box } from '@material-ui/core';
-import { FaSearch } from 'react-icons/fa';
-import { useUnsplash } from 'context/useUnsplash';
-import { getKeywords } from 'utils/localStorage';
+import { IconButton, TextField, Box } from '@material-ui/core';
+import { FaSearchLocation } from 'react-icons/fa';
+import { useWeather } from 'context/useWeather';
+import { setObjectToLocalStorage } from 'utils/localStorage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,22 +31,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function KeywordsTextField() {
+export default function WeatherLocationTextField() {
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
-  const { keywords, setKeywords } = useUnsplash();
+  const { cityName, setCityName } = useWeather();
   const classes = useStyles();
 
   useEffect(() => {
-    if (!getKeywords) {
-      localStorage.setItem('keywords', JSON.stringify([]));
-    } else {
-      localStorage.setItem('keywords', JSON.stringify(keywords));
-    }
+    setObjectToLocalStorage('settings', 'location', cityName);
 
     // eslint-disable-next-line
-  }, [keywords]);
+  }, [cityName]);
 
   const handleChange = (e) => {
     setError(false);
@@ -56,22 +52,15 @@ export default function KeywordsTextField() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (value === '') {
-      setError(true);
-      setErrorMessage('Keyword is not entered. Please enter a keyword.');
+    if (error) {
+      setErrorMessage(
+        'This city is not available. Please enter a different city.'
+      );
       return false;
     }
 
-    setKeywords([...keywords, value.replace(/ /g, '_').toLowerCase()]);
-    localStorage.setItem('keywords', JSON.stringify(keywords));
-    // getRandomPhoto(keywords);
+    setCityName(value);
     setValue('');
-  };
-
-  const handleDelete = (index) => {
-    setKeywords((keywords) =>
-      keywords.filter((keyword) => keywords.indexOf(keyword) !== index)
-    );
   };
 
   return (
@@ -84,12 +73,15 @@ export default function KeywordsTextField() {
         onSubmit={handleSubmit}
       >
         <TextField
-          id="setKeyword"
+          id="setLocation"
           className={classes.textField}
           variant="outlined"
           size="small"
           error={error}
-          helperText={error ? errorMessage : 'Please enter a keyword.'}
+          helperText={
+            error ? errorMessage : 'Please enter the city name where you live.'
+          }
+          placeholder={cityName}
           value={value}
           onChange={handleChange}
         />
@@ -99,20 +91,8 @@ export default function KeywordsTextField() {
           color="primary"
           className={classes.btn}
         >
-          <FaSearch />
+          <FaSearchLocation />
         </IconButton>
-      </Box>
-      <Box>
-        {keywords?.length > 0 &&
-          keywords.map((keyword, index) => (
-            <Chip
-              key={index}
-              className={classes.chip}
-              size="small"
-              label={keyword}
-              onDelete={() => handleDelete(index)}
-            />
-          ))}
       </Box>
     </Box>
   );

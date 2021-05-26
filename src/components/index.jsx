@@ -22,4 +22,5 @@ export { default as UnsplashLogoButton } from './UnsplashLogoButton';
 export { default as Weather } from './Weather';
 export { default as WeatherInfo } from './WeatherInfo';
 export { default as WeatherInfoList } from './WeatherInfoList';
+export { default as WeatherLocationTextField } from './WeatherLocationTextField';
 export { default as WeatherSwitch } from './WeatherSwitch';

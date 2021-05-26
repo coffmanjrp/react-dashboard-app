@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { List, ListItem, ListItemText } from '@material-ui/core';
+import { List, ListItem, ListItemText, Typography } from '@material-ui/core';
 import { useWeather } from 'context/useWeather';
 import weatherInfoData from 'utils/weatherInfoData';
 
@@ -19,6 +19,12 @@ export default function WeatherInfoList() {
   return (
     <div className={classes.root}>
       <List>
+        <ListItem>
+          <Typography variant="h5">
+            {isFahrenheit ? weather.fahrenheit_temp : weather.celsius_temp}
+            {isFahrenheit ? '°F' : '°C'}
+          </Typography>
+        </ListItem>
         {information?.length > 0 &&
           information.map((info, index) => (
             <ListItem key={index}>

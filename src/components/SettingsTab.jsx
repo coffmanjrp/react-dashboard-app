@@ -9,6 +9,7 @@ import {
   SecondsSwitch,
   TempUnitSwitch,
   WeatherInfoList,
+  WeatherLocationTextField,
   WeatherSwitch,
 } from '.';
 
@@ -48,13 +49,19 @@ export default function SettingsTab() {
         <ListItem>
           <WeatherSwitch />
         </ListItem>
-        <ListItem>
-          <TempUnitSwitch />
-        </ListItem>
       </List>
       <Divider orientation="vertical" flexItem />
       <List className={classes.list}>
-        <WeatherInfoList />
+        <ListItem>
+          <WeatherLocationTextField />
+        </ListItem>
+        <ListItem>
+          <TempUnitSwitch />
+        </ListItem>
+        <Divider variant="middle" />
+        <ListItem>
+          <WeatherInfoList />
+        </ListItem>
       </List>
     </Box>
   );
