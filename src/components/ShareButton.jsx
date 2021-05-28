@@ -29,7 +29,7 @@ const buttonVariants = {
 
 export default function DownloadButton() {
   const classes = useStyles();
-  const { downloadPhoto } = useUnsplash();
+  const { setShare } = useUnsplash();
 
   return (
     <Annotation content="Share Photo" placement="top">
@@ -38,7 +38,7 @@ export default function DownloadButton() {
           className={classes.button}
           aria-label="Download Photo"
           color="inherit"
-          onClick={() => downloadPhoto()}
+          onClick={() => setShare((share) => !share)}
         >
           <RiShareForwardBoxLine />
         </IconButton>

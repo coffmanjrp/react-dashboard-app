@@ -16,6 +16,7 @@ export { default as MenuTabs } from './MenuTabs';
 export { default as SecondsSwitch } from './SecondsSwitch';
 export { default as SettingsTab } from './SettingsTab';
 export { default as ShareButton } from './ShareButton';
+export { default as ShareCard } from './ShareCard';
 export { default as TempUnitSwitch } from './TempUnitSwitch';
 export { default as ToggleMenuButton } from './ToggleMenuButton';
 export { default as UnsplashLogoButton } from './UnsplashLogoButton';
