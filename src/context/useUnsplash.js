@@ -24,6 +24,7 @@ export const useProvideUnsplash = () => {
   const [data, setData] = useState(initialState);
   const [keywords, setKeywords] = useState([]);
   const [share, setShare] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
 
   useEffect(() => {
     if (getKeywords) {
@@ -79,8 +80,10 @@ export const useProvideUnsplash = () => {
     data,
     keywords,
     share,
+    downloaded,
     setKeywords,
     setShare,
+    setDownloaded,
     getRandomPhoto,
     // downloadPhoto,
   };

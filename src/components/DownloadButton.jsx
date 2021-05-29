@@ -32,6 +32,7 @@ export default function DownloadButton() {
   const {
     data: { downloadLink },
     setShare,
+    setDownloaded,
   } = useUnsplash();
 
   return (
@@ -44,7 +45,10 @@ export default function DownloadButton() {
           download
           aria-label="Download Photo"
           color="inherit"
-          onClick={() => setShare(true)}
+          onClick={() => {
+            setShare(true);
+            setDownloaded(true);
+          }}
         >
           <FiDownload />
         </IconButton>
