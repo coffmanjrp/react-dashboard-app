@@ -35,7 +35,7 @@ export default function KeywordsTextField() {
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
-  const { keywords, setKeywords } = useUnsplash();
+  const { data, keywords, setKeywords } = useUnsplash();
   const classes = useStyles();
 
   useEffect(() => {
@@ -62,7 +62,7 @@ export default function KeywordsTextField() {
       return false;
     }
 
-    setKeywords([...keywords, value.replace(/ /g, '_').toLowerCase()]);
+    setKeywords([...keywords, value.replace(/ /g, '-').toLowerCase()]);
     localStorage.setItem('keywords', JSON.stringify(keywords));
     // getRandomPhoto(keywords);
     setValue('');
@@ -73,6 +73,8 @@ export default function KeywordsTextField() {
       keywords.filter((keyword) => keywords.indexOf(keyword) !== index)
     );
   };
+
+  console.log(data);
 
   return (
     <Box className={classes.root}>

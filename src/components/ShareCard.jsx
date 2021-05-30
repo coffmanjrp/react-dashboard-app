@@ -90,6 +90,7 @@ export default function ShareCard() {
     downloaded,
     setShare,
   } = useUnsplash();
+
   const creditShareLink = `${unsplashLink}?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink`;
   const thankyouLink = `Photo by <a href="${profileLink}?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">${name}</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
   `;
@@ -241,6 +242,7 @@ export default function ShareCard() {
                       Photo by{' '}
                       <Link
                         href={profileLink}
+                        target="_blank"
                         underline="always"
                         color="textSecondary"
                       >
@@ -249,6 +251,7 @@ export default function ShareCard() {
                       on{' '}
                       <Link
                         href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                        target="_blank"
                         underline="always"
                         color="textSecondary"
                       >

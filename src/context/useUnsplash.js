@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { createApi } from 'unsplash-js';
 import { getKeywords } from 'utils/localStorage';
-import photo from 'photo.jpg';
+import { errorScreenData } from 'utils/errorScreenData';
 
 export const unsplashContext = createContext();
 
@@ -60,21 +60,11 @@ export const useProvideUnsplash = () => {
       });
     } catch (error) {
       console.error('error occurred: ', error);
-      setData({
-        photoUrl: photo,
-      });
+      setData(
+        errorScreenData[Math.floor(Math.random() * errorScreenData.length)]
+      );
     }
   };
-
-  // const downloadPhoto = async () => {
-  //   const { response } = await unsplash.photos.trackDownload({
-  //     downloadLocation: data.downloadLink,
-  //   });
-
-  //   console.log(response);
-
-  //   return response.url;
-  // };
 
   return {
     data,
