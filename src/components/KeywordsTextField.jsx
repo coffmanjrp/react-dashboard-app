@@ -35,14 +35,16 @@ export default function KeywordsTextField() {
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
-  const { data, keywords, setKeywords } = useUnsplash();
+  const { keywords, setKeywords } = useUnsplash();
   const classes = useStyles();
 
   useEffect(() => {
+    const newKeyword = keywords.map((keyword) => keyword.replace(/ /g, '-'));
+
     if (!getKeywords) {
       localStorage.setItem('keywords', JSON.stringify([]));
     } else {
-      localStorage.setItem('keywords', JSON.stringify(keywords));
+      localStorage.setItem('keywords', JSON.stringify(newKeyword));
     }
 
     // eslint-disable-next-line
@@ -62,9 +64,7 @@ export default function KeywordsTextField() {
       return false;
     }
 
-    setKeywords([...keywords, value.replace(/ /g, '-').toLowerCase()]);
-    localStorage.setItem('keywords', JSON.stringify(keywords));
-    // getRandomPhoto(keywords);
+    setKeywords([...keywords, value]);
     setValue('');
   };
 
@@ -73,8 +73,6 @@ export default function KeywordsTextField() {
       keywords.filter((keyword) => keywords.indexOf(keyword) !== index)
     );
   };
-
-  console.log(data);
 
   return (
     <Box className={classes.root}>

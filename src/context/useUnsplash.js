@@ -27,8 +27,12 @@ export const useProvideUnsplash = () => {
   const [downloaded, setDownloaded] = useState(false);
 
   useEffect(() => {
+    const newKeywords = getKeywords.map((keyword) =>
+      keyword.replace(/-/g, ' ')
+    );
+
     if (getKeywords) {
-      setKeywords(getKeywords);
+      setKeywords(newKeywords);
     }
 
     // eslint-disable-next-line
