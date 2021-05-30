@@ -64,6 +64,14 @@ export default function KeywordsTextField() {
       return false;
     }
 
+    if (keywords.find((keyword) => keyword === value)) {
+      setError(true);
+      setErrorMessage(
+        'This keyword is already exists. Please enter an another keyword.'
+      );
+      return false;
+    }
+
     setKeywords([...keywords, value]);
     setValue('');
   };
