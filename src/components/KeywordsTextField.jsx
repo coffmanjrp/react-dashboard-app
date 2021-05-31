@@ -60,14 +60,14 @@ export default function KeywordsTextField() {
 
     if (value === '') {
       setError(true);
-      setErrorMessage('Keyword is not entered. Please enter a keyword.');
+      setErrorMessage('The keyword is not entered. Please enter a keyword.');
       return false;
     }
 
     if (keywords.find((keyword) => keyword === value)) {
       setError(true);
       setErrorMessage(
-        'This keyword is already exists. Please enter an another keyword.'
+        'This keyword already exists. Please enter another keyword.'
       );
       return false;
     }

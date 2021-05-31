@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, Divider, List, ListItem } from '@material-ui/core';
 import {
   AmPmSwitch,
+  BackgroundSlider,
   ClockSwitch,
   DateSwitch,
   KeywordsTextField,
@@ -45,6 +46,9 @@ export default function SettingsTab() {
         </ListItem>
         <ListItem>
           <AmPmSwitch />
+        </ListItem>
+        <ListItem>
+          <BackgroundSlider />
         </ListItem>
       </List>
       <Divider orientation="vertical" flexItem />

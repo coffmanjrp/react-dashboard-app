@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     height: '100vh',
     background: `url(${props.photoUrl}) no-repeat center center/cover`,
     textAlign: 'center',
-    '&::before': {
+    '&::before': (props) => ({
       content: '""',
       position: 'absolute',
       top: 0,
@@ -23,17 +23,18 @@ const useStyles = makeStyles({
       bottom: 0,
       width: '100%',
       height: '100%',
-      backgroundColor: 'rgba(0, 0, 0, 0.2)',
-    },
+      backgroundColor: `rgba(0, 0, 0, ${props.alpha})`,
+    }),
   }),
 });
 
 export default function Layout({ children }) {
   const {
     data: { photoUrl },
+    alpha,
     getRandomPhoto,
   } = useUnsplash();
-  const classes = useStyles({ photoUrl });
+  const classes = useStyles({ photoUrl, alpha: alpha / 100 });
 
   useEffect(() => {
     getRandomPhoto(getKeywords);

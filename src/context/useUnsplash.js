@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { createApi } from 'unsplash-js';
-import { getKeywords } from 'utils/localStorage';
+import { getKeywords, getSettings } from 'utils/localStorage';
 import { errorScreenData } from 'utils/errorScreenData';
 
 export const unsplashContext = createContext();
@@ -25,6 +25,7 @@ export const useProvideUnsplash = () => {
   const [keywords, setKeywords] = useState([]);
   const [share, setShare] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
+  const [alpha, setAlpha] = useState(+getSettings.background);
 
   useEffect(() => {
     const newKeywords = getKeywords.map((keyword) =>
@@ -33,6 +34,10 @@ export const useProvideUnsplash = () => {
 
     if (getKeywords) {
       setKeywords(newKeywords);
+    }
+
+    if (!getSettings.background) {
+      setAlpha(10);
     }
 
     // eslint-disable-next-line
@@ -75,10 +80,11 @@ export const useProvideUnsplash = () => {
     keywords,
     share,
     downloaded,
+    alpha,
     setKeywords,
     setShare,
     setDownloaded,
+    setAlpha,
     getRandomPhoto,
-    // downloadPhoto,
   };
 };
