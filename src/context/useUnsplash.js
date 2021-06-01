@@ -15,7 +15,11 @@ export const useProvideUnsplash = () => {
     name: '',
     location: '',
     avatar: '',
+    description: '',
     photoUrl: null,
+    photoUrlFull: null,
+    photoUrlSmall: null,
+    photoUrlRaw: null,
     thumbnail: null,
     unsplashLink: '',
     profileLink: '',
@@ -51,7 +55,7 @@ export const useProvideUnsplash = () => {
     try {
       const { response } = await unsplash.photos.getRandom({
         query,
-        featured: true,
+        // featured: true,
       });
 
       // console.log(response);
@@ -61,14 +65,18 @@ export const useProvideUnsplash = () => {
         name: response.user.name,
         location: response.user.location,
         avatar: response.user.profile_image.medium,
+        description: response.alt_description,
         photoUrl: response.urls.regular,
+        photoUrlFull: response.urls.full,
+        photoUrlSmall: response.urls.small,
+        photoUrlRaw: response.urls.raw,
         thumbnail: response.urls.thumb,
         unsplashLink: response.links.html,
         profileLink: response.user.links.html,
         downloadLink: response.links.download,
       });
     } catch (error) {
-      console.error('error occurred: ', error);
+      console.error('error occurred:', error.message);
       setData(
         errorScreenData[Math.floor(Math.random() * errorScreenData.length)]
       );

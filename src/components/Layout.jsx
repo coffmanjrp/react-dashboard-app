@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     height: '100vh',
     background: `url(${props.photoUrl}) no-repeat center center/cover`,
     textAlign: 'center',
-    '&::before': (props) => ({
+    '&::before': {
       content: '""',
       position: 'absolute',
       top: 0,
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
       width: '100%',
       height: '100%',
       backgroundColor: `rgba(0, 0, 0, ${props.alpha})`,
-    }),
+    },
   }),
 });
 
