@@ -58,17 +58,19 @@ export default function KeywordsTextField() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (value === '') {
-      setError(true);
-      setErrorMessage('The keyword is not entered. Please enter a keyword.');
-      return false;
-    }
+    const exists = keywords.find((keyword) => keyword === value);
 
-    if (keywords.find((keyword) => keyword === value)) {
+    if (exists) {
       setError(true);
       setErrorMessage(
         'This keyword already exists. Please enter another keyword.'
       );
+      return false;
+    }
+
+    if (value === '') {
+      setError(true);
+      setErrorMessage('The keyword is not entered. Please enter a keyword.');
       return false;
     }
 

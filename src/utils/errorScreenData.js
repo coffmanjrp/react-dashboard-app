@@ -1,5 +1,26 @@
 export const errorScreenData = [
   {
+    avatar:
+      'https://images.unsplash.com/profile-1569182665400-f587e5b62712image?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=64&w=64',
+    description: 'man in black jacket and brown pants sitting on brown floor',
+    downloadLink: 'https://unsplash.com/photos/Q_y-y4JfYo0/download',
+    id: 'Q_y-y4JfYo0',
+    location: 'Tehran',
+    name: 'Ali Saadat',
+    photoUrl:
+      'https://images.unsplash.com/photo-1580374004682-23dec7298a3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMzI4NTh8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjI1MjYxMjQ&ixlib=rb-1.2.1&q=80&w=1080',
+    photoUrlFull:
+      'https://images.unsplash.com/photo-1580374004682-23dec7298a3e?crop=entropy&cs=srgb&fm=jpg&ixid=MnwyMzI4NTh8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjI1MjYxMjQ&ixlib=rb-1.2.1&q=85',
+    photoUrlRaw:
+      'https://images.unsplash.com/photo-1580374004682-23dec7298a3e?ixid=MnwyMzI4NTh8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjI1MjYxMjQ&ixlib=rb-1.2.1',
+    photoUrlSmall:
+      'https://images.unsplash.com/photo-1580374004682-23dec7298a3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMzI4NTh8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjI1MjYxMjQ&ixlib=rb-1.2.1&q=80&w=400',
+    profileLink: 'https://unsplash.com/@camsaadat',
+    thumbnail:
+      'https://images.unsplash.com/photo-1580374004682-23dec7298a3e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMzI4NTh8MHwxfHJhbmRvbXx8fHx8fHx8fDE2MjI1MjYxMjQ&ixlib=rb-1.2.1&q=80&w=200',
+    unsplashLink: 'https://unsplash.com/photos/Q_y-y4JfYo0',
+  },
+  {
     description: 'brown wooden blocks on white surface',
     avatar:
       'https://images.unsplash.com/profile-1619704591710-57db18d1c62fimage?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=64&w=64',
