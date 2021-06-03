@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     flexDirection: 'row',
     backgroundColor: theme.palette.background.paper,
+    height: '100%',
     [theme.breakpoints.down('sm')]: {
       flexDirection: 'column',
     },
@@ -21,11 +22,13 @@ const useStyles = makeStyles((theme) => ({
   },
   tabPanel: {
     width: '100%',
+    height: '100%',
   },
 }));
 
 function TabPanel({ children, value, index, ...rest }) {
   const classes = useStyles();
+
   return (
     <Box
       className={classes.tabPanel}
@@ -34,12 +37,12 @@ function TabPanel({ children, value, index, ...rest }) {
       aria-labelledby={`tab-${index}`}
       {...rest}
     >
-      {value === index && <Box>{children}</Box>}
+      {value === index && <>{children}</>}
     </Box>
   );
 }
 
-export default function MenuTabs() {
+export default function MenuTabs({ handleClose }) {
   const [value, setValue] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 600;
@@ -57,7 +60,7 @@ export default function MenuTabs() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       <Tabs
         className={classes.tabs}
         orientation={width > breakpoint ? 'vertical' : 'horizontal'}
@@ -70,14 +73,14 @@ export default function MenuTabs() {
         <Tab label="About" />
       </Tabs>
       <TabPanel value={value} index={0}>
-        <SettingsTab />
+        <SettingsTab handleClose={handleClose} />
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <HistoryTab />
+        <HistoryTab handleClose={handleClose} />
       </TabPanel>
       <TabPanel value={value} index={2}>
-        <AboutTab />
+        <AboutTab handleClose={handleClose} />
       </TabPanel>
-    </div>
+    </Box>
   );
 }

@@ -12,13 +12,13 @@ import {
 import grey from '@material-ui/core/colors/grey';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  FaTimes,
   FaLink,
   FaFacebook,
   FaTwitter,
   FaPinterest,
   FaEnvelope,
 } from 'react-icons/fa';
+import { MdClear } from 'react-icons/md';
 import { AiOutlineCopy } from 'react-icons/ai';
 import { useUnsplash } from 'context/useUnsplash';
 
@@ -275,7 +275,7 @@ export default function ShareCard() {
                 edge={false}
                 onClick={() => setShare(false)}
               >
-                <FaTimes />
+                <MdClear />
               </IconButton>
             </Card>
           </motion.div>

@@ -13,6 +13,7 @@ export { default as Header } from './Header';
 export { default as HistoryTab } from './HistoryTab';
 export { default as KeywordsTextField } from './KeywordsTextField';
 export { default as Layout } from './Layout';
+export { default as MenuModal } from './MenuModal';
 export { default as MenuTabs } from './MenuTabs';
 export { default as SecondsSwitch } from './SecondsSwitch';
 export { default as SettingsTab } from './SettingsTab';

@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
 import { useUnsplash } from 'context/useUnsplash';
-import { getKeywords } from 'utils/localStorage';
 
 const useStyles = makeStyles({
   container: (props) => ({
@@ -29,18 +28,11 @@ const useStyles = makeStyles({
 });
 
 export default function Layout({ children }) {
-  const {
-    data: { photoUrl },
-    alpha,
-    getRandomPhoto,
-  } = useUnsplash();
+  const { data, alpha } = useUnsplash();
+  const { photoUrl } = data;
   const classes = useStyles({ photoUrl, alpha: alpha / 100 });
 
-  useEffect(() => {
-    getRandomPhoto(getKeywords);
-
-    // eslint-disable-next-line
-  }, []);
+  // console.log(history);
 
   return (
     <motion.div

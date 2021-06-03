@@ -1,63 +1,93 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Masonry from 'react-masonry-css';
 import { useUnsplash } from 'context/useUnsplash';
 import { grey } from '@material-ui/core/colors';
-import { Box } from '@material-ui/core';
+import { Box, IconButton, Link } from '@material-ui/core';
+import { AiOutlineClear } from 'react-icons/ai';
+import { MdClear } from 'react-icons/md';
+import { Annotation } from '.';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'grid',
+    gridTemplateRows: '95% 5%',
+    padding: theme.spacing(0, 3),
+    height: '100%',
+    // overflow: 'hidden',
+  },
+  container: {
+    overflow: 'hidden',
+  },
   masonryGrid: {
     display: 'flex',
-    marginLeft: '-5px' /* gutter size offset */,
+
+    // marginLeft: '-5px' /* gutter size offset */,
     width: 'auto',
   },
   masonryGridColumn: {
-    paddingLeft: '5px' /* gutter size */,
+    // paddingLeft: '5px' /* gutter size */,
     backgroundClip: 'padding-box',
     '> div': {
       /* change div to reference your elements you put in <Masonry> */
       background: grey[200],
-      marginBottom: '5px',
+      // marginBottom: '5px',
     },
+  },
+  footer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 }));
 
-export default function HistoryTab() {
-  const [history, setHistory] = useState([]);
-  const {
-    data: { id, name, thumbnail },
-  } = useUnsplash();
+export default function HistoryTab({ handleClose }) {
+  const { history, setHistory, getPhotoById } = useUnsplash();
   const classes = useStyles();
   const breakpoints = {
     default: 7,
-    // 1100: 3,
-    // 700: 2,
-    // 500: 1,
+    1100: 4,
+    700: 3,
+    500: 2,
   };
-  const store = localStorage.getItem('history');
 
-  useEffect(() => {
-    if (id) {
-      setHistory([{ id, img: thumbnail, title: name }]);
-    }
-    localStorage.setItem('history', history);
-  }, []);
+  const onClick = (id) => {
+    getPhotoById(id);
+    handleClose();
+  };
 
-  console.log(JSON.stringify(store));
+  const handleClearHistory = () => {
+    setHistory([]);
+  };
 
   return (
-    <Box p={3}>
-      <Masonry
-        breakpointCols={breakpoints}
-        className={classes.masonryGrid}
-        columnClassName={classes.masonryGridColumn}
-      >
-        {history.map((tile) => (
-          <div key={tile.id}>
-            <img src={tile.img} alt={tile.title} />
-          </div>
-        ))}
-      </Masonry>
+    <Box p={3} className={classes.root}>
+      <Box className={classes.container}>
+        <Masonry
+          breakpointCols={breakpoints}
+          className={classes.masonryGrid}
+          columnClassName={classes.masonryGridColumn}
+        >
+          {history.length > 0 &&
+            history?.map((tile) => (
+              <div key={tile.id}>
+                <Link href="#" onClick={() => onClick(tile.id)}>
+                  <img src={tile.thumbnail} alt={tile.description} />
+                </Link>
+              </div>
+            ))}
+        </Masonry>
+      </Box>
+      <Box className={classes.footer}>
+        <Annotation content="Clear History" placement="right">
+          <IconButton>
+            <AiOutlineClear onClick={handleClearHistory} />
+          </IconButton>
+        </Annotation>
+        <IconButton onClick={handleClose}>
+          <MdClear />
+        </IconButton>
+      </Box>
     </Box>
   );
 }

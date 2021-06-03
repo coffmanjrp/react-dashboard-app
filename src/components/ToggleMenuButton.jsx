@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Backdrop, Box, Fade, IconButton, Modal } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { IoSettingsOutline } from 'react-icons/io5';
-import { Annotation, MenuTabs } from '.';
+import { Annotation, MenuModal, MenuTabs } from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,18 +15,6 @@ const useStyles = makeStyles((theme) => ({
     height: '100%',
     fontSize: '1.3rem',
     color: 'inherit',
-  },
-  modal: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '90vw',
-    height: '90vh',
-    backgroundColor: theme.palette.background.paper,
-    borderRadius: '5px',
-    padding: theme.spacing(2, 1),
-    color: theme.palette.text.primary,
   },
 }));
 
@@ -68,23 +56,7 @@ export default function ToggleMenuButton() {
           </IconButton>
         </motion.div>
       </Annotation>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="simple-modal-title"
-        aria-describedby="simple-modal-description"
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <Box className={classes.modal}>
-            <MenuTabs />
-          </Box>
-        </Fade>
-      </Modal>
+      <MenuModal open={open} handleClose={handleClose} />
     </>
   );
 }
