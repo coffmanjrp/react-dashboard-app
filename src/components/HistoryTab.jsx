@@ -80,8 +80,8 @@ export default function HistoryTab({ handleClose }) {
       </Box>
       <Box className={classes.footer}>
         <Annotation content="Clear History" placement="right">
-          <IconButton>
-            <AiOutlineClear onClick={handleClearHistory} />
+          <IconButton onClick={handleClearHistory}>
+            <AiOutlineClear />
           </IconButton>
         </Annotation>
         <IconButton onClick={handleClose}>

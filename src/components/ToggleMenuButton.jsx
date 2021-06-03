@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Backdrop, Box, Fade, IconButton, Modal } from '@material-ui/core';
+import { IconButton } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { IoSettingsOutline } from 'react-icons/io5';
-import { Annotation, MenuModal, MenuTabs } from '.';
+import { Annotation, MenuModal } from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {

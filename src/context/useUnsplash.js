@@ -64,6 +64,8 @@ export const useProvideUnsplash = () => {
   }, [data]);
 
   useEffect(() => {
+    removeOldHistory(20);
+
     setObjectToLocalStorage('settings', 'history', history);
 
     // eslint-disable-next-line
@@ -133,10 +135,16 @@ export const useProvideUnsplash = () => {
   };
 
   const getHistoryData = (data) => {
-    const exists = getSettings.history?.find((ogj) => ogj.id === data.id);
+    const exists = getSettings.history?.find((item) => item.id === data.id);
 
     if (!exists) {
       setHistory([data, ...history]);
+    }
+  };
+
+  const removeOldHistory = (limit) => {
+    if (history.length > limit) {
+      setHistory([...history.slice(0, history.length - 1)]);
     }
   };
 
