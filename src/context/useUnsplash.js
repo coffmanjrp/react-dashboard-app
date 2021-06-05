@@ -64,7 +64,7 @@ export const useProvideUnsplash = () => {
   }, [data]);
 
   useEffect(() => {
-    removeOldHistory(20);
+    removeOldHistory(21);
 
     setObjectToLocalStorage('settings', 'history', history);
 

@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, CircularProgress, Typography } from '@material-ui/core';
 import Skycons from 'react-skycons';
 import { useWeather } from 'context/useWeather';
-import { WeatherInfo } from '.';
+import { Annotation, WeatherInfo, WeatherInfoList } from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
     gap: 5,
     justifyContent: 'center',
     alignItems: 'center',
+    cursor: 'pointer',
   },
   temp: {
     fontSize: '1rem',
@@ -44,22 +45,24 @@ export default function Weather() {
   return (
     <>
       {weather && (
-        <Box className={classes.root}>
-          <Box className={classes.container}>
-            <Skycons
-              color="white"
-              type={weather.skycon}
-              animate={true}
-              size={25}
-              resizeClear={true}
-            />
-            <Typography variant="h5" className={classes.temp}>
-              {isFahrenheit ? weather.fahrenheit_temp : weather.celsius_temp}
-              <span>{isFahrenheit ? '°F' : '°C'}</span>
-            </Typography>
+        <Annotation content={<WeatherInfoList />} placement="bottom-end">
+          <Box className={classes.root}>
+            <Box className={classes.container}>
+              <Skycons
+                color="white"
+                type={weather.skycon}
+                animate={true}
+                size={25}
+                resizeClear={true}
+              />
+              <Typography variant="h5" className={classes.temp}>
+                {isFahrenheit ? weather.fahrenheit_temp : weather.celsius_temp}
+                <span>{isFahrenheit ? '°F' : '°C'}</span>
+              </Typography>
+            </Box>
+            <WeatherInfo weather={weather} isFahrenheit={isFahrenheit} />
           </Box>
-          <WeatherInfo weather={weather} isFahrenheit={isFahrenheit} />
-        </Box>
+        </Annotation>
       )}
     </>
   );
