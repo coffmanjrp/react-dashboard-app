@@ -1,10 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Divider, IconButton, List, ListItem } from '@material-ui/core';
+import { motion } from 'framer-motion';
+import { IoReload } from 'react-icons/io5';
 import {
   AmPmSwitch,
+  Annotation,
   BackgroundSlider,
   ClockSwitch,
+  CloseModalButton,
   DateSwitch,
   KeywordsTextField,
   SecondsSwitch,
@@ -13,7 +17,7 @@ import {
   WeatherLocationTextField,
   WeatherSwitch,
 } from '.';
-import { MdClear } from 'react-icons/md';
+import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,13 +35,27 @@ const useStyles = makeStyles((theme) => ({
   },
   footer: {
     display: 'flex',
-    justifyContent: 'flex-end',
+    justifyContent: 'space-between',
     alignItems: 'center',
   },
 }));
 
+const buttonVariants = {
+  hover: {
+    rotate: 180,
+    transition: {
+      duration: 0.8,
+    },
+  },
+};
+
 export default function SettingsTab({ handleClose }) {
+  const { keywords, getRandomPhoto } = useUnsplash();
   const classes = useStyles();
+
+  const handleRefresh = () => {
+    getRandomPhoto(keywords);
+  };
 
   return (
     <Box className={classes.root}>
@@ -80,9 +98,14 @@ export default function SettingsTab({ handleClose }) {
         </List>
       </Box>
       <Box component="footer" className={classes.footer}>
-        <IconButton onClick={() => handleClose()}>
-          <MdClear />
-        </IconButton>
+        <Annotation content="Refresh Photo" placement="right">
+          <motion.div variants={buttonVariants} whileHover="hover">
+            <IconButton onClick={handleRefresh}>
+              <IoReload />
+            </IconButton>
+          </motion.div>
+        </Annotation>
+        <CloseModalButton handleClose={handleClose} />
       </Box>
     </Box>
   );

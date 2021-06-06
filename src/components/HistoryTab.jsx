@@ -5,8 +5,7 @@ import { useUnsplash } from 'context/useUnsplash';
 import { grey } from '@material-ui/core/colors';
 import { Box, IconButton, Link } from '@material-ui/core';
 import { AiOutlineClear } from 'react-icons/ai';
-import { MdClear } from 'react-icons/md';
-import { Annotation } from '.';
+import { Annotation, CloseModalButton } from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -51,7 +50,7 @@ export default function HistoryTab({ handleClose }) {
     500: 2,
   };
 
-  const onClick = (id) => {
+  const handleClick = (id) => {
     getPhotoById(id);
     handleClose();
   };
@@ -71,7 +70,7 @@ export default function HistoryTab({ handleClose }) {
           {history.length > 0 &&
             history?.map((tile) => (
               <div key={tile.id}>
-                <Link href="#" onClick={() => onClick(tile.id)}>
+                <Link href="#" onClick={() => handleClick(tile.id)}>
                   <img src={tile.thumbnail} alt={tile.description} />
                 </Link>
               </div>
@@ -84,9 +83,7 @@ export default function HistoryTab({ handleClose }) {
             <AiOutlineClear />
           </IconButton>
         </Annotation>
-        <IconButton onClick={handleClose}>
-          <MdClear />
-        </IconButton>
+        <CloseModalButton handleClose={handleClose} />
       </Box>
     </Box>
   );

@@ -65,7 +65,6 @@ export const useProvideUnsplash = () => {
 
   useEffect(() => {
     removeOldHistory(21);
-
     setObjectToLocalStorage('settings', 'history', history);
 
     // eslint-disable-next-line
@@ -79,7 +78,6 @@ export const useProvideUnsplash = () => {
     try {
       const { response } = await unsplash.photos.getRandom({
         query,
-        // featured: true,
       });
 
       // console.log(response);
@@ -135,10 +133,18 @@ export const useProvideUnsplash = () => {
   };
 
   const getHistoryData = (data) => {
-    const exists = getSettings.history?.find((item) => item.id === data.id);
+    if (history) {
+      const exists = getSettings.history.find((item) => item.id === data.id);
 
-    if (!exists) {
-      setHistory([data, ...history]);
+      const dataForHistory = {
+        id: data.id,
+        description: data.description,
+        thumbnail: data.thumbnail,
+      };
+
+      if (!exists) {
+        setHistory([dataForHistory, ...history]);
+      }
     }
   };
 

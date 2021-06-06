@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Box, IconButton, Typography } from '@material-ui/core';
-import { MdClear } from 'react-icons/md';
+import { Box, Typography } from '@material-ui/core';
+import { CloseModalButton } from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,9 +31,7 @@ export default function AboutTab({ handleClose }) {
         </Typography>
       </Box>
       <Box component="footer" className={classes.footer}>
-        <IconButton onClick={() => handleClose()}>
-          <MdClear />
-        </IconButton>
+        <CloseModalButton handleClose={handleClose} />
       </Box>
     </Box>
   );

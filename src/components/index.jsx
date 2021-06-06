@@ -5,6 +5,7 @@ export { default as AuthorInfo } from './AuthorInfo';
 export { default as BackgroundSlider } from './BackgroundSlider';
 export { default as Clock } from './Clock';
 export { default as ClockSwitch } from './ClockSwitch';
+export { default as CloseModalButton } from './CloseModalButton';
 export { default as DateSwitch } from './DateSwitch';
 export { default as DownloadButton } from './DownloadButton';
 export { default as Footer } from './Footer';
