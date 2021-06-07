@@ -9,6 +9,7 @@ import {
   BackgroundSlider,
   ClockSwitch,
   CloseModalButton,
+  DarkModeSwitch,
   DateSwitch,
   KeywordsTextField,
   SecondsSwitch,
@@ -42,14 +43,18 @@ const useStyles = makeStyles((theme) => ({
 
 const buttonVariants = {
   hover: {
-    rotate: 180,
+    rotate: 360,
     transition: {
       duration: 0.8,
     },
   },
 };
 
-export default function SettingsTab({ handleClose }) {
+export default function SettingsTab({
+  handleClose,
+  isDarkMode,
+  setIsDarkMode,
+}) {
   const { keywords, getRandomPhoto } = useUnsplash();
   const classes = useStyles();
 
@@ -75,6 +80,12 @@ export default function SettingsTab({ handleClose }) {
           </ListItem>
           <ListItem>
             <AmPmSwitch />
+          </ListItem>
+          <ListItem>
+            <DarkModeSwitch
+              isDarkMode={isDarkMode}
+              setIsDarkMode={setIsDarkMode}
+            />
           </ListItem>
           <ListItem>
             <BackgroundSlider />

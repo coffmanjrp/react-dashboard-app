@@ -27,7 +27,7 @@ const buttonVariants = {
   },
 };
 
-export default function ToggleMenuButton() {
+export default function ToggleMenuButton({ isDarkMode, setIsDarkMode }) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
@@ -56,7 +56,12 @@ export default function ToggleMenuButton() {
           </IconButton>
         </motion.div>
       </Annotation>
-      <MenuModal open={open} handleClose={handleClose} />
+      <MenuModal
+        open={open}
+        handleClose={handleClose}
+        isDarkMode={isDarkMode}
+        setIsDarkMode={setIsDarkMode}
+      />
     </>
   );
 }

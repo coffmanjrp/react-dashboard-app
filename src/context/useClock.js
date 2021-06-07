@@ -24,6 +24,7 @@ export const useProvideClock = () => {
 
   useEffect(() => {
     if (!getSettings) {
+      setDisplayClock(true);
       setDisplaySeconds(true);
       setDisplayDate(true);
       setDisplayAmpm(true);

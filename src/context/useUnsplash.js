@@ -1,10 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { createApi } from 'unsplash-js';
-import {
-  getKeywords,
-  getSettings,
-  setObjectToLocalStorage,
-} from 'utils/localStorage';
+import { getSettings, setObjectToLocalStorage } from 'utils/localStorage';
 import { errorScreenData } from 'utils/errorScreenData';
 
 export const unsplashContext = createContext();
@@ -29,28 +25,30 @@ export const useProvideUnsplash = () => {
     profileLink: '',
     downloadLink: '',
   };
-  const newKeywords = getKeywords.map((keyword) => keyword.replace(/-/g, ' '));
+  const newKeywords = getSettings?.keywords?.map((keyword) =>
+    keyword.replace(/-/g, ' ')
+  );
   const [data, setData] = useState(initialState);
   const [keywords, setKeywords] = useState(newKeywords);
   const [share, setShare] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
-  const [alpha, setAlpha] = useState(+getSettings.background);
-  const [history, setHistory] = useState(getSettings.history);
+  const [alpha, setAlpha] = useState(+getSettings?.background);
+  const [history, setHistory] = useState(getSettings?.history);
 
   useEffect(() => {
-    if (!getKeywords) {
+    if (!getSettings?.keywords) {
       setKeywords([]);
     }
 
-    if (!getSettings.background) {
+    if (!getSettings?.background) {
       setAlpha(10);
     }
 
-    if (!getSettings.history) {
+    if (!getSettings?.history) {
       setHistory([]);
     }
 
-    getRandomPhoto(getKeywords);
+    getRandomPhoto(getSettings?.keywords);
 
     // eslint-disable-next-line
   }, []);
@@ -133,23 +131,21 @@ export const useProvideUnsplash = () => {
   };
 
   const getHistoryData = (data) => {
-    if (history) {
-      const exists = getSettings.history.find((item) => item.id === data.id);
+    const exists = getSettings?.history?.find((item) => item.id === data.id);
 
-      const dataForHistory = {
-        id: data.id,
-        description: data.description,
-        thumbnail: data.thumbnail,
-      };
+    const dataForHistory = {
+      id: data.id,
+      description: data.description,
+      thumbnail: data.thumbnail,
+    };
 
-      if (!exists) {
-        setHistory([dataForHistory, ...history]);
-      }
+    if (!exists) {
+      setHistory([dataForHistory, ...history]);
     }
   };
 
   const removeOldHistory = (limit) => {
-    if (history.length > limit) {
+    if (history?.length > limit) {
       setHistory([...history.slice(0, history.length - 1)]);
     }
   };

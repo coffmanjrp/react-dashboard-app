@@ -25,6 +25,9 @@ export default function WeatherInfo({ weather, isFahrenheit }) {
   useEffect(() => {
     setTimeout(() => setInfo((info) => info + 1), 20000);
 
+    return () => {
+      clearTimeout();
+    };
     // eslint-disable-next-line
   }, [info]);
 

@@ -5,7 +5,7 @@ import { Greeting } from '.';
 import { useClock } from 'context/useClock';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
+  root: {
     display: 'flex',
     flexDirection: 'column',
     zIndex: 1,
@@ -137,11 +137,7 @@ export default function Clock() {
   }
 
   return (
-    <motion.div
-      className={classes.container}
-      initial="initial"
-      animate="animate"
-    >
+    <motion.div className={classes.root} initial="initial" animate="animate">
       {seconds !== null ? (
         <>
           <motion.time className={classes.time} variants={clockVariants}>
