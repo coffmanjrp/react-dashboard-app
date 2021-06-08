@@ -20,18 +20,18 @@ const useStyles = makeStyles((theme) => ({
   },
   masonryGrid: {
     display: 'flex',
-
-    // marginLeft: '-5px' /* gutter size offset */,
+    marginLeft: '-5px' /* gutter size offset */,
     width: 'auto',
   },
   masonryGridColumn: {
-    // paddingLeft: '5px' /* gutter size */,
+    paddingLeft: '5px' /* gutter size */,
     backgroundClip: 'padding-box',
-    '> div': {
-      /* change div to reference your elements you put in <Masonry> */
-      background: grey[200],
-      // marginBottom: '5px',
-    },
+  },
+  item: {
+    marginBottom: '10px',
+  },
+  image: {
+    border: `1px solid ${grey[200]}`,
   },
   footer: {
     display: 'flex',
@@ -69,9 +69,13 @@ export default function HistoryTab({ handleClose }) {
         >
           {history.length > 0 &&
             history?.map((tile) => (
-              <div key={tile.id}>
+              <div key={tile.id} className={classes.item}>
                 <Link href="#" onClick={() => handleClick(tile.id)}>
-                  <img src={tile.thumbnail} alt={tile.description} />
+                  <img
+                    src={tile.thumbnail}
+                    alt={tile.description}
+                    className={classes.image}
+                  />
                 </Link>
               </div>
             ))}

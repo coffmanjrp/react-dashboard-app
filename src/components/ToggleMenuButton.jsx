@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { IconButton } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { IoSettingsOutline } from 'react-icons/io5';
-import { Annotation, MenuModal } from '.';
+import { Annotation } from '.';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles({
   root: {
     width: '2.8rem',
     height: '2.8rem',
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: '1.3rem',
     color: 'inherit',
   },
-}));
+});
 
 const buttonVariants = {
   hover: {
@@ -27,17 +27,8 @@ const buttonVariants = {
   },
 };
 
-export default function ToggleMenuButton({ isDarkMode, setIsDarkMode }) {
+export default function ToggleMenuButton({ handleOpen }) {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
 
   return (
     <>
@@ -56,12 +47,6 @@ export default function ToggleMenuButton({ isDarkMode, setIsDarkMode }) {
           </IconButton>
         </motion.div>
       </Annotation>
-      <MenuModal
-        open={open}
-        handleClose={handleClose}
-        isDarkMode={isDarkMode}
-        setIsDarkMode={setIsDarkMode}
-      />
     </>
   );
 }

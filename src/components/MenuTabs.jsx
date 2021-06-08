@@ -65,6 +65,7 @@ export default function MenuTabs({ handleClose, isDarkMode, setIsDarkMode }) {
         className={classes.tabs}
         orientation={width > breakpoint ? 'vertical' : 'horizontal'}
         value={value}
+        indicatorColor="primary"
         aria-label="Menu tabs"
         onChange={handleChange}
       >

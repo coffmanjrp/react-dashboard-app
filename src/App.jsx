@@ -1,43 +1,45 @@
-import React, { useMemo, useState } from 'react';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+import React, { useState } from 'react';
+import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import { Clock, Footer, Header, Layout, ShareCard } from 'components';
-import { ContextProvider } from 'context/Context';
+import {
+  Clock,
+  Footer,
+  Header,
+  Layout,
+  MenuModal,
+  ShareCard,
+} from 'components';
+import { getSettings } from 'utils/localStorage';
+import muiTheme from 'utils/muiTheme';
 
 function App() {
-  const [isDarkMode, setIsDarkMode] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(getSettings?.isDarkMode);
+  const theme = muiTheme(isDarkMode);
 
-  const theme = useMemo(
-    () =>
-      createMuiTheme({
-        overrides: {
-          MuiCssBaseline: {
-            '@global': {
-              body: {
-                fontFamily: '"Roboto", sans-serif',
-                overflow: 'hidden',
-              },
-            },
-          },
-        },
-        palette: {
-          type: isDarkMode ? 'dark' : 'light',
-        },
-      }),
-    [isDarkMode]
-  );
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <ContextProvider>
-        <Layout>
-          <Header />
-          <Clock />
-          <Footer isDarkMode={isDarkMode} setIsDarkMode={setIsDarkMode} />
-          <ShareCard />
-        </Layout>
-      </ContextProvider>
+      <Layout>
+        <Header />
+        <Clock />
+        <Footer handleOpen={handleOpen} />
+        <ShareCard />
+        <MenuModal
+          open={open}
+          handleClose={handleClose}
+          isDarkMode={isDarkMode}
+          setIsDarkMode={setIsDarkMode}
+        />
+      </Layout>
     </ThemeProvider>
   );
 }

@@ -130,7 +130,7 @@ export default function Clock() {
     displayTime();
 
     // eslint-disable-next-line
-  }, [seconds, date, ampm]);
+  }, [seconds]);
 
   if (!displayClock) {
     return <div />;

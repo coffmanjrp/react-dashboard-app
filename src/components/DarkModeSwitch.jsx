@@ -9,9 +9,10 @@ import { setObjectToLocalStorage } from 'utils/localStorage';
 
 export default function DarkModeSwitch({ isDarkMode, setIsDarkMode }) {
   useEffect(() => {
-    // setObjectToLocalStorage('settings', 'displaySeconds', displaySeconds);
+    setObjectToLocalStorage('settings', 'isDarkMode', isDarkMode);
+
     // eslint-disable-next-line
-  }, []);
+  }, [isDarkMode]);
 
   const handleChange = () => {
     setIsDarkMode((isDarkMode) => !isDarkMode);
