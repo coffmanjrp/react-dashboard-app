@@ -41,7 +41,7 @@ export const useProvideUnsplash = () => {
     }
 
     if (!getSettings?.background) {
-      setAlpha(10);
+      setAlpha(20);
     }
 
     if (!getSettings?.history) {

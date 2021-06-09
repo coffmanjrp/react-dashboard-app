@@ -8,6 +8,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     flexDirection: 'column',
+    color: theme.palette.text.display,
     zIndex: 1,
   },
   time: {

@@ -6,6 +6,7 @@ const lightTheme = {
   text: {
     primary: 'rgba(0, 0, 0, 0.87)',
     secondary: 'rgba(0, 0, 0, 0.54)',
+    display: grey[100],
     disabled: 'rgba(0, 0, 0, 0.38)',
   },
   action: {
@@ -25,9 +26,9 @@ const lightTheme = {
 const darkTheme = {
   type: 'dark',
   primary: {
-    light: '#e33371',
-    main: '#dc004e',
-    dark: '#9a0036',
+    light: '#d3633a',
+    main: '#ff4500',
+    dark: '#c23400',
   },
   secondary: {
     light: '#4791db',
@@ -37,6 +38,7 @@ const darkTheme = {
   text: {
     primary: grey[300],
     secondary: 'rgba(255, 255, 255, 0.7)',
+    display: grey[300],
     disabled: 'rgba(255, 255, 255, 0.5)',
   },
   action: {

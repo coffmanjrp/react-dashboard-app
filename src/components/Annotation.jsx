@@ -2,17 +2,17 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Tooltip, Fade } from '@material-ui/core';
 
-const LightTooltip = withStyles({
+const LightTooltip = withStyles((theme) => ({
   arrow: {
-    color: '#f5f5f9',
+    color: theme.palette.background.default,
   },
   tooltip: {
     maxWidth: 220,
-    backgroundColor: '#f5f5f9',
+    backgroundColor: theme.palette.background.default,
     fontSize: '0.8rem',
-    color: 'rgba(0, 0, 0, 0.87)',
+    color: theme.palette.text.primary,
   },
-})(Tooltip);
+}))(Tooltip);
 
 export default function Annotation({ children, content, placement }) {
   return (

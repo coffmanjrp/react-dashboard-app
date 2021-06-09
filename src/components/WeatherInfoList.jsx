@@ -7,7 +7,6 @@ import weatherInfoData from 'utils/weatherInfoData';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
-    backgroundColor: theme.palette.background.paper,
   },
 }));
 

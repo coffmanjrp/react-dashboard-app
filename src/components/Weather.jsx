@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, CircularProgress, Typography } from '@material-ui/core';
+import { grey } from '@material-ui/core/colors';
 import Skycons from 'react-skycons';
 import { useWeather } from 'context/useWeather';
 import { Annotation, WeatherInfo, WeatherInfoList } from '.';
@@ -49,7 +50,7 @@ export default function Weather() {
           <Box className={classes.root}>
             <Box className={classes.container}>
               <Skycons
-                color="white"
+                color={`${grey[300]}`}
                 type={weather.skycon}
                 animate={true}
                 size={25}
