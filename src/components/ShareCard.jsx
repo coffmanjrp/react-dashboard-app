@@ -51,10 +51,13 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     backgroundColor: grey[300],
   },
+  authorIntro: {
+    color: grey[600],
+  },
   closeBtn: {
     position: 'absolute',
-    top: 0,
-    right: 0,
+    top: '5px',
+    right: '5px',
   },
 }));
 
@@ -230,43 +233,41 @@ export default function ShareCard() {
                 image={thumbnail}
                 title="Live from space album cover"
               />
-              <div>
-                <CardContent>
-                  {downloaded ? <SayThanksContent /> : <ShareContent />}
-                  <Paper
-                    variant="outlined"
-                    elevation={0}
-                    className={classes.attribute}
-                  >
-                    <Typography variant="caption" color="textSecondary">
-                      Photo by{' '}
-                      <Link
-                        href={profileLink}
-                        target="_blank"
-                        underline="always"
-                        color="textSecondary"
-                      >
-                        {name}
-                      </Link>{' '}
-                      on{' '}
-                      <Link
-                        href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
-                        target="_blank"
-                        underline="always"
-                        color="textSecondary"
-                      >
-                        Unsplash
-                      </Link>
-                    </Typography>
-                    <IconButton
-                      size="small"
-                      onClick={() => handleCopyToClipboard(thankyouLink)}
+              <CardContent>
+                {downloaded ? <SayThanksContent /> : <ShareContent />}
+                <Paper
+                  variant="outlined"
+                  elevation={0}
+                  className={classes.attribute}
+                >
+                  <Typography variant="caption" className={classes.authorIntro}>
+                    Photo by{' '}
+                    <Link
+                      href={profileLink}
+                      target="_blank"
+                      underline="always"
+                      className={classes.authorIntro}
                     >
-                      <AiOutlineCopy />
-                    </IconButton>
-                  </Paper>
-                </CardContent>
-              </div>
+                      {name}
+                    </Link>{' '}
+                    on{' '}
+                    <Link
+                      href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText"
+                      target="_blank"
+                      underline="always"
+                      className={classes.authorIntro}
+                    >
+                      Unsplash
+                    </Link>
+                  </Typography>
+                  <IconButton
+                    size="small"
+                    onClick={() => handleCopyToClipboard(thankyouLink)}
+                  >
+                    <AiOutlineCopy />
+                  </IconButton>
+                </Paper>
+              </CardContent>
               <IconButton
                 className={classes.closeBtn}
                 size="small"
