@@ -23,10 +23,19 @@ export const useProvideClock = () => {
   // const twelveTimeFormat = hours % 12 || 12;
 
   useEffect(() => {
-    if (!getSettings) {
+    if (getSettings?.displayClock === undefined) {
       setDisplayClock(true);
+    }
+
+    if (getSettings?.displaySeconds === undefined) {
       setDisplaySeconds(true);
+    }
+
+    if (getSettings?.displayDate === undefined) {
       setDisplayDate(true);
+    }
+
+    if (getSettings?.displayAmpm === undefined) {
       setDisplayAmpm(true);
     }
 

@@ -61,7 +61,6 @@ const muiTheme = (theme) =>
       MuiCssBaseline: {
         '@global': {
           body: {
-            fontFamily: '"Roboto", sans-serif',
             overflow: 'hidden',
           },
         },

@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { motion } from 'framer-motion';
+import { Box } from '@material-ui/core';
 import { useUnsplash } from 'context/useUnsplash';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   container: (props) => ({
     position: 'relative',
     display: 'grid',
@@ -13,6 +13,9 @@ const useStyles = makeStyles({
     height: '100vh',
     background: `url(${props.photoUrl}) no-repeat center center/cover`,
     textAlign: 'center',
+    animationName: 'fadeIn',
+    animationDuration: '1s',
+    animationFillMode: 'both',
     '&::before': {
       content: '""',
       position: 'absolute',
@@ -25,22 +28,24 @@ const useStyles = makeStyles({
       backgroundColor: `rgba(0, 0, 0, ${props.alpha})`,
     },
   }),
-});
+  '@keyframes fadeIn': {
+    '0%': {
+      opacity: 0,
+    },
+    '100%': {
+      opacity: 1,
+    },
+  },
+}));
 
 export default function Layout({ children }) {
   const { data, alpha } = useUnsplash();
-  const { photoUrl } = data;
-  const classes = useStyles({ photoUrl, alpha: alpha / 100 });
+  const { photoUrlEncoded } = data;
 
-  // console.log(history);
+  const classes = useStyles({
+    photoUrl: photoUrlEncoded,
+    alpha: alpha / 100,
+  });
 
-  return (
-    <motion.div
-      className={classes.container}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-    >
-      {children}
-    </motion.div>
-  );
+  return <Box className={classes.container}>{children}</Box>;
 }

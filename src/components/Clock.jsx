@@ -9,6 +9,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     color: theme.palette.text.display,
+    pointerEvents: 'none',
     zIndex: 1,
   },
   time: {
