@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { createApi } from 'unsplash-js';
+import imageToBase64 from 'image-to-base64/browser';
 import { getSettings, setObjectToLocalStorage } from 'utils/localStorage';
 import { errorScreenData } from 'utils/errorScreenData';
 
@@ -20,6 +21,7 @@ export const useProvideUnsplash = () => {
     photoUrlFull: null,
     photoUrlSmall: null,
     photoUrlRaw: null,
+    photoUrlEncoded: null,
     thumbnail: null,
     unsplashLink: '',
     profileLink: '',
@@ -77,8 +79,7 @@ export const useProvideUnsplash = () => {
       const { response } = await unsplash.photos.getRandom({
         query,
       });
-
-      // console.log(response);
+      const encoded = await convertImageIntoBase64(response.urls.regular);
 
       setData({
         id: response.id,
@@ -90,6 +91,7 @@ export const useProvideUnsplash = () => {
         photoUrlFull: response.urls.full,
         photoUrlSmall: response.urls.small,
         photoUrlRaw: response.urls.raw,
+        photoUrlEncoded: encoded,
         thumbnail: response.urls.thumb,
         unsplashLink: response.links.html,
         profileLink: response.user.links.html,
@@ -108,6 +110,7 @@ export const useProvideUnsplash = () => {
       const { response } = await unsplash.photos.get({
         photoId,
       });
+      const encoded = await convertImageIntoBase64(response.urls.regular);
 
       setData({
         id: response.id,
@@ -119,6 +122,7 @@ export const useProvideUnsplash = () => {
         photoUrlFull: response.urls.full,
         photoUrlSmall: response.urls.small,
         photoUrlRaw: response.urls.raw,
+        photoUrlEncoded: encoded,
         thumbnail: response.urls.thumb,
         unsplashLink: response.links.html,
         profileLink: response.user.links.html,
@@ -128,6 +132,12 @@ export const useProvideUnsplash = () => {
       console.error('error occurred:', error.message);
       return;
     }
+  };
+
+  const convertImageIntoBase64 = async (image) => {
+    const response = await imageToBase64(image);
+    const encoded = await `data:image/jpeg;base64,${response}`;
+    return encoded;
   };
 
   const getHistoryData = (data) => {
