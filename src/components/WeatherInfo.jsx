@@ -7,6 +7,7 @@ const useStyles = makeStyles({
   info: {
     margin: 0,
     fontSize: '0.8rem',
+    cursor: 'pointer',
   },
 });
 
