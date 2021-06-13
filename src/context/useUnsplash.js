@@ -27,27 +27,23 @@ export const useProvideUnsplash = () => {
     profileLink: '',
     downloadLink: '',
   };
-  const newKeywords = getSettings?.keywords?.map((keyword) =>
-    keyword.replace(/-/g, ' ')
-  );
+
   const [data, setData] = useState(initialState);
-  const [keywords, setKeywords] = useState(newKeywords);
+  const [keywords, setKeywords] = useState([]);
   const [share, setShare] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
-  const [alpha, setAlpha] = useState(+getSettings?.background);
-  const [history, setHistory] = useState(getSettings?.history);
+  const [alpha, setAlpha] = useState(20);
+  const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    if (!getSettings?.keywords) {
-      setKeywords([]);
-    }
+    if (getSettings) {
+      const newKeywords = getSettings.keywords?.map((keyword) =>
+        keyword.replace(/-/g, ' ')
+      );
 
-    if (!getSettings?.background) {
-      setAlpha(25);
-    }
-
-    if (!getSettings?.history) {
-      setHistory([]);
+      setKeywords(newKeywords);
+      setAlpha(+getSettings.background);
+      setHistory(getSettings.history);
     }
 
     getRandomPhoto(getSettings?.keywords);

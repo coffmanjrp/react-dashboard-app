@@ -30,19 +30,18 @@ export const useProvideWeather = () => {
     wind_speed: '',
   };
   const [weather, setWeather] = useState(initialData);
-  const [cityName, setCityName] = useState(getSettings?.location);
-  const [isFahrenheit, setIsFahrenheit] = useState(getSettings?.isFahrenheit);
-  const [displayWeather, setDisplayWeather] = useState(
-    getSettings?.displayWeather
-  );
+  const [cityName, setCityName] = useState('');
+  const [isFahrenheit, setIsFahrenheit] = useState(true);
+  const [displayWeather, setDisplayWeather] = useState(true);
   const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const kelvin = 273.16;
   let skycon;
 
   useEffect(() => {
-    if (!getSettings) {
-      setIsFahrenheit(true);
-      setDisplayWeather(true);
+    if (getSettings) {
+      setIsFahrenheit(getSettings.isFahrenheit);
+      setDisplayWeather(getSettings.displayWeather);
+      setCityName(getSettings.location);
     }
 
     // eslint-disable-next-line

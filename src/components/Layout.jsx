@@ -40,10 +40,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Layout({ children }) {
   const { data, alpha } = useUnsplash();
-  const { photoUrlEncoded } = data;
+  const { photoUrl, photoUrlEncoded } = data;
 
   const classes = useStyles({
-    photoUrl: photoUrlEncoded,
+    photoUrl: photoUrlEncoded ? photoUrlEncoded : photoUrl,
     alpha: alpha / 100,
   });
 

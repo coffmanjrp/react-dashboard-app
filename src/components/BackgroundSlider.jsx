@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Slider } from '@material-ui/core';
 import { useUnsplash } from 'context/useUnsplash';
@@ -15,9 +15,14 @@ export default function BackgroundSlider() {
   const classes = useStyles();
   const { alpha, setAlpha } = useUnsplash();
 
-  const handleChange = (e, opacity) => {
-    setAlpha(opacity);
-    setObjectToLocalStorage('settings', 'background', opacity);
+  useEffect(() => {
+    setObjectToLocalStorage('settings', 'background', alpha);
+
+    // eslint-disable-next-line
+  }, [alpha]);
+
+  const handleChange = (e, value) => {
+    setAlpha(value);
   };
 
   return (

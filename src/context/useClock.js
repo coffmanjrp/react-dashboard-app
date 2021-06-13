@@ -13,30 +13,19 @@ export const useProvideClock = () => {
   const [seconds, setSeconds] = useState(null);
   const [date, setDate] = useState(null);
   const [ampm, setAmpm] = useState(null);
-  const [displayClock, setDisplayClock] = useState(getSettings?.displayClock);
-  const [displaySeconds, setDisplaySeconds] = useState(
-    getSettings?.displaySeconds
-  );
-  const [displayDate, setDisplayDate] = useState(getSettings?.displayDate);
-  const [displayAmpm, setDisplayAmpm] = useState(getSettings?.displayAmpm);
+  const [displayClock, setDisplayClock] = useState(true);
+  const [displaySeconds, setDisplaySeconds] = useState(false);
+  const [displayDate, setDisplayDate] = useState(true);
+  const [displayAmpm, setDisplayAmpm] = useState(true);
 
   // const twelveTimeFormat = hours % 12 || 12;
 
   useEffect(() => {
-    if (getSettings?.displayClock === undefined) {
-      setDisplayClock(true);
-    }
-
-    if (getSettings?.displaySeconds === undefined) {
-      setDisplaySeconds(true);
-    }
-
-    if (getSettings?.displayDate === undefined) {
-      setDisplayDate(true);
-    }
-
-    if (getSettings?.displayAmpm === undefined) {
-      setDisplayAmpm(true);
+    if (getSettings) {
+      setDisplayClock(getSettings?.displayClock);
+      setDisplaySeconds(getSettings?.displaySeconds);
+      setDisplayDate(getSettings?.displayDate);
+      setDisplayAmpm(getSettings?.displayAmpm);
     }
 
     // eslint-disable-next-line
