@@ -24,6 +24,14 @@ export default function MenuModal({
   handleClose,
   isDarkMode,
   setIsDarkMode,
+  displayClock,
+  displaySeconds,
+  displayDate,
+  displayAmpm,
+  setDisplayClock,
+  setDisplaySeconds,
+  setDisplayDate,
+  setDisplayAmpm,
 }) {
   const classes = useStyles();
 
@@ -45,6 +53,14 @@ export default function MenuModal({
             handleClose={handleClose}
             isDarkMode={isDarkMode}
             setIsDarkMode={setIsDarkMode}
+            displayClock={displayClock}
+            displaySeconds={displaySeconds}
+            displayDate={displayDate}
+            displayAmpm={displayAmpm}
+            setDisplayClock={setDisplayClock}
+            setDisplaySeconds={setDisplaySeconds}
+            setDisplayDate={setDisplayDate}
+            setDisplayAmpm={setDisplayAmpm}
           />
         </Box>
       </Fade>

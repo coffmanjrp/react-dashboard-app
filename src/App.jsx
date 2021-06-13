@@ -16,6 +16,10 @@ import muiTheme from 'utils/muiTheme';
 function App() {
   const [open, setOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(getSettings?.isDarkMode);
+  const [displayClock, setDisplayClock] = useState(true);
+  const [displaySeconds, setDisplaySeconds] = useState(false);
+  const [displayDate, setDisplayDate] = useState(true);
+  const [displayAmpm, setDisplayAmpm] = useState(true);
   const theme = muiTheme(isDarkMode);
   const fontConfig = {
     google: {
@@ -46,7 +50,16 @@ function App() {
       <CssBaseline />
       <Layout>
         <Header />
-        <Clock />
+        <Clock
+          displayClock={displayClock}
+          displaySeconds={displaySeconds}
+          displayDate={displayDate}
+          displayAmpm={displayAmpm}
+          setDisplayClock={setDisplayClock}
+          setDisplaySeconds={setDisplaySeconds}
+          setDisplayDate={setDisplayDate}
+          setDisplayAmpm={setDisplayAmpm}
+        />
         <Footer handleOpen={handleOpen} />
         <ShareCard />
         <MenuModal
@@ -54,6 +67,14 @@ function App() {
           handleClose={handleClose}
           isDarkMode={isDarkMode}
           setIsDarkMode={setIsDarkMode}
+          displayClock={displayClock}
+          displaySeconds={displaySeconds}
+          displayDate={displayDate}
+          displayAmpm={displayAmpm}
+          setDisplayClock={setDisplayClock}
+          setDisplaySeconds={setDisplaySeconds}
+          setDisplayDate={setDisplayDate}
+          setDisplayAmpm={setDisplayAmpm}
         />
       </Layout>
     </ThemeProvider>

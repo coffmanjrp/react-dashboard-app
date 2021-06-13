@@ -5,12 +5,9 @@ import {
   FormGroup,
   Switch,
 } from '@material-ui/core';
-import { useClock } from 'context/useClock';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
-export default function SecondsSwitch() {
-  const { displaySeconds, setDisplaySeconds } = useClock();
-
+export default function SecondsSwitch({ displaySeconds, setDisplaySeconds }) {
   useEffect(() => {
     setObjectToLocalStorage('settings', 'displaySeconds', displaySeconds);
 

@@ -5,12 +5,9 @@ import {
   FormGroup,
   Switch,
 } from '@material-ui/core';
-import { useClock } from 'context/useClock';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
-export default function AmPmSwitch() {
-  const { displayAmpm, setDisplayAmpm } = useClock();
-
+export default function AmPmSwitch({ displayAmpm, setDisplayAmpm }) {
   useEffect(() => {
     setObjectToLocalStorage('settings', 'displayAmpm', displayAmpm);
 

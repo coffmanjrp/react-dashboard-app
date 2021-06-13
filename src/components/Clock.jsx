@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
 import { Greeting } from '.';
-import { useClock } from 'context/useClock';
+import { getSettings } from 'utils/localStorage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -112,27 +112,64 @@ const dateVariants = {
   },
 };
 
-export default function Clock() {
-  const {
-    hours,
-    minutes,
-    seconds,
-    date,
-    ampm,
-    displayClock,
-    displaySeconds,
-    displayDate,
-    displayAmpm,
-    displayTime,
-    appendZero,
-  } = useClock();
+export default function Clock({
+  displayClock,
+  displaySeconds,
+  displayDate,
+  displayAmpm,
+  setDisplayClock,
+  setDisplaySeconds,
+  setDisplayDate,
+  setDisplayAmpm,
+}) {
+  const [hours, setHours] = useState(null);
+  const [minutes, setMinutes] = useState(null);
+  const [seconds, setSeconds] = useState(null);
+  const [date, setDate] = useState(null);
+  const [ampm, setAmpm] = useState(null);
+
   const classes = useStyles();
+
+  useEffect(() => {
+    if (getSettings) {
+      setDisplayClock(getSettings?.displayClock);
+      setDisplaySeconds(getSettings?.displaySeconds);
+      setDisplayDate(getSettings?.displayDate);
+      setDisplayAmpm(getSettings?.displayAmpm);
+    }
+
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     displayTime();
 
     // eslint-disable-next-line
   }, [seconds]);
+
+  const displayTime = () => {
+    const today = new Date();
+
+    setTimeout(() => {
+      setHours(today.getHours());
+      setMinutes(today.getMinutes());
+      setSeconds(today.getSeconds());
+    }, 1000);
+
+    setAmpm(hours <= 12 ? 'AM' : 'PM');
+    setDate(
+      today.toLocaleDateString('en-US', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        weekday: 'long',
+      })
+    );
+  };
+
+  const appendZero = (n) => {
+    return (parseInt(n, 10) < 10 ? '0' : '') + n;
+  };
 
   if (!displayClock) {
     return <div />;

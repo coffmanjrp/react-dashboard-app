@@ -5,12 +5,9 @@ import {
   FormGroup,
   Switch,
 } from '@material-ui/core';
-import { useClock } from 'context/useClock';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
-export default function ClockSwitch() {
-  const { displayClock, setDisplayClock } = useClock();
-
+export default function ClockSwitch({ displayClock, setDisplayClock }) {
   useEffect(() => {
     setObjectToLocalStorage('settings', 'displayClock', displayClock);
 
