@@ -10,16 +10,13 @@ import {
   MenuModal,
   ShareCard,
 } from 'components';
+import { useSettings } from 'context/useSettings';
 import { getSettings } from 'utils/localStorage';
 import muiTheme from 'utils/muiTheme';
 
 function App() {
   const [open, setOpen] = useState(false);
-  const [isDarkMode, setIsDarkMode] = useState(getSettings?.isDarkMode);
-  const [displayClock, setDisplayClock] = useState(true);
-  const [displaySeconds, setDisplaySeconds] = useState(false);
-  const [displayDate, setDisplayDate] = useState(true);
-  const [displayAmpm, setDisplayAmpm] = useState(true);
+  const { isDarkMode, setIsDarkMode } = useSettings();
   const theme = muiTheme(isDarkMode);
   const fontConfig = {
     google: {
@@ -50,32 +47,10 @@ function App() {
       <CssBaseline />
       <Layout>
         <Header />
-        <Clock
-          displayClock={displayClock}
-          displaySeconds={displaySeconds}
-          displayDate={displayDate}
-          displayAmpm={displayAmpm}
-          setDisplayClock={setDisplayClock}
-          setDisplaySeconds={setDisplaySeconds}
-          setDisplayDate={setDisplayDate}
-          setDisplayAmpm={setDisplayAmpm}
-        />
+        <Clock />
         <Footer handleOpen={handleOpen} />
         <ShareCard />
-        <MenuModal
-          open={open}
-          handleClose={handleClose}
-          isDarkMode={isDarkMode}
-          setIsDarkMode={setIsDarkMode}
-          displayClock={displayClock}
-          displaySeconds={displaySeconds}
-          displayDate={displayDate}
-          displayAmpm={displayAmpm}
-          setDisplayClock={setDisplayClock}
-          setDisplaySeconds={setDisplaySeconds}
-          setDisplayDate={setDisplayDate}
-          setDisplayAmpm={setDisplayAmpm}
-        />
+        <MenuModal open={open} handleClose={handleClose} />
       </Layout>
     </ThemeProvider>
   );

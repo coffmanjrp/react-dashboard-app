@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { List, ListItem, ListItemText, Typography } from '@material-ui/core';
+import { useSettings } from 'context/useSettings';
 import { useWeather } from 'context/useWeather';
 import weatherInfoData from 'utils/weatherInfoData';
 
@@ -11,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function WeatherInfoList() {
-  const { weather, isFahrenheit } = useWeather();
+  const { isFahrenheit } = useSettings();
+  const { weather } = useWeather();
   const information = weatherInfoData(weather, isFahrenheit);
   const classes = useStyles();
 

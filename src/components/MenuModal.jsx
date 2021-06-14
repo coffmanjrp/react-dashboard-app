@@ -19,20 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuModal({
-  open,
-  handleClose,
-  isDarkMode,
-  setIsDarkMode,
-  displayClock,
-  displaySeconds,
-  displayDate,
-  displayAmpm,
-  setDisplayClock,
-  setDisplaySeconds,
-  setDisplayDate,
-  setDisplayAmpm,
-}) {
+export default function MenuModal({ open, handleClose }) {
   const classes = useStyles();
 
   return (
@@ -49,19 +36,7 @@ export default function MenuModal({
     >
       <Fade in={open}>
         <Box className={classes.modal}>
-          <MenuTabs
-            handleClose={handleClose}
-            isDarkMode={isDarkMode}
-            setIsDarkMode={setIsDarkMode}
-            displayClock={displayClock}
-            displaySeconds={displaySeconds}
-            displayDate={displayDate}
-            displayAmpm={displayAmpm}
-            setDisplayClock={setDisplayClock}
-            setDisplaySeconds={setDisplaySeconds}
-            setDisplayDate={setDisplayDate}
-            setDisplayAmpm={setDisplayAmpm}
-          />
+          <MenuTabs handleClose={handleClose} />
         </Box>
       </Fade>
     </Modal>

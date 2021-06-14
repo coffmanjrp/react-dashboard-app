@@ -5,9 +5,12 @@ import {
   FormGroup,
   Switch,
 } from '@material-ui/core';
+import { useSettings } from 'context/useSettings';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
-export default function AmPmSwitch({ displayDate, setDisplayDate }) {
+export default function AmPmSwitch() {
+  const { displayDate, setDisplayDate } = useSettings();
+
   useEffect(() => {
     setObjectToLocalStorage('settings', 'displayDate', displayDate);
 

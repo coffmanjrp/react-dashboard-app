@@ -31,16 +31,12 @@ export const useProvideWeather = () => {
   };
   const [weather, setWeather] = useState(initialData);
   const [cityName, setCityName] = useState('');
-  const [isFahrenheit, setIsFahrenheit] = useState(true);
-  const [displayWeather, setDisplayWeather] = useState(true);
   const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const kelvin = 273.16;
   let skycon;
 
   useEffect(() => {
     if (getSettings) {
-      setIsFahrenheit(getSettings.isFahrenheit);
-      setDisplayWeather(getSettings.displayWeather);
       setCityName(getSettings.location);
     }
 
@@ -173,10 +169,6 @@ export const useProvideWeather = () => {
   return {
     weather,
     cityName,
-    isFahrenheit,
-    displayWeather,
     setCityName,
-    setIsFahrenheit,
-    setDisplayWeather,
   };
 };

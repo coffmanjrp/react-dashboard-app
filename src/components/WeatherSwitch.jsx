@@ -5,11 +5,11 @@ import {
   FormGroup,
   Switch,
 } from '@material-ui/core';
-import { useWeather } from 'context/useWeather';
+import { useSettings } from 'context/useSettings';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
 export default function WeatherSwitch() {
-  const { displayWeather, setDisplayWeather } = useWeather();
+  const { displayWeather, setDisplayWeather } = useSettings();
 
   useEffect(() => {
     setObjectToLocalStorage('settings', 'displayWeather', displayWeather);

@@ -7,7 +7,7 @@ import {
   Switch,
   Typography,
 } from '@material-ui/core';
-import { useWeather } from 'context/useWeather';
+import { useSettings } from 'context/useSettings';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function TempUnitSwitch() {
-  const { isFahrenheit, setIsFahrenheit } = useWeather();
+  const { isFahrenheit, setIsFahrenheit } = useSettings();
   const classes = useStyles();
 
   useEffect(() => {

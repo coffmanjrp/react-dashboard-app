@@ -50,19 +50,7 @@ const buttonVariants = {
   },
 };
 
-export default function SettingsTab({
-  handleClose,
-  isDarkMode,
-  setIsDarkMode,
-  displayClock,
-  displaySeconds,
-  displayDate,
-  displayAmpm,
-  setDisplayClock,
-  setDisplaySeconds,
-  setDisplayDate,
-  setDisplayAmpm,
-}) {
+export default function SettingsTab({ handleClose }) {
   const { keywords, getRandomPhoto } = useUnsplash();
   const classes = useStyles();
 
@@ -78,34 +66,19 @@ export default function SettingsTab({
             <KeywordsTextField />
           </ListItem>
           <ListItem>
-            <ClockSwitch
-              displayClock={displayClock}
-              setDisplayClock={setDisplayClock}
-            />
+            <ClockSwitch />
           </ListItem>
           <ListItem>
-            <SecondsSwitch
-              displaySeconds={displaySeconds}
-              setDisplaySeconds={setDisplaySeconds}
-            />
+            <SecondsSwitch />
           </ListItem>
           <ListItem>
-            <DateSwitch
-              displayDate={displayDate}
-              setDisplayDate={setDisplayDate}
-            />
+            <DateSwitch />
           </ListItem>
           <ListItem>
-            <AmPmSwitch
-              displayAmpm={displayAmpm}
-              setDisplayAmpm={setDisplayAmpm}
-            />
+            <AmPmSwitch />
           </ListItem>
           <ListItem>
-            <DarkModeSwitch
-              isDarkMode={isDarkMode}
-              setIsDarkMode={setIsDarkMode}
-            />
+            <DarkModeSwitch />
           </ListItem>
           <ListItem>
             <BackgroundSlider />

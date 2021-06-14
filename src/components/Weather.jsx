@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Box, CircularProgress, Typography } from '@material-ui/core';
 import { grey } from '@material-ui/core/colors';
 import Skycons from 'react-skycons';
+import { useSettings } from 'context/useSettings';
 import { useWeather } from 'context/useWeather';
 import { Annotation, WeatherInfo, WeatherInfoList } from '.';
 
@@ -28,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Weather() {
-  const { weather, isFahrenheit, displayWeather } = useWeather();
+  const { displayWeather, isFahrenheit } = useSettings();
+  const { weather } = useWeather();
   const classes = useStyles();
 
   if (!displayWeather) {

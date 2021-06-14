@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
 import { Greeting } from '.';
-import { getSettings } from 'utils/localStorage';
+import { useSettings } from 'context/useSettings';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -112,34 +112,16 @@ const dateVariants = {
   },
 };
 
-export default function Clock({
-  displayClock,
-  displaySeconds,
-  displayDate,
-  displayAmpm,
-  setDisplayClock,
-  setDisplaySeconds,
-  setDisplayDate,
-  setDisplayAmpm,
-}) {
+export default function Clock() {
   const [hours, setHours] = useState(null);
   const [minutes, setMinutes] = useState(null);
   const [seconds, setSeconds] = useState(null);
   const [date, setDate] = useState(null);
   const [ampm, setAmpm] = useState(null);
+  const { displayClock, displaySeconds, displayDate, displayAmpm } =
+    useSettings();
 
   const classes = useStyles();
-
-  useEffect(() => {
-    if (getSettings) {
-      setDisplayClock(getSettings?.displayClock);
-      setDisplaySeconds(getSettings?.displaySeconds);
-      setDisplayDate(getSettings?.displayDate);
-      setDisplayAmpm(getSettings?.displayAmpm);
-    }
-
-    // eslint-disable-next-line
-  }, []);
 
   useEffect(() => {
     displayTime();
