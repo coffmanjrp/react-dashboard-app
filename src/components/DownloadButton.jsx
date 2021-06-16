@@ -4,6 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { motion } from 'framer-motion';
 import { FiDownload } from 'react-icons/fi';
 import { Annotation } from '.';
+import { useSettings } from 'context/useSettings';
 import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles({
@@ -29,10 +30,9 @@ const buttonVariants = {
 
 export default function DownloadButton() {
   const classes = useStyles();
+  const { setIsShared, setIsDownloaded } = useSettings();
   const {
     data: { downloadLink },
-    setShare,
-    setDownloaded,
   } = useUnsplash();
 
   return (
@@ -46,8 +46,8 @@ export default function DownloadButton() {
           aria-label="Download Photo"
           color="inherit"
           onClick={() => {
-            setShare(true);
-            setDownloaded(true);
+            setIsShared(true);
+            setIsDownloaded(true);
           }}
         >
           <FiDownload />

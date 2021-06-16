@@ -118,8 +118,7 @@ export default function Clock() {
   const [seconds, setSeconds] = useState(null);
   const [date, setDate] = useState(null);
   const [ampm, setAmpm] = useState(null);
-  const { displayClock, displaySeconds, displayDate, displayAmpm } =
-    useSettings();
+  const { displaySeconds, displayDate, displayAmpm } = useSettings();
 
   const classes = useStyles();
 
@@ -128,6 +127,16 @@ export default function Clock() {
 
     // eslint-disable-next-line
   }, [seconds]);
+
+  useEffect(() => {
+    return () => {
+      setHours(null);
+      setMinutes(null);
+      setSeconds(null);
+      setDate(null);
+      setAmpm(null);
+    };
+  }, []);
 
   const displayTime = () => {
     const today = new Date();
@@ -152,10 +161,6 @@ export default function Clock() {
   const appendZero = (n) => {
     return (parseInt(n, 10) < 10 ? '0' : '') + n;
   };
-
-  if (!displayClock) {
-    return <div />;
-  }
 
   return (
     <motion.div className={classes.root} initial="initial" animate="animate">
@@ -184,7 +189,7 @@ export default function Clock() {
           )}
         </>
       ) : (
-        <Greeting hours={hours} />
+        <Greeting />
       )}
     </motion.div>
   );

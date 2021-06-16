@@ -39,7 +39,7 @@ export default function KeywordsTextField() {
   const classes = useStyles();
 
   useEffect(() => {
-    const newKeyword = keywords.map((keyword) => keyword.replace(/ /g, '-'));
+    const newKeyword = keywords?.map((keyword) => keyword.replace(/ /g, '-'));
 
     setObjectToLocalStorage('settings', 'keywords', newKeyword);
 

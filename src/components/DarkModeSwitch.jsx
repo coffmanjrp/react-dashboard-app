@@ -5,11 +5,11 @@ import {
   FormGroup,
   Switch,
 } from '@material-ui/core';
-import { useSettings } from 'context/useSettings';
+// import { useSettings } from 'context/useSettings';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
-export default function DarkModeSwitch() {
-  const { isDarkMode, setIsDarkMode } = useSettings();
+export default function DarkModeSwitch({ isDarkMode, setIsDarkMode }) {
+  // const { isDarkMode, setIsDarkMode } = useSettings();
 
   useEffect(() => {
     setObjectToLocalStorage('settings', 'isDarkMode', isDarkMode);

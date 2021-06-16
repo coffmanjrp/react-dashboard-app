@@ -30,9 +30,6 @@ export const useProvideUnsplash = () => {
 
   const [data, setData] = useState(initialState);
   const [keywords, setKeywords] = useState([]);
-  const [share, setShare] = useState(false);
-  const [downloaded, setDownloaded] = useState(false);
-  const [alpha, setAlpha] = useState(20);
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
@@ -42,12 +39,11 @@ export const useProvideUnsplash = () => {
       );
 
       setKeywords(newKeywords);
-      setAlpha(+getSettings.background);
       setHistory(getSettings.history);
+      getRandomPhoto(getSettings.keywords);
+    } else {
+      getRandomPhoto();
     }
-
-    getRandomPhoto(getSettings?.keywords);
-
     // eslint-disable-next-line
   }, []);
 
@@ -60,7 +56,7 @@ export const useProvideUnsplash = () => {
   }, [data]);
 
   useEffect(() => {
-    removeOldHistory(21);
+    removeOldHistory(25);
     setObjectToLocalStorage('settings', 'history', history);
 
     // eslint-disable-next-line
@@ -159,14 +155,8 @@ export const useProvideUnsplash = () => {
   return {
     data,
     keywords,
-    share,
-    downloaded,
-    alpha,
     history,
     setKeywords,
-    setShare,
-    setDownloaded,
-    setAlpha,
     setHistory,
     getRandomPhoto,
     getPhotoById,

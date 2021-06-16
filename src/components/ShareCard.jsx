@@ -20,6 +20,7 @@ import {
 } from 'react-icons/fa';
 import { MdClear } from 'react-icons/md';
 import { AiOutlineCopy } from 'react-icons/ai';
+import { useSettings } from 'context/useSettings';
 import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles((theme) => ({
@@ -89,10 +90,8 @@ export default function ShareCard() {
   const classes = useStyles();
   const {
     data: { id, name, thumbnail, unsplashLink, profileLink },
-    share,
-    downloaded,
-    setShare,
   } = useUnsplash();
+  const { isShared, isDownloaded, setIsShared } = useSettings();
 
   const creditShareLink = `${unsplashLink}?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink`;
   const thankyouLink = `Photo by <a href="${profileLink}?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">${name}</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -219,7 +218,7 @@ export default function ShareCard() {
   return (
     <>
       <AnimatePresence>
-        {share && (
+        {isShared && (
           <motion.div
             className={classes.root}
             variants={shareVariants}
@@ -234,7 +233,7 @@ export default function ShareCard() {
                 title="Live from space album cover"
               />
               <CardContent>
-                {downloaded ? <SayThanksContent /> : <ShareContent />}
+                {isDownloaded ? <SayThanksContent /> : <ShareContent />}
                 <Paper
                   variant="outlined"
                   elevation={0}
@@ -262,6 +261,7 @@ export default function ShareCard() {
                   </Typography>
                   <IconButton
                     size="small"
+                    className={classes.authorIntro}
                     onClick={() => handleCopyToClipboard(thankyouLink)}
                   >
                     <AiOutlineCopy />
@@ -274,7 +274,7 @@ export default function ShareCard() {
                 disableRipple={true}
                 disableFocusRipple={true}
                 edge={false}
-                onClick={() => setShare(false)}
+                onClick={() => setIsShared(false)}
               >
                 <MdClear />
               </IconButton>

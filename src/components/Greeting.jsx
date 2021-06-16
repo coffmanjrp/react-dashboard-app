@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, { useMemo } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { motion } from 'framer-motion';
 
@@ -26,10 +26,10 @@ const greetingVariants = {
   },
 };
 
-const Greeting = memo(() => {
+export default function Greeting() {
   const classes = useStyles();
 
-  const displayGreetings = () => {
+  const displayGreetings = useMemo(() => {
     const hour = new Date().getHours();
     let greetingByTime;
 
@@ -53,15 +53,18 @@ const Greeting = memo(() => {
     ];
 
     return greetings[Math.floor(Math.random() * greetings.length)];
-  };
+  }, []);
 
   return (
     <>
-      <motion.h1 className={classes.greeting} variants={greetingVariants}>
-        {displayGreetings()}
+      <motion.h1
+        className={classes.greeting}
+        variants={greetingVariants}
+        initial="initial"
+        animate="animate"
+      >
+        {displayGreetings}
       </motion.h1>
     </>
   );
-});
-
-export default Greeting;
+}

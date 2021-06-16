@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Slider } from '@material-ui/core';
-import { useUnsplash } from 'context/useUnsplash';
+import { useSettings } from 'context/useSettings';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
 const useStyles = makeStyles((theme) => ({
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function BackgroundSlider() {
   const classes = useStyles();
-  const { alpha, setAlpha } = useUnsplash();
+  const { alpha, setAlpha } = useSettings();
 
   useEffect(() => {
     setObjectToLocalStorage('settings', 'background', alpha);

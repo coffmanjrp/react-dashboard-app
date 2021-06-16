@@ -4,7 +4,7 @@ import IconButton from '@material-ui/core/IconButton';
 import { motion } from 'framer-motion';
 import { RiShareForwardBoxLine } from 'react-icons/ri';
 import { Annotation } from '.';
-import { useUnsplash } from 'context/useUnsplash';
+import { useSettings } from 'context/useSettings';
 
 const useStyles = makeStyles({
   container: {
@@ -29,7 +29,7 @@ const buttonVariants = {
 
 export default function DownloadButton() {
   const classes = useStyles();
-  const { setShare, setDownloaded } = useUnsplash();
+  const { setIsShared, setIsDownloaded } = useSettings();
 
   return (
     <Annotation content="Share Photo" placement="top">
@@ -39,8 +39,8 @@ export default function DownloadButton() {
           aria-label="Download Photo"
           color="inherit"
           onClick={() => {
-            setShare((share) => !share);
-            setDownloaded(false);
+            setIsShared((isShared) => !isShared);
+            setIsDownloaded(false);
           }}
         >
           <RiShareForwardBoxLine />

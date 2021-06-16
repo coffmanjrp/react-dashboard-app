@@ -8,16 +8,20 @@ export const useSettings = () => {
 };
 
 export const useProvideSettings = () => {
+  const [alpha, setAlpha] = useState(20);
   const [displayClock, setDisplayClock] = useState(true);
   const [displaySeconds, setDisplaySeconds] = useState(false);
   const [displayDate, setDisplayDate] = useState(true);
   const [displayAmpm, setDisplayAmpm] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [displayWeather, setDisplayWeather] = useState(true);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isFahrenheit, setIsFahrenheit] = useState(true);
+  const [isShared, setIsShared] = useState(false);
+  const [isDownloaded, setIsDownloaded] = useState(false);
 
   useEffect(() => {
     if (getSettings) {
+      setAlpha(+getSettings.background);
       setDisplayClock(getSettings.displayClock);
       setDisplaySeconds(getSettings.displaySeconds);
       setDisplayDate(getSettings.displayDate);
@@ -31,6 +35,7 @@ export const useProvideSettings = () => {
   }, []);
 
   return {
+    alpha,
     displayClock,
     displaySeconds,
     displayDate,
@@ -38,6 +43,9 @@ export const useProvideSettings = () => {
     displayWeather,
     isDarkMode,
     isFahrenheit,
+    isShared,
+    isDownloaded,
+    setAlpha,
     setDisplayClock,
     setDisplaySeconds,
     setDisplayDate,
@@ -45,5 +53,7 @@ export const useProvideSettings = () => {
     setDisplayWeather,
     setIsDarkMode,
     setIsFahrenheit,
+    setIsShared,
+    setIsDownloaded,
   };
 };

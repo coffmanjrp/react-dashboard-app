@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
+import { useSettings } from 'context/useSettings';
 import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles((theme) => ({
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     width: '100vw',
     height: '100vh',
-    background: `url(${props.photoUrl}) no-repeat center center/cover`,
+    background: `url(${props.url}) no-repeat center center/cover`,
     textAlign: 'center',
     animationName: 'fadeIn',
     animationDuration: '1s',
@@ -25,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
       bottom: 0,
       width: '100%',
       height: '100%',
-      backgroundColor: `rgba(0, 0, 0, ${props.alpha})`,
+      backgroundColor: `rgba(0, 0, 0, ${props.opacity})`,
     },
   }),
   '@keyframes fadeIn': {
@@ -39,12 +40,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Layout({ children }) {
-  const { data, alpha } = useUnsplash();
+  const { alpha } = useSettings();
+  const { data } = useUnsplash();
   const { photoUrl, photoUrlEncoded } = data;
 
   const classes = useStyles({
-    photoUrl: photoUrlEncoded ? photoUrlEncoded : photoUrl,
-    alpha: alpha / 100,
+    url: photoUrlEncoded ? photoUrlEncoded : photoUrl,
+    opacity: alpha / 100,
   });
 
   return <Box className={classes.container}>{children}</Box>;
