@@ -20,16 +20,22 @@ export const useProvideSettings = () => {
   const [isDownloaded, setIsDownloaded] = useState(false);
 
   useEffect(() => {
-    if (getSettings) {
-      setAlpha(+getSettings.background);
-      setDisplayClock(getSettings.displayClock);
-      setDisplaySeconds(getSettings.displaySeconds);
-      setDisplayDate(getSettings.displayDate);
-      setDisplayAmpm(getSettings.displayAmpm);
-      setDisplayWeather(getSettings.displayWeather);
-      setIsDarkMode(getSettings.isDarkMode);
-      setIsFahrenheit(getSettings.isFahrenheit);
-    }
+    if (getSettings?.background === undefined) setAlpha(20);
+    else setAlpha(+getSettings.background);
+    if (getSettings?.displayClock === undefined) setDisplayClock(true);
+    else setDisplayClock(getSettings.displayClock);
+    if (getSettings?.displaySeconds === undefined) setDisplaySeconds(false);
+    else setDisplaySeconds(getSettings.displaySeconds);
+    if (getSettings?.displayDate === undefined) setDisplayDate(true);
+    else setDisplayDate(getSettings.displayDate);
+    if (getSettings?.displayAmpm === undefined) setDisplayAmpm(true);
+    else setDisplayAmpm(getSettings.displayAmpm);
+    if (getSettings?.displayWeather === undefined) setDisplayWeather(true);
+    else setDisplayWeather(getSettings.displayWeather);
+    if (getSettings?.isDarkMode === undefined) setIsDarkMode(true);
+    else setIsDarkMode(getSettings.isDarkMode);
+    if (getSettings?.isFahrenheit === undefined) setIsFahrenheit(true);
+    else setIsFahrenheit(getSettings.isFahrenheit);
 
     // eslint-disable-next-line
   }, []);

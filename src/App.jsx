@@ -30,10 +30,10 @@ function App() {
   useEffect(() => {
     WebFont.load(fontConfig);
 
-    if (getSettings) {
-      setDisplayClock(getSettings.displayClock);
-      setIsDarkMode(getSettings.isDarkMode);
-    }
+    if (getSettings?.displayClock === undefined) setDisplayClock(true);
+    else setDisplayClock(getSettings.displayClock);
+    if (getSettings?.isDarkMode === undefined) setIsDarkMode(false);
+    else setIsDarkMode(getSettings.isDarkMode);
 
     // eslint-disable-next-line
   }, []);

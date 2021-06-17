@@ -42,6 +42,7 @@ export const useProvideUnsplash = () => {
       setHistory(getSettings.history);
       getRandomPhoto(getSettings.keywords);
     } else {
+      setKeywords([]);
       getRandomPhoto();
     }
     // eslint-disable-next-line

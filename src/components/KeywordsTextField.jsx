@@ -54,7 +54,7 @@ export default function KeywordsTextField() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const exists = keywords.find((keyword) => keyword === value);
+    const exists = keywords?.find((keyword) => keyword === value);
 
     if (exists) {
       setError(true);
