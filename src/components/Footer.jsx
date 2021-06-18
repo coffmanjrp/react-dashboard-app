@@ -35,7 +35,7 @@ const footerVariants = {
   },
 };
 
-export default function Footer({ handleOpen }) {
+export default function Footer({ isDarkMode, setIsDarkMode }) {
   const classes = useStyles();
 
   return (
@@ -49,7 +49,10 @@ export default function Footer({ handleOpen }) {
       <Box display="flex">
         <ShareButton />
         <DownloadButton />
-        <ToggleMenuButton handleOpen={handleOpen} />
+        <ToggleMenuButton
+          isDarkMode={isDarkMode}
+          setIsDarkMode={setIsDarkMode}
+        />
       </Box>
     </motion.footer>
   );

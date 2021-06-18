@@ -9,12 +9,12 @@ export const useSettings = () => {
 
 export const useProvideSettings = () => {
   const [alpha, setAlpha] = useState(20);
+  const [open, setOpen] = useState(false);
   const [displayClock, setDisplayClock] = useState(true);
   const [displaySeconds, setDisplaySeconds] = useState(false);
   const [displayDate, setDisplayDate] = useState(true);
   const [displayAmpm, setDisplayAmpm] = useState(true);
   const [displayWeather, setDisplayWeather] = useState(true);
-  const [isDarkMode, setIsDarkMode] = useState(false);
   const [isFahrenheit, setIsFahrenheit] = useState(true);
   const [isShared, setIsShared] = useState(false);
   const [isDownloaded, setIsDownloaded] = useState(false);
@@ -32,8 +32,6 @@ export const useProvideSettings = () => {
     else setDisplayAmpm(getSettings.displayAmpm);
     if (getSettings?.displayWeather === undefined) setDisplayWeather(true);
     else setDisplayWeather(getSettings.displayWeather);
-    if (getSettings?.isDarkMode === undefined) setIsDarkMode(true);
-    else setIsDarkMode(getSettings.isDarkMode);
     if (getSettings?.isFahrenheit === undefined) setIsFahrenheit(true);
     else setIsFahrenheit(getSettings.isFahrenheit);
 
@@ -42,22 +40,22 @@ export const useProvideSettings = () => {
 
   return {
     alpha,
+    open,
     displayClock,
     displaySeconds,
     displayDate,
     displayAmpm,
     displayWeather,
-    isDarkMode,
     isFahrenheit,
     isShared,
     isDownloaded,
     setAlpha,
+    setOpen,
     setDisplayClock,
     setDisplaySeconds,
     setDisplayDate,
     setDisplayAmpm,
     setDisplayWeather,
-    setIsDarkMode,
     setIsFahrenheit,
     setIsShared,
     setIsDownloaded,

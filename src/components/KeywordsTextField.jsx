@@ -29,6 +29,9 @@ const useStyles = makeStyles((theme) => ({
   chip: {
     margin: theme.spacing(0.5),
   },
+  '.MuiFormHelperText-contained': {
+    color: 'red',
+  },
 }));
 
 export default function KeywordsTextField() {

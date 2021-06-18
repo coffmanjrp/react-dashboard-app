@@ -39,7 +39,7 @@ export default function Header() {
   const classes = useStyles();
 
   return (
-    <motion.div
+    <motion.header
       className={classes.container}
       variants={headerVariants}
       initial="initial"
@@ -47,6 +47,6 @@ export default function Header() {
     >
       <UnsplashLogoButton />
       <Weather />
-    </motion.div>
+    </motion.header>
   );
 }

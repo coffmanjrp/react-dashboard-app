@@ -2,6 +2,7 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Backdrop, Box, Fade, Modal } from '@material-ui/core';
 import { MenuTabs } from 'components';
+import { useSettings } from 'context/useSettings';
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -19,15 +20,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MenuModal({
-  open,
-  handleClose,
-  isDarkMode,
-  setIsDarkMode,
-  displayClock,
-  setDisplayClock,
-}) {
+export default function MenuModal({ isDarkMode, setIsDarkMode }) {
+  const { open, setOpen } = useSettings();
   const classes = useStyles();
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Modal
@@ -44,11 +43,9 @@ export default function MenuModal({
       <Fade in={open}>
         <Box className={classes.modal}>
           <MenuTabs
-            handleClose={handleClose}
-            displayClock={displayClock}
-            setDisplayClock={setDisplayClock}
             isDarkMode={isDarkMode}
             setIsDarkMode={setIsDarkMode}
+            handleClose={handleClose}
           />
         </Box>
       </Fade>

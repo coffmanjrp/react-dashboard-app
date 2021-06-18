@@ -42,13 +42,7 @@ function TabPanel({ children, value, index, ...rest }) {
   );
 }
 
-export default function MenuTabs({
-  handleClose,
-  isDarkMode,
-  setIsDarkMode,
-  displayClock,
-  setDisplayClock,
-}) {
+export default function MenuTabs({ isDarkMode, setIsDarkMode, handleClose }) {
   const [value, setValue] = useState(0);
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 600;
@@ -81,11 +75,9 @@ export default function MenuTabs({
       </Tabs>
       <TabPanel value={value} index={0}>
         <SettingsTab
-          handleClose={handleClose}
-          displayClock={displayClock}
-          setDisplayClock={setDisplayClock}
           isDarkMode={isDarkMode}
           setIsDarkMode={setIsDarkMode}
+          handleClose={handleClose}
         />
       </TabPanel>
       <TabPanel value={value} index={1}>

@@ -51,17 +51,16 @@ const buttonVariants = {
 };
 
 export default function SettingsTab({
-  handleClose,
   isDarkMode,
   setIsDarkMode,
-  displayClock,
-  setDisplayClock,
+  handleClose,
 }) {
   const { keywords, getRandomPhoto } = useUnsplash();
   const classes = useStyles();
 
   const handleRefresh = () => {
     getRandomPhoto(keywords);
+    handleClose();
   };
 
   return (
@@ -72,10 +71,7 @@ export default function SettingsTab({
             <KeywordsTextField />
           </ListItem>
           <ListItem>
-            <ClockSwitch
-              displayClock={displayClock}
-              setDisplayClock={setDisplayClock}
-            />
+            <ClockSwitch />
           </ListItem>
           <ListItem>
             <SecondsSwitch />
