@@ -2,15 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ThemeProvider } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import WebFont from 'webfontloader';
-import {
-  Clock,
-  Footer,
-  Greeting,
-  Header,
-  Layout,
-  MenuModal,
-  ShareCard,
-} from 'components';
+import { Clock, Footer, Greeting, Header, Layout, MenuModal } from 'components';
 // import { useSettings } from 'context/useSettings';
 import { getSettings } from 'utils/localStorage';
 import muiTheme from 'utils/muiTheme';
@@ -53,7 +45,6 @@ function App() {
         <Header />
         {displayClock ? <Clock /> : <Greeting />}
         <Footer handleOpen={handleOpen} />
-        <ShareCard />
         <MenuModal
           open={open}
           handleClose={handleClose}

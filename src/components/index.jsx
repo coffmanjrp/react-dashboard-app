@@ -9,6 +9,7 @@ export { default as CloseModalButton } from './CloseModalButton';
 export { default as DarkModeSwitch } from './DarkModeSwitch';
 export { default as DateSwitch } from './DateSwitch';
 export { default as DownloadButton } from './DownloadButton';
+export { default as DownloadCard } from './DownloadCard';
 export { default as Footer } from './Footer';
 export { default as Greeting } from './Greeting';
 export { default as Header } from './Header';

@@ -88,12 +88,12 @@ const shareVariants = {
   },
 };
 
-export default function ShareCard() {
+export default function DownloadCard() {
   const classes = useStyles();
   const {
     data: { id, name, thumbnail, unsplashLink, profileLink },
   } = useUnsplash();
-  const { isShared, setIsShared } = useSettings();
+  const { isDownloaded, setIsDownloaded } = useSettings();
 
   const creditShareLink = `${unsplashLink}?utm_source=unsplash&utm_medium=referral&utm_content=creditShareLink`;
   const thankyouLink = `Photo by <a href="${profileLink}?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">${name}</a> on <a href="https://unsplash.com/?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
@@ -103,14 +103,24 @@ export default function ShareCard() {
     navigator.clipboard.writeText(text);
   };
 
-  const ShareContent = () => {
+  const SayThanksContent = () => {
     return (
       <>
         <Typography component="h5" variant="h5">
-          Share This Photo 🎁
+          Say thanks 🙌
         </Typography>
         <Typography variant="subtitle1" color="textSecondary">
-          Share this photo on social or copy the text below to attribute.
+          Give a shoutout to{' '}
+          <Link
+            href={profileLink}
+            rel="noreferrer"
+            underline="always"
+            color="textPrimary"
+            target="_blank"
+          >
+            {name}
+          </Link>{' '}
+          on social or copy the text below to attribute.
         </Typography>
         <div className={classes.btnGroup}>
           <Annotation content="Copy URL to clipboard" placement="top">
@@ -122,7 +132,7 @@ export default function ShareCard() {
             </IconButton>
           </Annotation>
           <IconButton
-            href={`https://facebook.com/sharer/sharer.php?u=https://unsplash.com/photos/${id}`}
+            href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Funsplash.com%2Fphotos%2F${id}%3Futm_source%3Dfacebook%26utm_medium%3Dreferral%26utm_content%3DcreditShareLink`}
             title="Share on Facebook"
             target="_blank"
             size="small"
@@ -130,7 +140,7 @@ export default function ShareCard() {
             <FaFacebook />
           </IconButton>
           <IconButton
-            href={`https://twitter.com/intent/tweet/?text=Check%20out%20this%20%40unsplash%20photo%20by%20${name}%3A&url=https://unsplash.com/photos/${id}`}
+            href={`https://twitter.com/intent/tweet?url=https%3A%2F%2Funsplash.com%2Fphotos%2F${id}%3Futm_source%3Dtwitter%26utm_medium%3Dreferral%26utm_content%3DcreditShareLink&text=Thanks%20to%20${name}%20for%20making%20this%20photo%20available%20freely%20on%20%40unsplash%20%F0%9F%8E%81`}
             title="Share on Twitter"
             target="_blank"
             size="small"
@@ -138,7 +148,7 @@ export default function ShareCard() {
             <FaTwitter />
           </IconButton>
           <IconButton
-            href={`https://pinterest.com/pin/create/button/?url=https%3A%2F%2Funsplash.com%2Fphotos%2F${id}%3Futm_source%3Dpinterest%26utm_medium%3Dreferral%26utm_content%3DcreditShareLink`}
+            href={`https://pinterest.com/pin/create/button/?url=https%3A%2F%2Funsplash.com%2Fphotos%2F${id}%3Futm_source%3Dpinterest%26utm_medium%3Dreferral%26utm_content%3DcreditShareLink&description=Thanks%20to%20%40plhnk%20for%20making%20this%20photo%20available%20freely%20on%20%40unsplash%20%F0%9F%8E%81`}
             title="Share on Pinterest"
             target="_blank"
             size="small"
@@ -160,7 +170,7 @@ export default function ShareCard() {
   return (
     <>
       <AnimatePresence>
-        {isShared && (
+        {isDownloaded && (
           <motion.div
             className={classes.root}
             variants={shareVariants}
@@ -175,7 +185,7 @@ export default function ShareCard() {
                 title="Live from space album cover"
               />
               <CardContent>
-                <ShareContent />
+                <SayThanksContent />
                 <Paper
                   variant="outlined"
                   elevation={0}
@@ -219,7 +229,7 @@ export default function ShareCard() {
                 disableRipple={true}
                 disableFocusRipple={true}
                 edge={false}
-                onClick={() => setIsShared(false)}
+                onClick={() => setIsDownloaded(false)}
               >
                 <MdClear />
               </IconButton>
