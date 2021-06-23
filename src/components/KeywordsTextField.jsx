@@ -85,18 +85,14 @@ export default function KeywordsTextField() {
 
   return (
     <Box className={classes.root}>
-      <Box
-        component="form"
-        className={classes.input}
-        noValidate
-        autoComplete="off"
-        onSubmit={handleSubmit}
-      >
+      <Box component="form" className={classes.input} onSubmit={handleSubmit}>
         <TextField
+          type="search"
           id="setKeyword"
           className={classes.textField}
           variant="outlined"
           size="small"
+          autoComplete="off"
           error={error}
           helperText={error ? errorMessage : 'Please enter a keyword.'}
           value={value}

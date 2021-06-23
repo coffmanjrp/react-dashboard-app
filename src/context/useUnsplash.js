@@ -33,18 +33,17 @@ export const useProvideUnsplash = () => {
   const [history, setHistory] = useState([]);
 
   useEffect(() => {
-    if (getSettings) {
-      const newKeywords = getSettings.keywords?.map((keyword) =>
-        keyword.replace(/-/g, ' ')
-      );
+    const newKeywords = getSettings?.keywords?.map((keyword) =>
+      keyword.replace(/-/g, ' ')
+    );
 
-      setKeywords(newKeywords);
-      setHistory(getSettings.history);
-      getRandomPhoto(getSettings.keywords);
-    } else {
-      setKeywords([]);
-      getRandomPhoto();
-    }
+    if (getSettings?.keywords === undefined) setKeywords([]);
+    else setKeywords(newKeywords);
+    if (getSettings?.history === undefined) setHistory('');
+    else setHistory(getSettings?.history);
+    if (getSettings) getRandomPhoto(getSettings?.keywords);
+    else getRandomPhoto();
+
     // eslint-disable-next-line
   }, []);
 
