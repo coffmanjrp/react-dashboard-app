@@ -88,7 +88,7 @@ export default function KeywordsTextField() {
       <Box component="form" className={classes.input} onSubmit={handleSubmit}>
         <TextField
           type="search"
-          id="setKeyword"
+          id="set-keyword"
           className={classes.textField}
           variant="outlined"
           size="small"

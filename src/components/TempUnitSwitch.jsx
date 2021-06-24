@@ -39,6 +39,10 @@ export default function TempUnitSwitch() {
             <Grid item>°C</Grid>
             <Grid item>
               <Switch
+                inputProps={{
+                  role: 'switch',
+                  'aria-label': 'Toggle temperature unit switch',
+                }}
                 checked={isFahrenheit}
                 onChange={handleChange}
                 color="primary"

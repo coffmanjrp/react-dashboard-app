@@ -26,7 +26,15 @@ export default function AmPmSwitch() {
       <FormGroup aria-label="position" row>
         <FormControlLabel
           value="start"
-          control={<Switch color="primary" />}
+          control={
+            <Switch
+              inputProps={{
+                role: 'switch',
+                'aria-label': 'Display AMPM Switch',
+              }}
+              color="primary"
+            />
+          }
           label="Display AMPM"
           labelPlacement="start"
           checked={displayAmpm}

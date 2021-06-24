@@ -23,8 +23,16 @@ export default function DarkModeSwitch({ isDarkMode, setIsDarkMode }) {
       <FormGroup aria-label="position" row>
         <FormControlLabel
           value="start"
-          control={<Switch color="primary" />}
-          label="Switch To Dark Mode"
+          control={
+            <Switch
+              inputProps={{
+                role: 'switch',
+                'aria-label': 'Toggle theme mode switch',
+              }}
+              color="primary"
+            />
+          }
+          label="Toggle theme mode"
           labelPlacement="start"
           checked={isDarkMode}
           onChange={handleChange}

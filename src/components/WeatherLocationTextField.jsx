@@ -68,7 +68,7 @@ export default function WeatherLocationTextField() {
       <Box component="form" className={classes.input} onSubmit={handleSubmit}>
         <TextField
           type="search"
-          id="setLocation"
+          id="set-location"
           className={classes.textField}
           variant="outlined"
           size="small"

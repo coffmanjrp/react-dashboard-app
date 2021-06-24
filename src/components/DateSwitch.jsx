@@ -26,8 +26,16 @@ export default function AmPmSwitch() {
       <FormGroup aria-label="position" row>
         <FormControlLabel
           value="start"
-          control={<Switch color="primary" />}
-          label="Display Date"
+          control={
+            <Switch
+              inputProps={{
+                role: 'switch',
+                'aria-label': 'Display date switch',
+              }}
+              color="primary"
+            />
+          }
+          label="Display date"
           labelPlacement="start"
           checked={displayDate}
           onChange={handleChange}

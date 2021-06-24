@@ -26,8 +26,16 @@ export default function ClockSwitch() {
       <FormGroup aria-label="position" row>
         <FormControlLabel
           value="start"
-          control={<Switch color="primary" />}
-          label="Display Clock"
+          control={
+            <Switch
+              inputProps={{
+                role: 'switch',
+                'aria-label': 'Display clock switch',
+              }}
+              color="primary"
+            />
+          }
+          label="Display clock"
           labelPlacement="start"
           checked={displayClock}
           onChange={handleChange}

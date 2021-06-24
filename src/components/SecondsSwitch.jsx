@@ -26,8 +26,16 @@ export default function SecondsSwitch() {
       <FormGroup aria-label="position" row>
         <FormControlLabel
           value="start"
-          control={<Switch color="primary" />}
-          label="Display Seconds"
+          control={
+            <Switch
+              inputProps={{
+                role: 'switch',
+                'aria-label': 'Display seconds switch',
+              }}
+              color="primary"
+            />
+          }
+          label="Display seconds"
           labelPlacement="start"
           checked={displaySeconds}
           onChange={handleChange}

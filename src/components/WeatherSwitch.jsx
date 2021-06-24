@@ -26,8 +26,16 @@ export default function WeatherSwitch() {
       <FormGroup aria-label="position" row>
         <FormControlLabel
           value="start"
-          control={<Switch color="primary" />}
-          label="Display Weather Information"
+          control={
+            <Switch
+              inputProps={{
+                role: 'switch',
+                'aria-label': 'Display weather information switch',
+              }}
+              color="primary"
+            />
+          }
+          label="Display weather Information"
           labelPlacement="start"
           checked={displayWeather}
           onChange={handleChange}

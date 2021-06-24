@@ -1,12 +1,15 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Slider } from '@material-ui/core';
+import { Typography, Slider, Grid } from '@material-ui/core';
 import { useSettings } from 'context/useSettings';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     marginLeft: theme.spacing(2),
+    width: 260,
+  },
+  slider: {
     width: 200,
   },
 }));
@@ -27,19 +30,27 @@ export default function BackgroundSlider() {
 
   return (
     <div className={classes.root}>
-      <Typography id="brightness-slider" gutterBottom>
+      <Typography id="slider-for-background-brightness" gutterBottom>
         Background brightness
       </Typography>
-      <Slider
-        value={alpha}
-        aria-labelledby="brightness-slider"
-        valueLabelDisplay="auto"
-        step={10}
-        marks
-        min={0}
-        max={50}
-        onChange={handleChange}
-      />
+      <Grid container justifyContent="space-between" alignItems="center">
+        <Grid item xs>
+          <Slider
+            value={alpha}
+            className={classes.slider}
+            aria-labelledby="slider-for-background-brightness"
+            valueLabelDisplay="auto"
+            step={10}
+            marks
+            min={0}
+            max={50}
+            onChange={handleChange}
+          />
+        </Grid>
+        <Grid item>
+          <Typography>{`${alpha !== 0 ? '-' : ''} ${alpha} %`}</Typography>
+        </Grid>
+      </Grid>
     </div>
   );
 }
