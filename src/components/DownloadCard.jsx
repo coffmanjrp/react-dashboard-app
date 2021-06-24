@@ -21,7 +21,7 @@ import {
 } from 'react-icons/fa';
 import { MdClear } from 'react-icons/md';
 import { AiOutlineCopy } from 'react-icons/ai';
-import { Annotation } from '.';
+import { BalloonTip } from '.';
 import { useSettings } from 'context/useSettings';
 import { useUnsplash } from 'context/useUnsplash';
 
@@ -123,14 +123,14 @@ export default function DownloadCard() {
           on social or copy the text below to attribute.
         </Typography>
         <div className={classes.btnGroup}>
-          <Annotation content="Copy URL to clipboard" placement="top">
+          <BalloonTip content="Copy URL to clipboard" placement="top">
             <IconButton
               size="small"
               onClick={() => handleCopyToClipboard(creditShareLink)}
             >
               <FaLink />
             </IconButton>
-          </Annotation>
+          </BalloonTip>
           <IconButton
             href={`https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Funsplash.com%2Fphotos%2F${id}%3Futm_source%3Dfacebook%26utm_medium%3Dreferral%26utm_content%3DcreditShareLink`}
             title="Share on Facebook"
@@ -212,7 +212,7 @@ export default function DownloadCard() {
                     </Link>
                   </Typography>
 
-                  <Annotation content="Copy to clipboard" placement="top">
+                  <BalloonTip content="Copy to clipboard" placement="top">
                     <IconButton
                       size="small"
                       className={classes.authorIntro}
@@ -220,7 +220,7 @@ export default function DownloadCard() {
                     >
                       <AiOutlineCopy />
                     </IconButton>
-                  </Annotation>
+                  </BalloonTip>
                 </Paper>
               </CardContent>
               <IconButton

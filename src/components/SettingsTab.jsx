@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 import { IoReload } from 'react-icons/io5';
 import {
   AmPmSwitch,
-  Annotation,
+  BalloonTip,
   BackgroundSlider,
   ClockSwitch,
   CloseModalButton,
@@ -110,13 +110,13 @@ export default function SettingsTab({
         </List>
       </Box>
       <Box component="footer" className={classes.footer}>
-        <Annotation content="Refresh Photo" placement="right">
+        <BalloonTip content="Refresh Photo" placement="right">
           <motion.div variants={buttonVariants} whileHover="hover">
             <IconButton onClick={handleRefresh}>
               <IoReload />
             </IconButton>
           </motion.div>
-        </Annotation>
+        </BalloonTip>
         <CloseModalButton handleClose={handleClose} />
       </Box>
     </Box>

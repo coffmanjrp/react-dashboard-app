@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
+  Box,
   IconButton,
   Card,
   CardContent,
@@ -21,7 +22,7 @@ import {
 } from 'react-icons/fa';
 import { MdClear } from 'react-icons/md';
 import { AiOutlineCopy } from 'react-icons/ai';
-import { Annotation } from '.';
+import { BalloonTip } from '.';
 import { useSettings } from 'context/useSettings';
 import { useUnsplash } from 'context/useUnsplash';
 
@@ -112,15 +113,15 @@ export default function ShareCard() {
         <Typography variant="subtitle1" color="textSecondary">
           Share this photo on social or copy the text below to attribute.
         </Typography>
-        <div className={classes.btnGroup}>
-          <Annotation content="Copy URL to clipboard" placement="top">
+        <Box className={classes.btnGroup}>
+          <BalloonTip content="Copy URL to clipboard" placement="top">
             <IconButton
               size="small"
               onClick={() => handleCopyToClipboard(creditShareLink)}
             >
               <FaLink />
             </IconButton>
-          </Annotation>
+          </BalloonTip>
           <IconButton
             href={`https://facebook.com/sharer/sharer.php?u=https://unsplash.com/photos/${id}`}
             title="Share on Facebook"
@@ -152,7 +153,7 @@ export default function ShareCard() {
           >
             <FaEnvelope />
           </IconButton>
-        </div>
+        </Box>
       </>
     );
   };
@@ -202,7 +203,7 @@ export default function ShareCard() {
                     </Link>
                   </Typography>
 
-                  <Annotation content="Copy to clipboard" placement="top">
+                  <BalloonTip content="Copy to clipboard" placement="top">
                     <IconButton
                       size="small"
                       className={classes.authorIntro}
@@ -210,7 +211,7 @@ export default function ShareCard() {
                     >
                       <AiOutlineCopy />
                     </IconButton>
-                  </Annotation>
+                  </BalloonTip>
                 </Paper>
               </CardContent>
               <IconButton

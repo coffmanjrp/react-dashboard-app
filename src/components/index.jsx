@@ -1,7 +1,7 @@
 export { default as AboutTab } from './AboutTab';
 export { default as AmPmSwitch } from './AmPmSwitch';
-export { default as Annotation } from './Annotation';
 export { default as AuthorInfo } from './AuthorInfo';
+export { default as BalloonTip } from './BalloonTip';
 export { default as BackgroundSlider } from './BackgroundSlider';
 export { default as Clock } from './Clock';
 export { default as ClockSwitch } from './ClockSwitch';

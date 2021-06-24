@@ -14,7 +14,7 @@ const LightTooltip = withStyles((theme) => ({
   },
 }))(Tooltip);
 
-export default function Annotation({ children, content, placement }) {
+export default function BalloonTip({ children, content, placement }) {
   return (
     <LightTooltip
       title={content}

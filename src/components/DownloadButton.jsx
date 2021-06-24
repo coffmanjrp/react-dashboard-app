@@ -4,7 +4,7 @@ import { Box } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import { motion } from 'framer-motion';
 import { FiDownload } from 'react-icons/fi';
-import { Annotation, DownloadCard } from '.';
+import { BalloonTip, DownloadCard } from '.';
 import { useSettings } from 'context/useSettings';
 import { useUnsplash } from 'context/useUnsplash';
 
@@ -55,7 +55,7 @@ export default function DownloadButton() {
 
   return (
     <Box ref={ref}>
-      <Annotation content="Download Photo" placement="top">
+      <BalloonTip content="Download Photo" placement="top">
         <motion.div variants={buttonVariants} whileHover="hover">
           <IconButton
             className={classes.button}
@@ -72,7 +72,7 @@ export default function DownloadButton() {
             <FiDownload />
           </IconButton>
         </motion.div>
-      </Annotation>
+      </BalloonTip>
       <DownloadCard />
     </Box>
   );

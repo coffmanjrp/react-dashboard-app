@@ -5,7 +5,7 @@ import { grey } from '@material-ui/core/colors';
 import Skycons from 'react-skycons';
 import { useSettings } from 'context/useSettings';
 import { useWeather } from 'context/useWeather';
-import { Annotation, WeatherInfo, WeatherInfoList } from '.';
+import { BalloonTip, WeatherInfo, WeatherInfoList } from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -48,7 +48,7 @@ export default function Weather() {
   return (
     <>
       {weather && (
-        <Annotation content={<WeatherInfoList />} placement="bottom-end">
+        <BalloonTip content={<WeatherInfoList />} placement="bottom-end">
           <Box className={classes.root}>
             <Box className={classes.container}>
               <Skycons
@@ -60,12 +60,14 @@ export default function Weather() {
               />
               <Typography variant="h5" className={classes.temp}>
                 {isFahrenheit ? weather.fahrenheit_temp : weather.celsius_temp}
-                <span>{isFahrenheit ? '°F' : '°C'}</span>
+                <Typography component="span">
+                  {isFahrenheit ? '°F' : '°C'}
+                </Typography>
               </Typography>
             </Box>
             <WeatherInfo weather={weather} isFahrenheit={isFahrenheit} />
           </Box>
-        </Annotation>
+        </BalloonTip>
       )}
     </>
   );

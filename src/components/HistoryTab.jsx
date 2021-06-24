@@ -5,7 +5,7 @@ import { useUnsplash } from 'context/useUnsplash';
 import { grey } from '@material-ui/core/colors';
 import { Box, IconButton, Link } from '@material-ui/core';
 import { AiOutlineClear } from 'react-icons/ai';
-import { Annotation, CloseModalButton } from '.';
+import { BalloonTip, CloseModalButton } from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,11 +82,11 @@ export default function HistoryTab({ handleClose }) {
         </Masonry>
       </Box>
       <Box className={classes.footer}>
-        <Annotation content="Clear History" placement="right">
+        <BalloonTip content="Clear History" placement="right">
           <IconButton onClick={handleClearHistory}>
             <AiOutlineClear />
           </IconButton>
-        </Annotation>
+        </BalloonTip>
         <CloseModalButton handleClose={handleClose} />
       </Box>
     </Box>

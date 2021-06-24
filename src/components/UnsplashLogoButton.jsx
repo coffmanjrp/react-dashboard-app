@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { IconButton } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { SiUnsplash } from 'react-icons/si';
-import { Annotation } from '.';
+import { BalloonTip } from '.';
 import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles({
@@ -35,7 +35,7 @@ export default function UnsplashLogoButton() {
   } = useUnsplash();
 
   return (
-    <Annotation
+    <BalloonTip
       content={
         <div>
           <h4>View photo on Unsplash website</h4>
@@ -60,6 +60,6 @@ export default function UnsplashLogoButton() {
           <SiUnsplash />
         </IconButton>
       </motion.div>
-    </Annotation>
+    </BalloonTip>
   );
 }

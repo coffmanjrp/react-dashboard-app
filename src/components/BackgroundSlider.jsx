@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Slider, Grid } from '@material-ui/core';
+import { Typography, Slider, Grid, Box } from '@material-ui/core';
 import { useSettings } from 'context/useSettings';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
@@ -29,7 +29,7 @@ export default function BackgroundSlider() {
   };
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       <Typography id="slider-for-background-brightness" gutterBottom>
         Background brightness
       </Typography>
@@ -51,6 +51,6 @@ export default function BackgroundSlider() {
           <Typography>{`${alpha !== 0 ? '-' : ''} ${alpha} %`}</Typography>
         </Grid>
       </Grid>
-    </div>
+    </Box>
   );
 }

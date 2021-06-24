@@ -4,7 +4,7 @@ import { Box } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import { motion } from 'framer-motion';
 import { RiShareForwardBoxLine } from 'react-icons/ri';
-import { Annotation, ShareCard } from '.';
+import { BalloonTip, ShareCard } from '.';
 import { useSettings } from 'context/useSettings';
 
 const useStyles = makeStyles({
@@ -51,7 +51,7 @@ export default function ShareButton() {
 
   return (
     <Box ref={ref}>
-      <Annotation content="Share Photo" placement="top">
+      <BalloonTip content="Share Photo" placement="top">
         <motion.div variants={buttonVariants} whileHover="hover">
           <IconButton
             className={classes.button}
@@ -65,7 +65,7 @@ export default function ShareButton() {
             <RiShareForwardBoxLine />
           </IconButton>
         </motion.div>
-      </Annotation>
+      </BalloonTip>
       <ShareCard />
     </Box>
   );
