@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core';
 import { motion } from 'framer-motion';
-import { Greeting } from '.';
+import { Greeting } from 'components';
 import { useSettings } from 'context/useSettings';
 
 const useStyles = makeStyles((theme) => ({

@@ -1,10 +1,8 @@
 import React, { useEffect, useRef } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
+import { makeStyles, Box, IconButton } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { RiShareForwardBoxLine } from 'react-icons/ri';
-import { BalloonTip, ShareCard } from '.';
+import { BalloonTip, ShareCard } from 'components';
 import { useSettings } from 'context/useSettings';
 
 const useStyles = makeStyles({

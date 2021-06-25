@@ -1,6 +1,12 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Divider, IconButton, List, ListItem } from '@material-ui/core';
+import {
+  makeStyles,
+  Box,
+  Divider,
+  IconButton,
+  List,
+  ListItem,
+} from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { IoReload } from 'react-icons/io5';
 import {
@@ -17,7 +23,7 @@ import {
   WeatherInfoList,
   WeatherLocationTextField,
   WeatherSwitch,
-} from '.';
+} from 'components';
 import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles((theme) => ({

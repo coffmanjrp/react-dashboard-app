@@ -1,9 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { IconButton } from '@material-ui/core';
+import { makeStyles, IconButton } from '@material-ui/core';
 import { motion } from 'framer-motion';
 import { IoSettingsOutline } from 'react-icons/io5';
-import { BalloonTip, MenuModal } from '.';
+import { BalloonTip, MenuModal } from 'components';
 import { useSettings } from 'context/useSettings';
 
 const useStyles = makeStyles({

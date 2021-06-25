@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Slider, Grid, Box } from '@material-ui/core';
+import { makeStyles, Typography, Slider, Grid, Box } from '@material-ui/core';
 import { useSettings } from 'context/useSettings';
 import { setObjectToLocalStorage } from 'utils/localStorage';
 
@@ -33,7 +32,7 @@ export default function BackgroundSlider() {
       <Typography id="slider-for-background-brightness" gutterBottom>
         Background brightness
       </Typography>
-      <Grid container justifyContent="space-between" alignItems="center">
+      <Grid container justify="space-between" alignItems="center">
         <Grid item xs>
           <Slider
             value={alpha}

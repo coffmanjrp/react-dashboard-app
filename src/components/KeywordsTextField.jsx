@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { IconButton, Chip, TextField, Box } from '@material-ui/core';
+import {
+  makeStyles,
+  IconButton,
+  Chip,
+  TextField,
+  Box,
+} from '@material-ui/core';
 import { FaSearch } from 'react-icons/fa';
 import { useUnsplash } from 'context/useUnsplash';
 import { setObjectToLocalStorage } from 'utils/localStorage';

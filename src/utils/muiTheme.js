@@ -1,12 +1,11 @@
-import { createMuiTheme } from '@material-ui/core/styles';
-import { grey } from '@material-ui/core/colors';
+import { colors, createMuiTheme } from '@material-ui/core';
 
 const lightTheme = {
   type: 'light',
   text: {
     primary: 'rgba(0, 0, 0, 0.87)',
     secondary: 'rgba(0, 0, 0, 0.54)',
-    display: grey[100],
+    display: colors.grey[100],
     disabled: 'rgba(0, 0, 0, 0.38)',
   },
   action: {
@@ -18,7 +17,7 @@ const lightTheme = {
   },
   background: {
     default: '#fafafa',
-    paper: '#fff',
+    paper: '#f4f4f4',
   },
   divider: 'rgba(0, 0, 0, 0.12)',
 };
@@ -36,13 +35,13 @@ const darkTheme = {
     dark: '#115293',
   },
   text: {
-    primary: grey[300],
+    primary: colors.grey[300],
     secondary: 'rgba(255, 255, 255, 0.7)',
-    display: grey[300],
+    display: colors.grey[300],
     disabled: 'rgba(255, 255, 255, 0.5)',
   },
   action: {
-    active: '#fff',
+    active: '#f4f4f4',
     hover: 'rgba(255, 255, 255, 0.08',
     selected: 'rgba(255, 255, 255, 0.16)',
     disabled: 'rgba(255, 255, 255, 0.3)',

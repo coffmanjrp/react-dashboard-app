@@ -1,6 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Backdrop, Box, Fade, Modal } from '@material-ui/core';
+import { makeStyles, Backdrop, Box, Fade, Modal } from '@material-ui/core';
 import { MenuTabs } from 'components';
 import { useSettings } from 'context/useSettings';
 

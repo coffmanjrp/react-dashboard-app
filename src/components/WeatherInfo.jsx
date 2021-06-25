@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core';
 import { motion, AnimatePresence } from 'framer-motion';
 import weatherInfoData from 'utils/weatherInfoData';
 

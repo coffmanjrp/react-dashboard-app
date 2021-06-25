@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Tabs, Tab } from '@material-ui/core';
-import { AboutTab, HistoryTab, SettingsTab } from '.';
+import { makeStyles, Box, Tabs, Tab } from '@material-ui/core';
+import { AboutTab, HistoryTab, SettingsTab } from 'components';
 
 const useStyles = makeStyles((theme) => ({
   root: {

@@ -1,6 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography, Link, Avatar } from '@material-ui/core';
+import { makeStyles,Box, Typography, Link, Avatar } from '@material-ui/core';
 import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles((theme) => ({

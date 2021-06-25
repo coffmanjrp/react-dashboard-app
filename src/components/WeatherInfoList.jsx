@@ -1,6 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { List, ListItem, ListItemText, Typography } from '@material-ui/core';
+import {
+  makeStyles,
+  List,
+  ListItem,
+  ListItemText,
+  Typography,
+} from '@material-ui/core';
 import { useSettings } from 'context/useSettings';
 import { useWeather } from 'context/useWeather';
 import weatherInfoData from 'utils/weatherInfoData';

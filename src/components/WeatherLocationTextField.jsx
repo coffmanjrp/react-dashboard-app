@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { IconButton, TextField, Box } from '@material-ui/core';
+import { makeStyles, IconButton, TextField, Box } from '@material-ui/core';
 import { FaSearchLocation } from 'react-icons/fa';
 import { useWeather } from 'context/useWeather';
 import { setObjectToLocalStorage } from 'utils/localStorage';

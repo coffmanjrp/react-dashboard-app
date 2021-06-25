@@ -1,6 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box } from '@material-ui/core';
+import { makeStyles, Box } from '@material-ui/core';
 import { useSettings } from 'context/useSettings';
 import { useUnsplash } from 'context/useUnsplash';
 

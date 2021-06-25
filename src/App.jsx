@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider, CssBaseline } from '@material-ui/core';
 import WebFont from 'webfontloader';
 import { Footer, Header, Layout, Main } from 'components';
 import { getSettings } from 'utils/localStorage';

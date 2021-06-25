@@ -1,11 +1,9 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import { colors, makeStyles, Box, IconButton, Link } from '@material-ui/core';
 import Masonry from 'react-masonry-css';
-import { useUnsplash } from 'context/useUnsplash';
-import { grey } from '@material-ui/core/colors';
-import { Box, IconButton, Link } from '@material-ui/core';
 import { AiOutlineClear } from 'react-icons/ai';
-import { BalloonTip, CloseModalButton } from '.';
+import { useUnsplash } from 'context/useUnsplash';
+import { BalloonTip, CloseModalButton } from 'components';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: '10px',
   },
   image: {
-    border: `1px solid ${grey[200]}`,
+    border: `1px solid ${colors.grey[200]}`,
   },
   footer: {
     display: 'flex',

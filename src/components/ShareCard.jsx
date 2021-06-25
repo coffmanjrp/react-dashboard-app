@@ -1,6 +1,7 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import {
+  colors,
+  makeStyles,
   Box,
   IconButton,
   Card,
@@ -10,7 +11,6 @@ import {
   Link,
   Paper,
 } from '@material-ui/core';
-import grey from '@material-ui/core/colors/grey';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   // FaCheck,
@@ -22,7 +22,7 @@ import {
 } from 'react-icons/fa';
 import { MdClear } from 'react-icons/md';
 import { AiOutlineCopy } from 'react-icons/ai';
-import { BalloonTip } from '.';
+import { BalloonTip } from 'components';
 import { useSettings } from 'context/useSettings';
 import { useUnsplash } from 'context/useUnsplash';
 
@@ -53,10 +53,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
     padding: theme.spacing(1),
-    backgroundColor: grey[300],
+    backgroundColor: colors.grey[300],
   },
   authorIntro: {
-    color: grey[600],
+    color: colors.grey[600],
   },
   closeBtn: {
     position: 'absolute',

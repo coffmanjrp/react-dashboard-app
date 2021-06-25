@@ -23,8 +23,8 @@ export default function weatherInfoData(weather, isFahrenheit) {
   const sunsetTime = sunAppearTime(weather.sunset);
 
   const information = [
-    `${desc}`,
     `${weather.city}, ${weather.country}`,
+    `${desc}`,
     minMaxTemp,
     tempFeelsLike,
     `Wind Speed ${windSpeed}`,

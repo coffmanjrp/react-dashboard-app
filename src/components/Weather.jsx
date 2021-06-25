@@ -1,11 +1,15 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, CircularProgress, Typography } from '@material-ui/core';
-import { grey } from '@material-ui/core/colors';
+import {
+  colors,
+  makeStyles,
+  Box,
+  CircularProgress,
+  Typography,
+} from '@material-ui/core';
 import Skycons from 'react-skycons';
+import { BalloonTip, WeatherInfo, WeatherInfoList } from 'components';
 import { useSettings } from 'context/useSettings';
 import { useWeather } from 'context/useWeather';
-import { BalloonTip, WeatherInfo, WeatherInfoList } from '.';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -52,7 +56,7 @@ export default function Weather() {
           <Box className={classes.root}>
             <Box className={classes.container}>
               <Skycons
-                color={`${grey[300]}`}
+                color={`${colors.grey[300]}`}
                 type={weather.skycon}
                 animate={true}
                 size={25}

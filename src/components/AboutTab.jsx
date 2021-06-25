@@ -1,7 +1,6 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Box, Typography } from '@material-ui/core';
-import { CloseModalButton } from '.';
+import { makeStyles, Box, Typography } from '@material-ui/core';
+import { CloseModalButton } from 'components';
 
 const useStyles = makeStyles((theme) => ({
   root: {
