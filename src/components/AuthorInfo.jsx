@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles,Box, Typography, Link, Avatar } from '@material-ui/core';
+import { makeStyles, Box, Typography, Link, Avatar } from '@material-ui/core';
 import { useUnsplash } from 'context/useUnsplash';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AuthorInfo() {
   const {
-    data: { name, location, avatar, profileLink },
+    data: { name, cityName, avatar, profileLink },
   } = useUnsplash();
   const classes = useStyles();
 
@@ -55,7 +55,7 @@ export default function AuthorInfo() {
             {name}
           </Typography>
           <Typography variant="h4" className={classes.location}>
-            {location}
+            {cityName}
           </Typography>
         </Box>
       </Link>
