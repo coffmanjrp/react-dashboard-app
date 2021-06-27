@@ -9,7 +9,7 @@ export const useWeather = () => {
 };
 
 export const useProvideWeather = () => {
-  const initialData = {
+  const initialWeatherData = {
     id: '',
     city: '',
     country: '',
@@ -29,18 +29,12 @@ export const useProvideWeather = () => {
     sunset: '',
     wind_speed: '',
   };
-  const [weather, setWeather] = useState(initialData);
-  const [cityName, setCityName] = useState('');
+  const initialLocation = getSettings?.location ? getSettings.location : '';
+  const [weather, setWeather] = useState(initialWeatherData);
+  const [location, setLocation] = useState(initialLocation);
   const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
   const kelvin = 273.16;
   let skycon;
-
-  useEffect(() => {
-    if (getSettings?.location === undefined) setCityName('');
-    else setCityName(getSettings?.location);
-
-    // eslint-disable-next-line
-  }, []);
 
   useEffect(() => {
     navigator.geolocation?.getCurrentPosition(async (position) => {
@@ -51,11 +45,11 @@ export const useProvideWeather = () => {
     });
 
     // eslint-disable-next-line
-  }, [cityName]);
+  }, [location]);
 
   const fetchWeatherData = async (lat, lon) => {
     try {
-      const param = !cityName ? `lat=${lat}&lon=${lon}` : `q=${cityName}`;
+      const param = !location ? `lat=${lat}&lon=${lon}` : `q=${location}`;
 
       const res = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?${param}&APPID=${API_KEY}`
@@ -158,7 +152,7 @@ export const useProvideWeather = () => {
 
   return {
     weather,
-    cityName,
-    setCityName,
+    location,
+    setLocation,
   };
 };

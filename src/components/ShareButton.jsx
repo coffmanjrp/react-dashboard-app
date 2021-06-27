@@ -1,6 +1,5 @@
 import React, { useEffect, useRef } from 'react';
 import { makeStyles, Box, IconButton } from '@material-ui/core';
-import { motion } from 'framer-motion';
 import { RiShareForwardBoxLine } from 'react-icons/ri';
 import { BalloonTip, ShareCard } from 'components';
 import { useSettings } from 'context/useSettings';
@@ -16,15 +15,6 @@ const useStyles = makeStyles({
     fontSize: '1.3rem',
   },
 });
-
-const buttonVariants = {
-  hover: {
-    scale: [1, 1.2, 1],
-    transition: {
-      duration: 0.6,
-    },
-  },
-};
 
 export default function ShareButton() {
   const ref = useRef();
@@ -50,19 +40,17 @@ export default function ShareButton() {
   return (
     <Box ref={ref}>
       <BalloonTip content="Share Photo" placement="top">
-        <motion.div variants={buttonVariants} whileHover="hover">
-          <IconButton
-            className={classes.button}
-            aria-label="Download Photo"
-            color="inherit"
-            onClick={() => {
-              setIsShared((isShared) => !isShared);
-              setIsDownloaded(false);
-            }}
-          >
-            <RiShareForwardBoxLine />
-          </IconButton>
-        </motion.div>
+        <IconButton
+          className={classes.button}
+          aria-label="Download Photo"
+          color="inherit"
+          onClick={() => {
+            setIsShared((isShared) => !isShared);
+            setIsDownloaded(false);
+          }}
+        >
+          <RiShareForwardBoxLine />
+        </IconButton>
       </BalloonTip>
       <ShareCard />
     </Box>

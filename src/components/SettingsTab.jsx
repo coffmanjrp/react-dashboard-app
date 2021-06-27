@@ -7,7 +7,7 @@ import {
   List,
   ListItem,
 } from '@material-ui/core';
-import { motion } from 'framer-motion';
+import { AiOutlineStop } from 'react-icons/ai';
 import { IoReload } from 'react-icons/io5';
 import {
   AmPmSwitch,
@@ -25,6 +25,8 @@ import {
   WeatherSwitch,
 } from 'components';
 import { useUnsplash } from 'context/useUnsplash';
+import { useSettings } from 'context/useSettings';
+import { useWeather } from 'context/useWeather';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -45,16 +47,12 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-}));
-
-const buttonVariants = {
-  hover: {
-    rotate: 360,
-    transition: {
-      duration: 0.8,
-    },
+  footerLeft: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-};
+}));
 
 export default function SettingsTab({
   isDarkMode,
@@ -62,11 +60,35 @@ export default function SettingsTab({
   handleClose,
 }) {
   const { keywords, getRandomPhoto } = useUnsplash();
+  const {
+    setAlpha,
+    setDisplayClock,
+    setDisplaySeconds,
+    setDisplayDate,
+    setDisplayAmpm,
+    setDisplayWeather,
+    setIsFahrenheit,
+  } = useSettings();
+  const { setKeywords } = useUnsplash();
+  const { setLocation } = useWeather();
   const classes = useStyles();
 
   const handleRefresh = () => {
     getRandomPhoto(keywords);
     handleClose();
+  };
+
+  const handleClear = () => {
+    setAlpha(20);
+    setDisplayClock(true);
+    setDisplaySeconds(false);
+    setDisplayDate(true);
+    setDisplayAmpm(true);
+    setDisplayWeather(true);
+    setIsFahrenheit(true);
+    setIsDarkMode(false);
+    setKeywords([]);
+    setLocation('');
   };
 
   return (
@@ -116,13 +138,18 @@ export default function SettingsTab({
         </List>
       </Box>
       <Box component="footer" className={classes.footer}>
-        <BalloonTip content="Refresh Photo" placement="right">
-          <motion.div variants={buttonVariants} whileHover="hover">
+        <Box className={classes.footerLeft}>
+          <BalloonTip content="Refresh Photo" placement="right">
             <IconButton onClick={handleRefresh}>
               <IoReload />
             </IconButton>
-          </motion.div>
-        </BalloonTip>
+          </BalloonTip>
+          <BalloonTip content="Clear Settings" placement="right">
+            <IconButton onClick={handleClear}>
+              <AiOutlineStop />
+            </IconButton>
+          </BalloonTip>
+        </Box>
         <CloseModalButton handleClose={handleClose} />
       </Box>
     </Box>

@@ -36,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function AuthorInfo() {
   const {
-    data: { name, cityName, avatar, profileLink },
+    data: { name, location, avatar, profileLink },
   } = useUnsplash();
   const classes = useStyles();
 
@@ -55,7 +55,7 @@ export default function AuthorInfo() {
             {name}
           </Typography>
           <Typography variant="h4" className={classes.location}>
-            {cityName}
+            {location}
           </Typography>
         </Box>
       </Link>

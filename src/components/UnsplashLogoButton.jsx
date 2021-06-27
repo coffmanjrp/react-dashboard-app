@@ -1,6 +1,5 @@
 import React from 'react';
-import { makeStyles, IconButton } from '@material-ui/core';
-import { motion } from 'framer-motion';
+import { makeStyles, IconButton, Box } from '@material-ui/core';
 import { SiUnsplash } from 'react-icons/si';
 import { BalloonTip } from 'components';
 import { useUnsplash } from 'context/useUnsplash';
@@ -18,15 +17,6 @@ const useStyles = makeStyles({
   },
 });
 
-const buttonVariants = {
-  hover: {
-    scale: [1, 1.2, 1],
-    transition: {
-      duration: 0.6,
-    },
-  },
-};
-
 export default function UnsplashLogoButton() {
   const classes = useStyles();
   const {
@@ -43,11 +33,7 @@ export default function UnsplashLogoButton() {
       }
       placement="bottom-end"
     >
-      <motion.div
-        className={classes.container}
-        variants={buttonVariants}
-        whileHover="hover"
-      >
+      <Box className={classes.container}>
         <IconButton
           className={classes.button}
           href={unsplashLink}
@@ -58,7 +44,7 @@ export default function UnsplashLogoButton() {
         >
           <SiUnsplash />
         </IconButton>
-      </motion.div>
+      </Box>
     </BalloonTip>
   );
 }

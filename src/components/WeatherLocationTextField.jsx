@@ -34,14 +34,14 @@ export default function WeatherLocationTextField() {
   const [value, setValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [error, setError] = useState(false);
-  const { cityName, setCityName } = useWeather();
+  const { location, setLocation } = useWeather();
   const classes = useStyles();
 
   useEffect(() => {
-    setObjectToLocalStorage('settings', 'location', cityName);
+    setObjectToLocalStorage('settings', 'location', location);
 
     // eslint-disable-next-line
-  }, [cityName]);
+  }, [location]);
 
   const handleChange = (e) => {
     setError(false);
@@ -58,7 +58,7 @@ export default function WeatherLocationTextField() {
       return false;
     }
 
-    setCityName(value);
+    setLocation(value);
     setValue('');
   };
 
@@ -76,7 +76,7 @@ export default function WeatherLocationTextField() {
           helperText={
             error ? errorMessage : 'Please enter the city name where you live.'
           }
-          placeholder={cityName}
+          placeholder={location}
           value={value}
           onChange={handleChange}
         />
