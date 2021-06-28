@@ -1,51 +1,64 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core';
-import { motion, AnimatePresence } from 'framer-motion';
 import weatherInfoData from 'utils/weatherInfoData';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
+  slider: {
+    position: 'relative',
+    display: 'flex',
+    margin: 0,
+    padding: 0,
+    width: '150px',
+    listStyleType: 'none',
+    overflow: 'hidden',
+  },
+  slide: (props) => ({
+    minWidth: '100%',
+    margin: 0,
+    textAlign: 'right',
+    transition: 'all 350ms ease-in-out',
+    transform: `translateX(-${props.carousel}%)`,
+  }),
   info: {
     margin: 0,
     fontSize: '0.8rem',
     cursor: 'pointer',
   },
-});
-
-const infoVariants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1, transition: { duration: 1 } },
-  exit: { opacity: 0, transition: { duration: 1 } },
-};
+}));
 
 export default function WeatherInfo({ weather, isFahrenheit }) {
-  const [info, setInfo] = useState(0);
+  const [carousel, setCarousel] = useState(0);
   const information = weatherInfoData(weather, isFahrenheit);
-  const infoIndex = Math.abs(info) % information.length;
-  const classes = useStyles();
+  const classes = useStyles({ carousel });
+  const interval = 5000;
 
   useEffect(() => {
-    setTimeout(() => setInfo((info) => info + 1), 20000);
+    const carouselInterval = setInterval(() => {
+      setCarousel((carousel) => {
+        if (carousel < (information.length - 1) * 100) {
+          return carousel + 100;
+        } else {
+          setCarousel(0);
+        }
+      });
+    }, interval);
 
-    return () => {
-      clearTimeout();
-    };
+    return () => clearInterval(carouselInterval);
     // eslint-disable-next-line
-  }, [info]);
+  }, []);
 
   return (
     <>
       {weather && (
-        <AnimatePresence initial={false}>
-          <motion.p
-            variants={infoVariants}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-            className={classes.info}
-          >
-            {information[infoIndex]}
-          </motion.p>
-        </AnimatePresence>
+        <div>
+          <ul className={classes.slider}>
+            {information.map((info, index) => (
+              <li key={index} className={classes.slide}>
+                <p className={classes.info}>{info}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
       )}
     </>
   );
