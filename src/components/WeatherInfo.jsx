@@ -30,7 +30,7 @@ export default function WeatherInfo({ weather, isFahrenheit }) {
   const [carousel, setCarousel] = useState(0);
   const information = weatherInfoData(weather, isFahrenheit);
   const classes = useStyles({ carousel });
-  const interval = 5000;
+  const interval = 7500;
 
   useEffect(() => {
     const carouselInterval = setInterval(() => {
