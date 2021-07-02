@@ -3,6 +3,7 @@ export { default as AmPmSwitch } from './AmPmSwitch';
 export { default as AuthorInfo } from './AuthorInfo';
 export { default as BalloonTip } from './BalloonTip';
 export { default as BackgroundSlider } from './BackgroundSlider';
+export { default as ClearSettingsButton } from './ClearSettingsButton';
 export { default as Clock } from './Clock';
 export { default as ClockSwitch } from './ClockSwitch';
 export { default as CloseModalButton } from './CloseModalButton';

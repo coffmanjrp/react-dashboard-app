@@ -7,12 +7,12 @@ import {
   List,
   ListItem,
 } from '@material-ui/core';
-import { AiOutlineStop } from 'react-icons/ai';
 import { IoReload } from 'react-icons/io5';
 import {
   AmPmSwitch,
   BalloonTip,
   BackgroundSlider,
+  ClearSettingsButton,
   ClockSwitch,
   CloseModalButton,
   DarkModeSwitch,
@@ -144,11 +144,7 @@ export default function SettingsTab({
               <IoReload />
             </IconButton>
           </BalloonTip>
-          <BalloonTip content="Clear Settings" placement="right">
-            <IconButton onClick={handleClear}>
-              <AiOutlineStop />
-            </IconButton>
-          </BalloonTip>
+          <ClearSettingsButton handleClear={handleClear} />
         </Box>
         <CloseModalButton handleClose={handleClose} />
       </Box>

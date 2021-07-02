@@ -31,8 +31,8 @@ export default function MenuModal({ isDarkMode, setIsDarkMode }) {
     <Modal
       open={open}
       onClose={handleClose}
-      aria-labelledby="simple-modal-title"
-      aria-describedby="simple-modal-description"
+      aria-labelledby="menu-modal"
+      aria-describedby="menu-modal"
       closeAfterTransition
       BackdropComponent={Backdrop}
       BackdropProps={{
