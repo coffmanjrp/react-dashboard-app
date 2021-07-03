@@ -9,6 +9,10 @@ export const useWeather = () => {
 };
 
 export const useProvideWeather = () => {
+  const API_URL = process.env.REACT_APP_OPEN_WEATHER_API_URL;
+  const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
+  const kelvin = 273.16;
+  let skycon;
   const initialWeatherData = {
     id: '',
     city: '',
@@ -32,9 +36,6 @@ export const useProvideWeather = () => {
   const initialLocation = getSettings?.location ? getSettings.location : '';
   const [weather, setWeather] = useState(initialWeatherData);
   const [location, setLocation] = useState(initialLocation);
-  const API_KEY = process.env.REACT_APP_OPEN_WEATHER_API_KEY;
-  const kelvin = 273.16;
-  let skycon;
 
   useEffect(() => {
     navigator.geolocation?.getCurrentPosition(async (position) => {
@@ -51,9 +52,7 @@ export const useProvideWeather = () => {
     try {
       const param = !location ? `lat=${lat}&lon=${lon}` : `q=${location}`;
 
-      const res = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?${param}&APPID=${API_KEY}`
-      );
+      const res = await fetch(`${API_URL}?${param}&APPID=${API_KEY}`);
       const data = await res.json();
 
       switchSkycons(data.weather[0].icon);
