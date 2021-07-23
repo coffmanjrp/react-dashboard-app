@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   container: (props) => ({
     position: 'relative',
     display: 'grid',
-    gridTemplateRows: '7vh 87vh 6vh',
+    gridTemplateRows: '1fr 10fr 1fr',
     alignItems: 'center',
     width: '100vw',
     height: '100vh',
