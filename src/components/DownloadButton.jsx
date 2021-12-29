@@ -47,13 +47,11 @@ export default function DownloadButton() {
     <Box ref={ref}>
       <BalloonTip content="Download Photo" placement="top">
         <IconButton
-          href={`${downloadLink}?force=true`}
+          href={`${downloadLink}?force=true&dl=`}
           download
           className={classes.button}
-          rel="nofollow"
           aria-label="Download Photo"
           color="inherit"
-          target="_blank"
           onClick={() => {
             setIsShared(false);
             setIsDownloaded(true);

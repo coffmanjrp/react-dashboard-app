@@ -87,7 +87,7 @@ export const useProvideUnsplash = () => {
         thumbnail: response.urls.thumb,
         unsplashLink: response.links.html,
         profileLink: response.user.links.html,
-        downloadLink: response.links.download,
+        downloadLink: response.urls.raw,
       });
     } catch (error) {
       console.error('error occurred:', error.message);
