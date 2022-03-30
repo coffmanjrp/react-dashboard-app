@@ -66,29 +66,35 @@ export const useProvideUnsplash = () => {
     accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
   });
 
+  const createPhotoData = (photo, encoded) => {
+    setData({
+      id: photo.id,
+      name: photo.user.name,
+      location: photo.user.location,
+      avatar: photo.user.profile_image.medium,
+      description: photo.alt_description,
+      photoUrl: photo.urls.regular,
+      photoUrlFull: photo.urls.full,
+      photoUrlSmall: photo.urls.small,
+      photoUrlRaw: photo.urls.raw,
+      photoUrlEncoded: encoded,
+      thumbnail: photo.urls.thumb,
+      unsplashLink: photo.links.html,
+      profileLink: photo.user.links.html,
+      // downloadLink: photo.links.download_location,
+      downloadLink: photo.urls.raw,
+    });
+  };
+
   const getRandomPhoto = async (query) => {
     try {
-      const { response } = await unsplash.photos.getRandom({
+      const data = await unsplash.photos.getRandom({
         query,
       });
-      const encoded = await convertImageIntoBase64(response.urls.regular);
+      const photo = await data.response;
+      const encoded = await convertImageIntoBase64(photo.urls.regular);
 
-      setData({
-        id: response.id,
-        name: response.user.name,
-        location: response.user.location,
-        avatar: response.user.profile_image.medium,
-        description: response.alt_description,
-        photoUrl: response.urls.regular,
-        photoUrlFull: response.urls.full,
-        photoUrlSmall: response.urls.small,
-        photoUrlRaw: response.urls.raw,
-        photoUrlEncoded: encoded,
-        thumbnail: response.urls.thumb,
-        unsplashLink: response.links.html,
-        profileLink: response.user.links.html,
-        downloadLink: response.urls.raw,
-      });
+      createPhotoData(photo, encoded);
     } catch (error) {
       console.error('error occurred:', error.message);
       setData(
@@ -99,27 +105,13 @@ export const useProvideUnsplash = () => {
 
   const getPhotoById = async (photoId) => {
     try {
-      const { response } = await unsplash.photos.get({
+      const data = await unsplash.photos.get({
         photoId,
       });
-      const encoded = await convertImageIntoBase64(response.urls.regular);
+      const photo = await data.response;
+      const encoded = await convertImageIntoBase64(photo.urls.regular);
 
-      setData({
-        id: response.id,
-        name: response.user.name,
-        location: response.user.location,
-        avatar: response.user.profile_image.medium,
-        description: response.alt_description,
-        photoUrl: response.urls.regular,
-        photoUrlFull: response.urls.full,
-        photoUrlSmall: response.urls.small,
-        photoUrlRaw: response.urls.raw,
-        photoUrlEncoded: encoded,
-        thumbnail: response.urls.thumb,
-        unsplashLink: response.links.html,
-        profileLink: response.user.links.html,
-        downloadLink: response.links.download,
-      });
+      createPhotoData(photo, encoded);
     } catch (error) {
       console.error('error occurred:', error.message);
       return;
