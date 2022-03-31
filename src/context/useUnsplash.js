@@ -25,6 +25,7 @@ export const useProvideUnsplash = () => {
     thumbnail: null,
     unsplashLink: '',
     profileLink: '',
+    downloadEndpoint: '',
     downloadLink: '',
   };
 
@@ -81,7 +82,7 @@ export const useProvideUnsplash = () => {
       thumbnail: photo.urls.thumb,
       unsplashLink: photo.links.html,
       profileLink: photo.user.links.html,
-      // downloadLink: photo.links.download_location,
+      downloadEndpoint: `${photo.links.download_location}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`,
       downloadLink: photo.urls.raw,
     });
   };
