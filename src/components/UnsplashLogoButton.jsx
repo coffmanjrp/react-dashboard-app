@@ -27,7 +27,7 @@ export default function UnsplashLogoButton() {
     <BalloonTip
       content={
         <div>
-          <h4>View photo on Unsplash website</h4>
+          <h4>View photo on Unsplash.com</h4>
           <img src={thumbnail} alt="thumbnail" />
         </div>
       }

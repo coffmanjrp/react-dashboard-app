@@ -83,7 +83,6 @@ export const useProvideUnsplash = () => {
       unsplashLink: photo.links.html,
       profileLink: photo.user.links.html,
       downloadEndpoint: `${photo.links.download_location}&client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`,
-      downloadLink: photo.urls.raw,
     });
   };
 

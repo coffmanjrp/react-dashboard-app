@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
@@ -21,10 +21,11 @@ const useStyles = makeStyles({
 
 export default function DownloadButton() {
   const ref = useRef();
+  const [downloadPhoto, setDownloadPhoto] = useState('');
   const classes = useStyles();
   const { setIsShared, setIsDownloaded } = useSettings();
   const {
-    data: { downloadLink },
+    data: { id, downloadEndpoint, downloadLink },
   } = useUnsplash();
 
   useEffect(() => {
@@ -37,9 +38,27 @@ export default function DownloadButton() {
     // eslint-disable-next-line
   }, []);
 
+  useEffect(() => {
+    getDownloadLink();
+
+    // eslint-disable-next-line
+  }, [downloadEndpoint]);
+
   const handleClick = (e) => {
     if (!ref.current?.contains(e.target)) {
       setIsDownloaded(false);
+    }
+  };
+
+  const getDownloadLink = async () => {
+    try {
+      const res = await fetch(downloadEndpoint);
+      const data = await res.json();
+      const { url } = data;
+
+      setDownloadPhoto(url);
+    } catch (error) {
+      console.error('error occurred:', error.message);
     }
   };
 
@@ -47,7 +66,7 @@ export default function DownloadButton() {
     <Box ref={ref}>
       <BalloonTip content="Download Photo" placement="top">
         <IconButton
-          href={`${downloadLink}?force=true&dl=`}
+          href={`${id ? downloadPhoto : downloadLink}?force=true&dl=`}
           download
           className={classes.button}
           aria-label="Download Photo"
