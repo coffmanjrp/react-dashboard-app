@@ -43,7 +43,7 @@ export default function AuthorInfo() {
   return (
     <Box className={classes.root}>
       <Link
-        href={profileLink}
+        href={`${profileLink}?utm_source=${process.env.REACT_APP_NAME}&utm_medium=referral`}
         className={classes.link}
         color="inherit"
         target="_blank"

@@ -36,7 +36,7 @@ export default function UnsplashLogoButton() {
       <Box className={classes.container}>
         <IconButton
           className={classes.button}
-          href={unsplashLink}
+          href={`${unsplashLink}?utm_source=${process.env.REACT_APP_NAME}&utm_medium=referral`}
           rel="nofollow"
           aria-label="View photo on Unsplash website"
           target="_blank"

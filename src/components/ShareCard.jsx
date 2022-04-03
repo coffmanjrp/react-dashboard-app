@@ -185,7 +185,7 @@ export default function ShareCard() {
                   <Typography variant="caption" className={classes.authorIntro}>
                     Photo by{' '}
                     <Link
-                      href={profileLink}
+                      href={`${profileLink}?utm_source=${process.env.REACT_APP_NAME}&utm_medium=referral`}
                       target="_blank"
                       underline="always"
                       className={classes.authorIntro}

@@ -111,7 +111,7 @@ export default function DownloadCard() {
         <Typography variant="subtitle1" color="textSecondary">
           Give a shoutout to{' '}
           <Link
-            href={profileLink}
+            href={`${profileLink}?utm_source=${process.env.REACT_APP_NAME}&utm_medium=referral`}
             rel="noreferrer"
             underline="always"
             color="textPrimary"
@@ -193,7 +193,7 @@ export default function DownloadCard() {
                   <Typography variant="caption" className={classes.authorIntro}>
                     Photo by{' '}
                     <Link
-                      href={profileLink}
+                      href={`${profileLink}?utm_source=${process.env.REACT_APP_NAME}&utm_medium=referral`}
                       target="_blank"
                       underline="always"
                       className={classes.authorIntro}
