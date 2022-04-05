@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, IconButton, Box } from '@material-ui/core';
-import { SiUnsplash } from 'react-icons/si';
+import { FaCamera } from 'react-icons/fa';
 import { BalloonTip } from 'components';
 import { useUnsplash } from 'context/useUnsplash';
 
@@ -42,7 +42,7 @@ export default function UnsplashLogoButton() {
           target="_blank"
           color="inherit"
         >
-          <SiUnsplash />
+          <FaCamera />
         </IconButton>
       </Box>
     </BalloonTip>
