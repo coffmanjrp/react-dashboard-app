@@ -26,7 +26,7 @@ export { default as ShareButton } from './ShareButton';
 export { default as ShareCard } from './ShareCard';
 export { default as TempUnitSwitch } from './TempUnitSwitch';
 export { default as ToggleMenuButton } from './ToggleMenuButton';
-export { default as UnsplashLogoButton } from './UnsplashLogoButton';
+export { default as VistiAndViewButton } from './VistiAndViewButton';
 export { default as Weather } from './Weather';
 export { default as WeatherInfo } from './WeatherInfo';
 export { default as WeatherInfoList } from './WeatherInfoList';

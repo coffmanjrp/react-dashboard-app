@@ -1,12 +1,12 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core';
 import { motion } from 'framer-motion';
-import { UnsplashLogoButton, Weather } from 'components';
+import { Weather } from 'components';
 
 const useStyles = makeStyles((theme) => ({
   container: {
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
     padding: '0 20px',
     width: '100%',
@@ -44,7 +44,6 @@ export default function Header() {
       initial="initial"
       animate="animate"
     >
-      <UnsplashLogoButton />
       <Weather />
     </motion.header>
   );

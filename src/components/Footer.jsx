@@ -6,6 +6,7 @@ import {
   DownloadButton,
   ToggleMenuButton,
   ShareButton,
+  VistiAndViewButton,
 } from 'components';
 
 const useStyles = makeStyles((theme) => ({
@@ -53,6 +54,7 @@ export default function Footer({ isDarkMode, setIsDarkMode }) {
       <Box display="flex">
         <ShareButton />
         <DownloadButton />
+        <VistiAndViewButton />
         <ToggleMenuButton
           isDarkMode={isDarkMode}
           setIsDarkMode={setIsDarkMode}

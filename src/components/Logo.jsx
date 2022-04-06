@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-export default function UnsplashLogoButton() {
+export default function Logo() {
   const classes = useStyles();
   const {
     data: { thumbnail, unsplashLink },
@@ -27,7 +27,7 @@ export default function UnsplashLogoButton() {
     <BalloonTip
       content={
         <div>
-          <h4>View photo on Unsplash.com</h4>
+          <h4>LOGO</h4>
           <img src={thumbnail} alt="thumbnail" />
         </div>
       }
